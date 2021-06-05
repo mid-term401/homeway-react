@@ -1,57 +1,41 @@
-{/* <script src="https://maps.googleapis.com/maps/api/js?key=your-key-here&libraries=places"></script> */}
-
 import React from "react";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from "react-places-autocomplete";
+import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { postRemoteData } from "../../store/actions/thunk-action";
 
-export default function App() {
-  const [address, setAddress] = React.useState("");
-  const [coordinates, setCoordinates] = React.useState({
-    lat: null,
-    lng: null
-  });
+function SearchForm() {
+  const dispatch = useDispatch();
+  function SubmitSignInForm(e) {
+    e.preventDefault();
 
-  const handleSelect = async value => {
-    const results = await geocodeByAddress(value);
-    const latLng = await getLatLng(results[0]);
-    setAddress(value);
-    setCoordinates(latLng);
-  };
+    dispatch(
+      postRemoteData(
+        "https://robust-entity-homeway.herokuapp.com/searchResults",
+        {
+          myCountry: e.target.myCountry.value,
+          WorkField: e.target.WorkField.value
+        }, ''
+      )
+    );
+  }
 
   return (
-    <div>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p>
-
-            <input {...getInputProps({ placeholder: "Type address" })} />
-
-            <div>
-              {loading ? <div>...loading</div> : null}
-
-              {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
-                };
-
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
-    </div>
+    <>
+      <div className="login">
+       
+        <form onSubmit={SubmitSignInForm}>
+          <input type="text" placeholder="country name" name="myCountry" />
+          <input type="password" placeholder="work field" name="WorkField" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return { search: state.thunkReducer};
+};
+const mapDispatchToProps = { postRemoteData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
