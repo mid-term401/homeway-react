@@ -1,26 +1,16 @@
 import logo from './logo.svg';
-import SignUpFormHost from './component/signUp/host'
-import SignUpVolunteer from './component/signUp/volunteer'
-
-
+import Profile from './component/hostProfile/host-haneen';
 
 
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       <SignUpFormHost/>
+ 
+    
+       <Profile/>
       
-      </header>
-      
-      <header className="App-header">
-       <SignUpVolunteer/>
-      </header>
-
      
-    </div>
 
 
   );

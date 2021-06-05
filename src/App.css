@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
  }
 
 .App-logo {
@@ -13,19 +14,39 @@
   }
 }
 
+header{
+  height: 50px;
+}
+body
+{
+  background-image: url(https://www.niche.com/blog/wp-content/uploads/2019/01/importance-of-community-service-social-2.jpg);
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  /* height: 100%; */
+  background-attachment: fixed;
+  overflow: scroll;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-left: 80px;
+}
 .App-header {
   background-image: url(https://www.niche.com/blog/wp-content/uploads/2019/01/importance-of-community-service-social-2.jpg);
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
+  
 }
 
 .App-link {
