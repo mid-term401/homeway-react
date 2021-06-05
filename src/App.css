@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-}
+ }
 
 .App-logo {
   height: 40vmin;
@@ -14,8 +14,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-image: url(https://www.niche.com/blog/wp-content/uploads/2019/01/importance-of-community-service-social-2.jpg);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
