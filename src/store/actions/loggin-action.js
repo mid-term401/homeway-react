@@ -4,3 +4,10 @@ export const reset = () => {
     payload: null,
   };
 };
+
+export const removeCookie =()=>{
+  return {
+    type: "REMOVECOOKIE",
+    payload: null,
+  };
+}

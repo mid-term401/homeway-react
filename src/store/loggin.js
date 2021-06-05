@@ -15,11 +15,18 @@ const initialState = {
   isVolunteer: false,
   isAdmin: false,
   user: [],
+  cookie: cookie.load('auth')
 };
 
 const loggin = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+
+    case 'REMOVECOOKIE':
+      cookie: cookie.remove('auth')
+      return  state
+
+
     case "CHECKUSERTYPE":
       console.log('check user',payload)
       if (payload == 'host'){
@@ -50,6 +57,7 @@ const loggin = (state = initialState, action) => {
     case "VERIFYUSER":
       if (payload) {
         const token = payload.results.body.token;
+        cookie.save('auth',token);
         const { id, name, role } = jwt.decode(token);
         const user = {
           id,
