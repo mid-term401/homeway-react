@@ -12,7 +12,7 @@ const reducers = combineReducers({ loggin,thunkReducer  });
 
 
 const store = () => {
-  return createStore(reducers,applyMiddleware(thunk), composeWithDevTools());
+  return createStore(reducers,applyMiddleware(thunk));
 };
 
 export default store();
