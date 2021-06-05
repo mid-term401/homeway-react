@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import './App.css';
+import SignUpFormHost from './component/signUp/host'
+import SignUpVolunteer from './component/signUp/volunteer'
 
 function App() {
 
@@ -18,15 +20,15 @@ function App() {
   // axios.defaults.withCredentials = true;
 
   const register = () => {
-    axios.post("http://localhost:9000/volunteers/sign_up", { 
+    axios.post("http://localhost:9000/volunteers/sign_up", {
       username: userNameReg,
-      password: passwordReg, 
-      first_name: firstName, 
-      last_name: lastName, 
-      email, 
-      country, 
-      address, 
-      birth_date: birthDate 
+      password: passwordReg,
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      country,
+      address,
+      birth_date: birthDate
     }).then((res) => {
       console.log(res);
     }).catch(err => {
@@ -34,21 +36,21 @@ function App() {
     })
   }
 
-    // states for login
+  // states for login
 
-    const [username, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [loginStatus, setLoginStatus] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
 
   const login = () => {
-    axios.post("http://localhost:9000/sign_in",{} ,{
+    axios.post("http://localhost:9000/sign_in", {}, {
       auth: {
         username: username,
         password: password
       }
     }).then((res) => {
-      if(res.data.username) {
+      if (res.data.username) {
         console.log(res.data);
         setLoginStatus(res.data.username)
       }
@@ -92,14 +94,29 @@ function App() {
 
       <div className="login">
         <h1>Login</h1>
-        <input type="text" placeholder="Username" onChange={(e) => { setUserName(e.target.value) }}/>
-        <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}/>
+        <input type="text" placeholder="Username" onChange={(e) => { setUserName(e.target.value) }} />
+        <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
         <button onClick={login}>Login</button>
       </div>
 
       <h1>{loginStatus}</h1>
     </div>
-  );
+  )
 }
+
+// Haneen code:
+
+{/* <div className="App">
+<header className="App-header">
+ <SignUpFormHost/>
+
+</header>
+
+<header className="App-header">
+ <SignUpVolunteer/>
+</header>
+
+
+</div> */}
 
 export default App;
