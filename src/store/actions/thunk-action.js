@@ -42,7 +42,7 @@ export const postRemoteData = function (api, sendBody, id) {
 export const getRemoteData = function (api) {
   return (dispatch) => {
     return superagent.get(api).then((response) => {
-      dispatch(getAction({ results: response.body }));
+      dispatch(getAction({ results: response }));
     });
   };
 };

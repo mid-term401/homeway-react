@@ -5,6 +5,7 @@ export default (state = initalState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "GET":
+      console.log('get request', payload);
       return payload;
 
     case "POST":
