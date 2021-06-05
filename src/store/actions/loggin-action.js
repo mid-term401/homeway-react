@@ -1,18 +1,5 @@
 // send the user as an object with its name and pass
 
-export const verifyUser = (user) => {
-    return {
-        type: "VERIFYUSER",
-        payload: user,
-    }
-};
-
-export const validateToken = (token)=>{
-    return {
-        type: "VALIDATETOKEN",
-        payload: token,
-    }
-}
 
 export const isLoggin = (user) => {
   return {

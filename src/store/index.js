@@ -6,7 +6,9 @@ import thunk from 'redux-thunk';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import loggin from './loggin';
-const reducers = combineReducers({ loggin });
+import thunkReducer from './thunkReducer'
+
+const reducers = combineReducers({ loggin,thunkReducer  });
 
 
 const store = () => {

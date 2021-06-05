@@ -4,3 +4,8 @@
 * ` npm i react-redux redux-devtools-extension`
 * ` npm i react-if`
 * `redux-thunk`
+
+## User thunkReducer
+  <!-- <button onClick={()=> dispatch(getRemoteData('backend URL with params if exists'))}> click btn </button> --> this will make the call and get the data from the API
+
+  

@@ -1,10 +1,10 @@
 
-export const acl = (capabilities) => {
-    return {
-        type: "OKTORENDER",
-        payload: capabilities,
-    }
-};
+// export const acl = (capabilities) => {
+//     return {
+//         type: "OKTORENDER",
+//         payload: capabilities,
+//     }
+// };
 
 export const checkUserType = (userType) => {
     return {
