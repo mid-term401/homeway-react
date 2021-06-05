@@ -1,6 +1,8 @@
 import logo from './logo.svg';
-import SignUpForm from './component/signUp/signUp-Haneen'
-import Profile from './component/hostProfile/host-haneen';
+import SignUpFormHost from './component/signUp/host'
+import SignUpVolunteer from './component/signUp/volunteer'
+
+
 
 
 import './App.css';
@@ -9,10 +11,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <SignUpForm/>
+       <SignUpFormHost/>
       
-       {/* <Profile/> */}
+      </header>
       
+      <header className="App-header">
+       <SignUpVolunteer/>
       </header>
 
      
