@@ -16,4 +16,17 @@
 ## User thunkReducer
   <!-- <button onClick={()=> dispatch(getRemoteData('backend URL with params if exists'))}> click btn </button> --> this will make the call and get the data from the API
 
+
+const initialState = [
+  { name: 'Mahmoud', votes: 0 },
+  { name: 'Samer', votes: 0 },
+  { name: 'Motasem', votes: 0 },
+];
+
+
+
+
+
+ { ...candidate, disabled: true }
+
   

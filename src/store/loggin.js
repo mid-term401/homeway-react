@@ -3,6 +3,7 @@ import cookie from "react-cookies";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import superagent from "superagent";
+import be from "date-fns/esm/locale/be/index.js";
 
 // const API = process.env.API_Server
 // const API = "https://auth-server-401.herokuapp.com";
@@ -15,33 +16,35 @@ const initialState = {
   isVolunteer: false,
   isAdmin: false,
   user: [],
-  cookie: cookie.load('auth')
+
+  cookie: cookie.load("auth", { path: "/" }), //Returns undefined if the cookie does not exist.
+  error: null,
 };
 
 const loggin = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
 
-    case 'REMOVECOOKIE':
-      cookie: cookie.remove('auth')
-      return  state
+    case "BEARER":
+      console.log("after bearer", payload);
+      return state;
 
+    case "REMOVECOOKIE":
+      cookie.remove("auth");
+      return { ...state, cookie: cookie.remove("auth", { path: "/" }) };
 
     case "CHECKUSERTYPE":
-      console.log('check user',payload)
-      if (payload == 'host'){
+      // console.log('check user',payload)
+      if (payload == "host") {
         return {
+          ...state,
           loggedIn: true,
           loggedOut: false,
           isVerified: true,
           isHost: true,
-          isVolunteer: false,
-          isAdmin: false,
-          user:state.user,
         };
-      }
-      else if( payload == 'volunteer'){
-        return  {
+      } else if (payload == "volunteer") {
+        return {
           loggedIn: true,
           loggedOut: false,
           isVerified: true,
@@ -50,42 +53,38 @@ const loggin = (state = initialState, action) => {
           isAdmin: false,
           user: state.user,
         };
-
       }
-
 
     case "VERIFYUSER":
       if (payload) {
         const token = payload.results.body.token;
-        cookie.save('auth',token);
         const { id, name, role } = jwt.decode(token);
+        cookie.save("auth",token);
+        cookie.save("token",token);
+
+        // cookie.save("id",id);
         const user = {
           id,
           name,
           token,
         };
-        // console.log('decoded user',  [...state.user,user]);
-        // console.log("decoded user", jwt.decode(token));
         if (role === "volunteer") {
-          return {
-            loggedIn: true,
-            loggedOut: false,
-            isVerified: true,
-            isHost: false,
-            isVolunteer: true,
-            isAdmin: false,
-            user: [...state.user, user],
-          };
-        } else if(role === "host"){
-          return {
-            loggedIn: true,
+          return { ...state, loggedIn: true,
+              loggedOut: false,
+              isVerified: true,
+              isHost: false,
+              isVolunteer: true,
+              isAdmin: false,
+              user: [...state.user, user], };
+         
+        } else if (role === "host") {
+          return  { ...state, loggedIn: true,
             loggedOut: false,
             isVerified: true,
             isHost: true,
             isVolunteer: false,
             isAdmin: false,
-            user: [...state.user, user],
-          };
+            user: [...state.user, user], };;
         }
       } else {
         return {

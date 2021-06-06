@@ -6,11 +6,14 @@ import dotenv from "dotenv";
 
 // sign in User is working as a volunteer or a host:
 export const verifyUser = function (api, username, password) {
+  // console.log('1', username, password)
   return (dispatch) => {
     return superagent
       .post(api)
       .set("authorization", `Basic ${btoa(`${username}:${password}`)}`)
       .then((response) => {
+        // console.log('2', response.body)
+        
         dispatch(login({ results: response }));
       });
   };
@@ -19,6 +22,28 @@ export const verifyUser = function (api, username, password) {
 export const login = (payload) => {
   return {
     type: "VERIFYUSER",
+    payload,
+  };
+};
+
+
+export const bearerAuth = function (api,id,token) {
+  return (dispatch) => {
+    console.log('5',api,token)
+    return superagent
+      .get(`${api}/1`)
+      .set("authorization", `${token}`)
+      .then((response) => {
+        // console.log('4', response.body)
+        dispatch(bearer({ results: response }));
+      }).catch(error =>{
+        console.log(`error in bearer auth ${error}`)
+      });
+  };
+};
+export const bearer = (payload) => {
+  return {
+    type: "BEARER",
     payload,
   };
 };
@@ -39,9 +64,10 @@ export const postRemoteData = function (api, sendBody, id) {
   };
 };
 
-export const getRemoteData = function (api) {
+export const getRemoteData = function (api,id) {
   return (dispatch) => {
-    return superagent.get(api).then((response) => {
+    return superagent.get(`${api}/${id}`).then((response) => {
+      console.log('response in action',response)
       dispatch(getAction({ results: response }));
     });
   };
