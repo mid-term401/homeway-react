@@ -1,38 +1,107 @@
-.App {
+* {
+  text-decoration: none;
+}
+.slideImage {
+  width: 100%;
+  height: 95vh;
+  /* opacity: 0.8; */
+  background-repeat: no-repeat;
+}
+.betweenImage {
+  max-width: 100%;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+}
+.navBar {
+  background-color: rgba(84, 86, 211, 0) !important;
+  box-shadow: none !important;
+  color: #fb8c00 !important;
+  font-size: 35px !important;
+}
+.Carousel-indicators-7,
+.Carousel-indicators-11,
+.Carousel-indicators-4 {
+  display: none;
+}
+
+.titleType {
+  margin: 80px 0 20px 0 !important;
+}
+.searchBtn {
+  background: #fb8c00 !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.searchBar {
+  background-color: rgba(255, 255, 255, 0.739) !important;
+  border-radius: 4px;
+  margin-top: 150px !important;
+}
+
+input {
+  padding-left: 10px !important;
+}
+.titleIntro,
+.titleIntroPara,
+.loginTitle {
+  font-weight: 1000 !important;
+  color: #fb8c00;
+  text-shadow: 2px 2px black;
+}
+.mainContainer {
+  position: absolute;
+  top: 250px !important;
+  width: 100%;
+}
+select::placeholder {
+  padding-left: 10px !important;
+}
+.loginTitle,
+.loginText {
+  text-align: center;
+  padding: 10px;
+}
+.inputTextLogin {
+  width: 100%;
+  padding: 10px !important;
+}
+.loginTextLink {
+  margin-top: 30px !important;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.blackName {
+  text-align: center;
+  margin: 30px 0 20px 0 !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.blackImg,
+.TextImg {
+  height: 130%;
+  width: 100%;
+  border-radius: 4px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.background {
+  background-image: url(./component/assets/homeImage/backGround2.jpg);
+  height: 720px;
 }
-
-.App-link {
-  color: #61dafb;
+.TextImgDiv {
+  padding-top: 75px !important;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.titleIntroPara {
+  padding-top: 40px !important;
+}
+.blackImg:hover {
+  background-color: #fb8a0065;
+}
+.loginBar,
+a {
+  font-size: 16px;
+  width: 100%;
+  font-weight: 600 !important;
+  color: #fb8c00;
+  text-shadow: 1px 1px black;
+}
+.logoName {
+  width: 100%;
 }
