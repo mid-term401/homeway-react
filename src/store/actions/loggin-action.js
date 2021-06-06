@@ -11,3 +11,10 @@ export const removeCookie =()=>{
     payload: null,
   };
 }
+
+export const saveID = (id) =>{
+  return {
+    type: "SAVEID",
+    payload: id,
+  }
+}

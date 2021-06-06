@@ -16,24 +16,26 @@ const initialState = {
   isVolunteer: false,
   isAdmin: false,
   user: [],
-  id: 0,
-  cookie: cookie.load("token", { path: "/" }), //Returns undefined if the cookie does not exist.
+  id: 0, // id of user host or volunteer
+  idVolunteer: 0, // id of second user
+  idHost: 0,
+  idService: 0,  // id of service
+  profile: {},
+  cookie: cookie.load("auth", { path: "/" }), //Returns undefined if the cookie does not exist.
   error: null,
 };
 
 const loggin = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "BEARER":
-      console.log("after bearer", payload);
-      return state;
+    case 'saveID':
+      return {...state, idHost:payload }
 
     case "REMOVECOOKIE":
       cookie.remove("auth");
       return { ...state, cookie: cookie.remove("auth", { path: "/" }) };
 
     case "CHECKUSERTYPE":
-      // console.log('check user',payload)
       if (payload == "host") {
         return {
           ...state,
@@ -56,15 +58,12 @@ const loggin = (state = initialState, action) => {
 
     case "VERIFYUSER":
       if (payload) {
-        console.log("?");
         const token = payload.results.body.token;
+        console.log("TestingHost", jwt.decode(token))
         const { id, name, role } = jwt.decode(token);
-        console.log("999", id, name, role);
+        // console.log("999", id, name, role);
         cookie.save("auth",token);
-        // cookie.save("token", token);
 
-        // cookie.save("id",id);
-        console.log("??");
 
         const user = {
           id,
@@ -83,11 +82,12 @@ const loggin = (state = initialState, action) => {
             isVolunteer: true,
             isAdmin: false,
             id,
+            idVolunteer: id,
             cookie: token,
-            user: [...state.user, user],
+            user: [user],
           };
         } else if (role === "host") {
-          // console.log(2,'??')
+  
 
           return {
             ...state,
@@ -97,7 +97,10 @@ const loggin = (state = initialState, action) => {
             isHost: true,
             isVolunteer: false,
             isAdmin: false,
-            user: [...state.user, user],
+            id,
+            idHost: id,
+            cookie: token,
+            user: [ user],
           };
         }
       } else {

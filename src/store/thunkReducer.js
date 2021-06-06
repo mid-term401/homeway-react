@@ -8,6 +8,9 @@ export default (state = initalState, action) => {
       console.log('get request', payload);
       return payload;
 
+      case "BEARER":
+        return payload;
+
     case "POST":
       return payload;
       

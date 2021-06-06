@@ -29,13 +29,11 @@ export const login = (payload) => {
 
 
 export const bearerAuth = function (api,id,token) {
-  return (dispatch) => {
-    // console.log('5',api,token)
+  return (dispatch,  getState) => {
     return superagent
       .get(`${api}/${id}`)
       .set("authorization", `${token}`)
       .then((response) => {
-        // console.log('4', response.body)
         dispatch(bearer({ results: response }));
       }).catch(error =>{
         console.log(`error in bearer auth ${error}`)
