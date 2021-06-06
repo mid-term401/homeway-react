@@ -12,9 +12,10 @@ export const verifyUser = function (api, username, password) {
       .post(api)
       .set("authorization", `Basic ${btoa(`${username}:${password}`)}`)
       .then((response) => {
-        // console.log('2', response.body)
+        console.log('2', response.body)
         
         dispatch(login({ results: response }));
+
       });
   };
 };
@@ -29,9 +30,9 @@ export const login = (payload) => {
 
 export const bearerAuth = function (api,id,token) {
   return (dispatch) => {
-    console.log('5',api,token)
+    // console.log('5',api,token)
     return superagent
-      .get(`${api}/1`)
+      .get(`${api}/${id}`)
       .set("authorization", `${token}`)
       .then((response) => {
         // console.log('4', response.body)

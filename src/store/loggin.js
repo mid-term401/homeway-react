@@ -16,15 +16,14 @@ const initialState = {
   isVolunteer: false,
   isAdmin: false,
   user: [],
-
-  cookie: cookie.load("auth", { path: "/" }), //Returns undefined if the cookie does not exist.
+  id: 0,
+  cookie: cookie.load("token", { path: "/" }), //Returns undefined if the cookie does not exist.
   error: null,
 };
 
 const loggin = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-
     case "BEARER":
       console.log("after bearer", payload);
       return state;
@@ -57,36 +56,52 @@ const loggin = (state = initialState, action) => {
 
     case "VERIFYUSER":
       if (payload) {
+        console.log("?");
         const token = payload.results.body.token;
         const { id, name, role } = jwt.decode(token);
+        console.log("999", id, name, role);
         cookie.save("auth",token);
-        cookie.save("token",token);
+        // cookie.save("token", token);
 
         // cookie.save("id",id);
+        console.log("??");
+
         const user = {
           id,
           name,
           token,
         };
         if (role === "volunteer") {
-          return { ...state, loggedIn: true,
-              loggedOut: false,
-              isVerified: true,
-              isHost: false,
-              isVolunteer: true,
-              isAdmin: false,
-              user: [...state.user, user], };
-         
+          // console.log(1,'??')
+
+          return {
+            ...state,
+            loggedIn: true,
+            loggedOut: false,
+            isVerified: true,
+            isHost: false,
+            isVolunteer: true,
+            isAdmin: false,
+            id,
+            cookie: token,
+            user: [...state.user, user],
+          };
         } else if (role === "host") {
-          return  { ...state, loggedIn: true,
+          // console.log(2,'??')
+
+          return {
+            ...state,
+            loggedIn: true,
             loggedOut: false,
             isVerified: true,
             isHost: true,
             isVolunteer: false,
             isAdmin: false,
-            user: [...state.user, user], };;
+            user: [...state.user, user],
+          };
         }
       } else {
+        // console.log(3,'??')
         return {
           loggedIn: false,
           loggedOut: true,
