@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
 
   root: {
     display: "flex",
-    width: "100%",
+    width: "auto",
     marginTop: 15,
     // border:"2px solid",
     backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`
@@ -48,8 +48,8 @@ const useStyles = makeStyles(() => ({
     height: "200px",
   },
 
-  Card: {
-    backgroundColor: "white",
+  card: {
+    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
     marginTop: 15,
     marginBottom: 15,
     borderRadius: 4,
@@ -66,8 +66,7 @@ const useStyles = makeStyles(() => ({
 
   description:
   {
-   
-    width: "100%",
+    // border:"2px solid",
     marginTop: "20px",
     borderRadius: 3,
     backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`
@@ -77,13 +76,20 @@ const useStyles = makeStyles(() => ({
 
   font:
   {
-    fontFamily: 'Lobster, cursive'
+    fontFamily: 'Lobster, cursive',
   },
 
-  About:
+  review:
   {
-    width:"100%",
-    padding:15
+    fontFamily: 'Lobster, cursive',
+    padding:"20px",
+    
+  },
+
+  skills:
+  {
+    fontFamily: 'Lobster, cursive',
+    textAlign:"center"
   }
 }));
 
@@ -147,109 +153,78 @@ export default function Profile() {
             Edit profile
           </Button>
           </Grid>
-
             </Grid>
 
             <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>
+            <Grid item xs={12} sm={12} md={10} spacing={5} className={classes.description}>
 
-            <Typography className={classes.font} variant="h5" className={classes.About} style={{ color: "#FB8C00" }}>
+            <Typography className={classes.font} variant="h6" style={{ color: "#FB8C00" }}>
                   About Me:
                 </Typography>
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
-              Hardworker, Cabiblaty on heal anything heavy, Collaborative
-              Hardworker, Cabiblaty on heal anything heavy, Collaborative
-           
             </Grid>
            
-           
+          
           </Grid>
           </Grid>
 
-          <Grid container spacing={0} item xs={12} sm={12} md={12} className={classes.Card}>
-            <Typography className={classes.font} style={{ color: "#FB8C00" }} variant="h6" gutterBottom>
-              Services:
+          <Grid container spacing={0} item xs={12} sm={12} md={12} className={classes.card}>
+            <Typography style={{ color: "#FB8C00" }} className={classes.font} variant="h6" gutterBottom>
+              Preview:
             </Typography>
 
-            <Grid container className={classes.submit}>
-            <Card className={classes.root}>
-              <CardMedia
-                className={classes.cover}
-                image="https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833"
-                title="Live from space album cover"
-              />
+            <Typography className={classes.review} variant="h6" gutterBottom>
 
-              <CardContent className={classes.content}>
-                <Typography className={classes.font} component="h5" variant="h5">
-                  Farmer
-                </Typography>
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Details: We need a persion with physical skills that have a
-                  capabilty to work prush.
-                </Typography>
+            Become part of Social work in the USA. Take part in a 6 months, intensive Volunteer
+             program with studies, courses and actions with people from all over the world;
+              work in poor communities to improve healthy living, establishing organic gardens 
+              and do what is needed with organizations working for the common good such as 
+              teaching in after school programs and more.This program is for all who want to
+               team up in an effort to learn in theory and praxis about running non-profits,
+                and get a sense of what it takes to become a community leader, while gaining
+                 knowledge working in the midst of a poor community.
 
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Country: Australia
-                </Typography>
+            </Typography>
 
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Duration: 6 Months
-                </Typography>
-                <CardActions >
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Delete
-                </Button>
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Edit
-                </Button>
-              </CardActions>
-              </CardContent>
+            <Typography className={classes.font} style={{ color: "#FB8C00" }} variant="h6" gutterBottom>
+              Skills:
+            </Typography>
+
+            <Grid container className={classes.review} item xs={12} sm={12} md={12}>
+            <Grid className={classes.review} item xs={12} sm={3} md={3}>
+              <img src="https://d3timt52sxdbq0.cloudfront.net/wp-content/uploads/2019/05/project-collaboration.jpg"></img>
+
+              <Typography className={classes.skills} variant="h6" gutterBottom>
+              Collaborative Person
+            </Typography>
+            </Grid>
+
+            <Grid className={classes.review} item xs={12} sm={9} md={3}>
+            <img src="https://www.careercontessa.com/uploadedImages/Library/career-contesa-work-smarter4.jpg"></img>
+
+             <Typography className={classes.skills} variant="h6" gutterBottom>
+              Hard Worker
+              </Typography>
+              </Grid>
+
+              <Grid className={classes.review} item xs={12} sm={9} md={3}>
+            <img src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_829578104_200013331653767174292_382164.jpg"></img>
+
+             <Typography className={classes.skills} variant="h6" gutterBottom>
+             Creativity
+              </Typography>
+              </Grid>
+
+              <Grid className={classes.review} item xs={12} sm={9} md={3}>
+            <img src="https://youmatter.world/app/uploads/sites/2/2019/01/responsibility-definition.jpg"></img>
+
+             <Typography className={classes.skills} variant="h6" gutterBottom>
+              Responsible
+              </Typography>
+              </Grid>
             
-            </Card>
-
-            
-          </Grid>
-
-
-          <Grid container className={classes.submit}>
-            <Card className={classes.root}>
-              <CardMedia
-                className={classes.cover}
-                image="https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg"
-                title="Live from space album cover"
-              />
-
-              <CardContent className={classes.content}>
-                <Typography className={classes.font} component="h5" variant="h5">
-                  Build
-                </Typography>
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Details: We need a persion with physical skills that have a
-                  capabilty to work prush .
-                </Typography>
-
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Country: Newyork
-                </Typography>
-
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Duration: 1 year
-                </Typography>
-                <CardActions >
-                <Button size="small"style={{ color: "#FB8C00" }}>
-                  Delete
-                </Button>
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Edit
-                </Button>
-              </CardActions>
-              </CardContent>
-            
-            </Card>
-
-            
-          </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

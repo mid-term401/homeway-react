@@ -1,5 +1,7 @@
 import logo from './logo.svg';
-import Profile from './component/hostProfile/host-haneen';
+import Host from './component/hostProfile/host-haneen';
+import Volunteer from './component/volunteerProfile/volunteer-haneen';
+
 
 
 import './App.css';
@@ -8,7 +10,8 @@ function App() {
   return (
  
     
-       <Profile/>
+       <Host/>
+      // <Volunteer/>
       
      
 
