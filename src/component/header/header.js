@@ -86,18 +86,22 @@ export default function MenuAppBar() {
               </Menu>
             </div>
           ) : (
-            <Grid className='loginBar' container spacing={8}>
-              <Grid item xs={12} sm={2} md={7}></Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink exact to='/'>
-                  Home
-                </NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/LogIn'>LogIn</NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/aboutUs'>AboutUs</NavLink>
+            <Grid className='loginBar' container>
+              <Grid item xs={12} sm={2} md={6}></Grid>
+              <Grid item xs={4} sm={2} md={5}>
+                <ul>
+                  <li>
+                    <NavLink exact to='/'>
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/LogIn'>LogIn</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/aboutUs'>AboutUs</NavLink>
+                  </li>
+                </ul>
               </Grid>
             </Grid>
           )}
