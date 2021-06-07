@@ -12,8 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { verifyUser } from "../../store/actions/thunk-action";
 import { useDispatch } from "react-redux";
-import {toggleOpen } from "../../store/actions/loggin-action";
-
+import { toggleOpen } from "../../store/actions/loggin-action";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -33,12 +32,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SignIn(props) {
-
-  
   const classes = useStyles();
-  let boolean = props.signIn.isOpen
+  let boolean = props.signIn.isOpen;
   const [open, setOpen] = React.useState(false);
-// console.log(44444, boolean)
+  // console.log(44444, boolean)
   const handleOpen = () => {
     setOpen(boolean);
   };
@@ -59,19 +56,17 @@ function SignIn(props) {
       )
     );
   }
-// console.log(33333,props.signIn.isOpen)
+  // console.log(33333,props.signIn.isOpen)
   return (
     <div>
-      <Button variant='contained' color='primary' type='button' onClick={handleOpen}>
-        Login
-      </Button>
-
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
         className={classes.modal}
         open={props.signIn.isOpen}
-        onClose={()=>{props.toggleOpen(props.signIn.isOpen)}}
+        onClose={() => {
+          props.toggleOpen(props.signIn.isOpen);
+        }}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -86,19 +81,28 @@ function SignIn(props) {
             <Typography className='loginText' variant='h4'>
               Login
             </Typography>
-            <form onSubmit={SubmitSignInForm} className={classes.root} noValidate autoComplete='off'>
+            <form
+              onSubmit={SubmitSignInForm}
+              className={classes.root}
+              noValidate
+              autoComplete='off'
+            >
               <Grid container spacing={4}>
                 <Grid item xs={12} sm={12} md={12}>
-                  <TextField className='inputTextLogin'
-                  type="text"
-                  name="username"
-                   label='Enter Your User Name' />
+                  <TextField
+                    className='inputTextLogin'
+                    type='text'
+                    name='username'
+                    label='Enter Your User Name'
+                  />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
-                  <TextField className='inputTextLogin'
-                  type="password"
-                  name="password"
-                   label='Enter Your Password' />
+                  <TextField
+                    className='inputTextLogin'
+                    type='password'
+                    name='password'
+                    label='Enter Your Password'
+                  />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
                   <Button
@@ -106,7 +110,7 @@ function SignIn(props) {
                     variant='contained'
                     color='primary'
                     onClick={handleOpen}
-                    type="submit"
+                    type='submit'
                   >
                     Login
                   </Button>
@@ -124,8 +128,8 @@ function SignIn(props) {
 }
 
 const mapStateToProps = (state) => {
-    return { signIn: state.loggin };
-  };
-  const mapDispatchToProps = { verifyUser,toggleOpen };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+  return { signIn: state.loggin };
+};
+const mapDispatchToProps = { verifyUser, toggleOpen };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -1,17 +1,17 @@
-// import Box from "@material-ui/core/Box";
-// import Grid from "@material-ui/core/Grid";
-// import React from "react";
-// import LastAdd from "./lastAddItem";
-// import Slider from "./slider";
-// import Recommended from "./recommended";
-// import Search from "./search";
-// import Black from "./blackImgs";
-// import About from "./about";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import React from "react";
+import LastAdd from "./lastAddItem";
+import Slider from "./slider";
+import Recommended from "./recommended";
+import Search from "./search";
+import Black from "./blackImgs";
+import About from "./about";
 
 export default function Home() {
   return (
     <Box>
-      {/* <Grid>
+      <Grid>
         <Slider />
         <Search />
       </Grid>
@@ -20,18 +20,7 @@ export default function Home() {
         <About />
         <LastAdd />
         <Recommended />
-      </Grid> */}
+      </Grid>
     </Box>
   );
 }
-
-// import Tweet from "./Tweets";
-
-// function Home() {
-//   return (
-//     <div className='App'>
-//       <Tweet />
-//     </div>
-//   );
-// }
-// export default Home;

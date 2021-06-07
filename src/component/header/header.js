@@ -101,26 +101,30 @@ function MenuAppBar(props) {
               </Menu>
             </div>
           ) : (
-            <Grid className='loginBar' container spacing={8}>
-              <Grid item xs={12} sm={2} md={7}></Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink exact to='/'>
-                  Home
-                </NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink
-                  to='/LogIn'
-                  onClick={() => {
-                    props.toggleOpen(false);
-                    props.checkCookie();
-                  }}
-                >
-                  LogIn
-                </NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/aboutUs'>AboutUs</NavLink>
+            <Grid className='loginBar' container>
+              <Grid item xs={12} sm={2} md={6}></Grid>
+              <Grid item xs={4} sm={2} md={5}>
+                <ul>
+                  <li>
+                    <NavLink exact to='/'>
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to='/L'
+                      onClick={() => {
+                        props.toggleOpen(false);
+                        props.checkCookie();
+                      }}
+                    >
+                      LogIn
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/aboutUs'>AboutUs</NavLink>
+                  </li>
+                </ul>
               </Grid>
             </Grid>
           )}
@@ -137,6 +141,78 @@ function MenuAppBar(props) {
     // </Container>
   );
 }
+
+// return (
+//   // <Container>
+//   //   <Grid container spacing={4}>
+//   <div className={classes.root}>
+//     <AppBar className='navBar' position='absolute'>
+//       <Toolbar>
+//         <Typography variant='h3' className='logoName'>
+//           Home Way
+//         </Typography>
+//         {auth ? (
+//           <div>
+//             <IconButton
+//               aria-label='account of current user'
+//               aria-controls='menu-appbar'
+//               aria-haspopup='true'
+//               onClick={handleMenu}
+//               color='inherit'
+//             >
+//               <AccountCircle fontSize='large' />
+//             </IconButton>
+//             <Menu
+//               id='menu-appbar'
+//               anchorEl={anchorEl}
+//               anchorOrigin={{
+//                 vertical: "top",
+//                 horizontal: "right",
+//               }}
+//               keepMounted
+//               transformOrigin={{
+//                 vertical: "top",
+//                 horizontal: "right",
+//               }}
+//               open={open}
+//               onClose={handleClose}
+//             >
+//               <MenuItem onClick={handleClose}>Profile</MenuItem>
+//               <MenuItem onClick={handleClose}>My account</MenuItem>
+//             </Menu>
+//           </div>
+//         ) : (
+//           <Grid className='loginBar' container>
+//             <Grid item xs={12} sm={2} md={6}></Grid>
+//             <Grid item xs={4} sm={2} md={5}>
+//               <ul>
+//                 <li>
+//                   <NavLink exact to='/'>
+//                     Home
+//                   </NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink to='/LogIn'>LogIn</NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink to='/aboutUs'>AboutUs</NavLink>
+//                 </li>
+//               </ul>
+//             </Grid>
+//           </Grid>
+//         )}
+//       </Toolbar>
+//     </AppBar>
+//     {/* <FormGroup>
+//       <FormControlLabel
+//         control={<Switch checked={auth} onChange={handleChange} aria-label='login switch' />}
+//         label={auth ? "Logout" : "Login"}
+//       />
+//     </FormGroup> */}
+//   </div>
+//   //   </Grid>
+//   // </Container>
+// );
 
 const mapStateToProps = (state) => {
   return { userData: state.loggin };

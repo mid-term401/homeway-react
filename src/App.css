@@ -1,6 +1,5 @@
 * {
   text-decoration: none;
-  box-sizing: border-box !important;
   list-style: none;
 }
 
@@ -97,12 +96,10 @@ select::placeholder {
 .titleIntroPara {
   padding-top: 40px !important;
 }
-.blackImg:hover {
-  background-color: #fb8a0065;
-}
+
 .loginBar,
 a {
-  font-size: 20px;
+  font-size: 22px;
   width: 100%;
   font-weight: 600 !important;
   color: #fb8c00;
