@@ -13,16 +13,12 @@ import Signin from "./component/signIn/signIn";
 // import HostProfileAsHost from "./component/hostProfile/hostProfileSamer";
 // import ServiceDisplay from "./component/hostProfile/servicesSamer";
 // import HostAsVolunteer from './component/hostProfile/hostProfileAsVolunteer'
-import Header from './component/header/header'
+import Header from "./component/header/header";
 function App() {
-
-  
   return (
     <>
-
-      
       <Header />
-      <Signin/>
+      <Signin />
       {/* <SignUpVolunteer/> */}
 
       {/* <HostAsVolunteer /> */}

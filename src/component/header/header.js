@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,10 +16,8 @@ import Grid from "@material-ui/core/Grid";
 import { NavLink } from "react-router-dom";
 
 import { connect } from "react-redux";
-import {toggleOpen, loggout } from "../../store/actions/loggin-action";
-import {checkCookie} from '../../store/actions/acl-action';
-
-
+import { toggleOpen, loggout } from "../../store/actions/loggin-action";
+import { checkCookie } from "../../store/actions/acl-action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +33,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuAppBar(props) {
-  useEffect( ()=>{
-    props.checkCookie()
-  })
-  
-console.log(2222,props)
+  useEffect(() => {
+    props.checkCookie();
+  }, []);
+  console.log("🚀🚀🚀 ~~~~ MenuAppBar ~~~~ props", props);
 
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
@@ -67,7 +64,7 @@ console.log(2222,props)
           <Typography variant='h3' className='logoName'>
             Home Way
           </Typography>
-          {(props.userData.isVerified) ? (
+          {props.userData.loggedIn ? (
             <div>
               <IconButton
                 aria-label='account of current user'
@@ -94,7 +91,13 @@ console.log(2222,props)
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={()=>{props.loggout()}}>Log out</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    props.loggout();
+                  }}
+                >
+                  Log out
+                </MenuItem>
               </Menu>
             </div>
           ) : (
@@ -106,7 +109,15 @@ console.log(2222,props)
                 </NavLink>
               </Grid>
               <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/LogIn' onClick={()=> {props.toggleOpen(false);props.checkCookie()}}>LogIn</NavLink>
+                <NavLink
+                  to='/LogIn'
+                  onClick={() => {
+                    props.toggleOpen(false);
+                    props.checkCookie();
+                  }}
+                >
+                  LogIn
+                </NavLink>
               </Grid>
               <Grid item xs={4} sm={2} md={1}>
                 <NavLink to='/aboutUs'>AboutUs</NavLink>
@@ -127,11 +138,9 @@ console.log(2222,props)
   );
 }
 
-
 const mapStateToProps = (state) => {
-    return { userData: state.loggin};
-  };
-  const mapDispatchToProps = { toggleOpen, checkCookie, loggout};
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar);
-  
+  return { userData: state.loggin };
+};
+const mapDispatchToProps = { toggleOpen, checkCookie, loggout };
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar);
