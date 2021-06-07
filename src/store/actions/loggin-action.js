@@ -18,3 +18,17 @@ export const saveID = (id) =>{
     payload: id,
   }
 }
+
+export const toggleOpen = (boolean)=>{
+  return {
+    type: 'BOOLEAN',
+    payload: boolean,
+  };
+}
+
+export const loggout = ()=>{
+  return {
+    type: 'LOGOUT',
+    payload: null,
+  };
+}

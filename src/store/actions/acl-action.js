@@ -4,3 +4,11 @@ export const checkUserType = (userType) => {
         payload: userType,
     }
 };
+
+export const checkCookie = () => {
+    return {
+        type: "CHECKCOOKIE",
+        payload: null,
+    }
+};
+

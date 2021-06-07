@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 function AddressForm(props) {
-  props.checkUserType('volunteer');
+  console.log(props)
+  props.checkUserType('host');
   const dispatch = useDispatch();
   function SubmitSignInForm(e) {
     e.preventDefault();
   
     dispatch(
-      postRemoteData("https://robust-entity-homeway.herokuapp.com/volunteers/sign_up", {
+      postRemoteData("https://robust-entity-homeway.herokuapp.com/hosts/sign_up", {
         username: e.target.username.value,
         password: e.target.password.value,
         first_name: e.target.firstname.value,
@@ -87,7 +88,7 @@ function AddressForm(props) {
       }}
     >
       <Typography variant="h6" gutterBottom>
-        Sign Up as Volunteer
+        Sign Up as Host
       </Typography>
       <form Validate onSubmit={SubmitSignInForm}>
         <Grid container spacing={3} style={{ marginTop: "60px" }}>

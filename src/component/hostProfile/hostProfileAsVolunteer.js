@@ -13,6 +13,7 @@ const HostProfileViewingAsVolunteer = (props) => {
     let host;
     useEffect( ()=>{
     if (props.userData.isVerified) {
+      
         // ("/volunteer/:id/host/:id
       dispatch(
         bearerAuth(

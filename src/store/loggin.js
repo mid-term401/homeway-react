@@ -5,9 +5,6 @@ import dotenv from "dotenv";
 import superagent from "superagent";
 import be from "date-fns/esm/locale/be/index.js";
 
-// const API = process.env.API_Server
-// const API = "https://auth-server-401.herokuapp.com";
-// check the type of the user and put it as a state and depend on the state render element
 const initialState = {
   loggedIn: false,
   loggedOut: true,
@@ -19,21 +16,35 @@ const initialState = {
   id: 0, // id of user host or volunteer
   idVolunteer: 0, // id of second user
   idHost: 0,
-  idService: 0,  // id of service
+  idService: 0, // id of service
   profile: {},
   cookie: cookie.load("auth", { path: "/" }), //Returns undefined if the cookie does not exist.
   error: null,
+  isOpen: false,
 };
 
 const loggin = (state = initialState, action) => {
+  
   const { type, payload } = action;
   switch (type) {
-    case 'saveID':
-      return {...state, idHost:payload }
+    case 'CHECKCOOKIE':
+      if(state.cookie){
+        return {...state, isVerified : true }
+      }
+    case "BOOLEAN":
+      console.log(5555555555, payload);
+      if (payload === true) {
+        return { ...state, isOpen: false };
+      } else if (payload === false) {
+        return { ...state, isOpen: true };
+      }
 
-    case "REMOVECOOKIE":
-      cookie.remove("auth");
-      return { ...state, cookie: cookie.remove("auth", { path: "/" }) };
+    case "saveID":
+      return { ...state, idHost: payload };
+
+    // case "REMOVECOOKIE":
+    //   cookie.remove("auth");
+    //   return { ...state, cookie: cookie.remove("auth", { path: "/" }) };
 
     case "CHECKUSERTYPE":
       if (payload == "host") {
@@ -59,11 +70,10 @@ const loggin = (state = initialState, action) => {
     case "VERIFYUSER":
       if (payload) {
         const token = payload.results.body.token;
-        console.log("TestingHost", jwt.decode(token))
+        console.log("TestingHost", jwt.decode(token));
         const { id, name, role } = jwt.decode(token);
         // console.log("999", id, name, role);
-        cookie.save("auth",token);
-
+        cookie.save("auth", token);
 
         const user = {
           id,
@@ -85,10 +95,9 @@ const loggin = (state = initialState, action) => {
             idVolunteer: id,
             cookie: token,
             user: [user],
+            isOpen: false,
           };
         } else if (role === "host") {
-  
-
           return {
             ...state,
             loggedIn: true,
@@ -98,9 +107,11 @@ const loggin = (state = initialState, action) => {
             isVolunteer: false,
             isAdmin: false,
             id,
+            isOpen: false,
+
             idHost: id,
             cookie: token,
-            user: [ user],
+            user: [user],
           };
         }
       } else {
@@ -123,12 +134,16 @@ const loggin = (state = initialState, action) => {
     //     user: user, // add user
     //   };
 
-    // case "LOGOUT":
-    //   return {
-    //     loggedIn: false,
-    //     loggedOut: true,
-    //     user: {}, // remove user
-    //   };
+    case "LOGOUT":
+      return {
+        ...state,
+        loggedIn: false,
+        loggedOut: true,
+        isHost: false,
+        isVolunteer: false,
+        user: [],
+        cookie: cookie.remove("auth", { path: "/" })
+      };
 
     case "RESET":
       return state;
