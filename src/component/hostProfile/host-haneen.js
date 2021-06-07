@@ -10,29 +10,31 @@ import Container from "@material-ui/core/Container";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
-import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
+import Rating from '@material-ui/lab/Rating';
 
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => ({
   submit: {
     backgroundColor: "white",
     borderRadius: 4,
-   
+
   },
 
   button: {
     width: "135px",
     padding: 10,
-    marginTop:10,
+    marginTop: 10,
     background: '#FB8C00',
-    color:"white"
-   
+    color: "white",
+    height: 40
+
   },
-  
+
   icon: {
     color: "#FB8C00",
-    marginLeft: 30,
+    marginLeft: 45,
   },
 
   root: {
@@ -54,8 +56,8 @@ const useStyles = makeStyles(() => ({
     marginBottom: 15,
     borderRadius: 4,
     display: "block",
-    
-   
+
+
   },
 
   grid:
@@ -66,13 +68,13 @@ const useStyles = makeStyles(() => ({
 
   description:
   {
-   
+
     width: "100%",
     marginTop: "20px",
     borderRadius: 3,
     backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`
 
-    
+
   },
 
   font:
@@ -82,8 +84,18 @@ const useStyles = makeStyles(() => ({
 
   About:
   {
-    width:"100%",
-    padding:15
+    width: "100%",
+    padding: 15
+  },
+
+  rating: {
+    display: 'flex',
+    flexDirection: 'column',
+    '& > * + *': {
+      // marginTop: theme.spacing(2),
+    },
+    marginLeft: 50,
+    marginTop: 10
   }
 }));
 
@@ -101,38 +113,38 @@ export default function Profile() {
             <Grid item xs={12} sm={6} md={3}>
               <img src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"></img>
             </Grid>
-            <Grid container item xs={12} sm={6} md={9} className={classes.grid}>
+            <Grid container item xs={12} sm={6} md={6} className={classes.grid}>
 
-              <Grid item xs={12} sm={6} md={1} >
+              <Grid item xs={12} sm={6} md={2} >
                 <PersonIcon fontSize="large" className={classes.icon} />
               </Grid>
-              <Grid item xs={12} sm={6} md={11}>
-                <Typography  className={classes.font} variant="h6" gutterBottom >
+              <Grid item xs={12} sm={6} md={10}>
+                <Typography className={classes.font} variant="h6" gutterBottom >
                   Jack Wandrason
                 </Typography>
 
               </Grid>
 
-              <Grid item xs={12} sm={6} md={1}>
+              <Grid item xs={12} sm={6} md={2}>
                 <EmailIcon fontSize="large" className={classes.icon} />
               </Grid>
-              <Grid item xs={12} sm={6} md={11}>
+              <Grid item xs={12} sm={6} md={10}>
                 <Typography className={classes.font} variant="h6" gutterBottom >
-                   jack.wandrason88@gmail.com
+                  jack.wandrason88@gmail.com
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={6} md={1} >
+              <Grid item xs={12} sm={6} md={2} >
                 <PublicIcon fontSize="large" className={classes.icon} />
               </Grid>
-              <Grid item xs={12} sm={6} md={11}>
+              <Grid item xs={12} sm={6} md={10}>
                 <Typography className={classes.font} variant="h6" gutterBottom >
-                Australia
+                  Australia
                 </Typography>
 
               </Grid>
 
-              <Grid item xs={12} sm={6} md={1} >
+              <Grid item xs={12} sm={6} md={2} >
                 <LanguageIcon fontSize="large" className={classes.icon} />
               </Grid>
               <Grid item xs={12} sm={6} md={9}>
@@ -141,30 +153,40 @@ export default function Profile() {
                 </Typography>
 
               </Grid>
-              <Grid item xs={12} sm={6} md={2}>
-              <Button variant="h6"type="submit" variant="contained" 
-            className={classes.button}> 
-            Edit profile
-          </Button>
-          </Grid>
 
+              
+              <Grid item xs={12} sm={6} md={2} >
+              <div className={classes.rating}>
+                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+              </div>
+
+              </Grid>
             </Grid>
 
-            <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>
+            <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
+             
+              <Button variant="h6" type="submit" variant="contained"
+                className={classes.button}>
+                Edit profile
+              </Button>
 
-            <Typography className={classes.font} variant="h5" className={classes.About} style={{ color: "#FB8C00" }}>
+
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>
+
+                <Typography className={classes.font} variant="h5" className={classes.About} style={{ color: "#FB8C00" }}>
                   About Me:
                 </Typography>
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
               Hardworker, Cabiblaty on heal anything heavy, Collaborative
-           
+
             </Grid>
-           
-           
-          </Grid>
+
+
+            </Grid>
           </Grid>
 
           <Grid container spacing={0} item xs={12} sm={12} md={12} className={classes.Card}>
@@ -173,83 +195,83 @@ export default function Profile() {
             </Typography>
 
             <Grid container className={classes.submit}>
-            <Card className={classes.root}>
-              <CardMedia
-                className={classes.cover}
-                image="https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833"
-                title="Live from space album cover"
-              />
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.cover}
+                  image="https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833"
+                  title="Live from space album cover"
+                />
 
-              <CardContent className={classes.content}>
-                <Typography className={classes.font} component="h5" variant="h5">
-                  Farmer
+                <CardContent className={classes.content}>
+                  <Typography className={classes.font} component="h5" variant="h5">
+                    Farmer
                 </Typography>
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Details: We need a persion with physical skills that have a
-                  capabilty to work prush.
-                </Typography>
-
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Country: Australia
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Details: We need a persion with physical skills that have a
+                    capabilty to work prush.
                 </Typography>
 
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Duration: 6 Months
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Country: Australia
                 </Typography>
-                <CardActions >
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Delete
+
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Duration: 6 Months
+                </Typography>
+                  <CardActions >
+                    <Button size="small" style={{ color: "#FB8C00" }}>
+                      Delete
                 </Button>
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Edit
+                    <Button size="small" style={{ color: "#FB8C00" }}>
+                      Edit
                 </Button>
-              </CardActions>
-              </CardContent>
-            
-            </Card>
+                  </CardActions>
+                </CardContent>
 
-            
-          </Grid>
+              </Card>
 
 
-          <Grid container className={classes.submit}>
-            <Card className={classes.root}>
-              <CardMedia
-                className={classes.cover}
-                image="https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg"
-                title="Live from space album cover"
-              />
+            </Grid>
 
-              <CardContent className={classes.content}>
-                <Typography className={classes.font} component="h5" variant="h5">
-                  Build
+
+            <Grid container className={classes.submit}>
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.cover}
+                  image="https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg"
+                  title="Live from space album cover"
+                />
+
+                <CardContent className={classes.content}>
+                  <Typography className={classes.font} component="h5" variant="h5">
+                    Build
                 </Typography>
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Details: We need a persion with physical skills that have a
-                  capabilty to work prush .
-                </Typography>
-
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Country: Newyork
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Details: We need a persion with physical skills that have a
+                    capabilty to work prush .
                 </Typography>
 
-                <Typography className={classes.font} variant="subtitle1" color="textSecondary">
-                  Duration: 1 year
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Country: Newyork
                 </Typography>
-                <CardActions >
-                <Button size="small"style={{ color: "#FB8C00" }}>
-                  Delete
+
+                  <Typography className={classes.font} variant="subtitle1" color="textSecondary">
+                    Duration: 1 year
+                </Typography>
+                  <CardActions >
+                    <Button size="small" style={{ color: "#FB8C00" }}>
+                      Delete
                 </Button>
-                <Button size="small" style={{ color: "#FB8C00" }}>
-                  Edit
+                    <Button size="small" style={{ color: "#FB8C00" }}>
+                      Edit
                 </Button>
-              </CardActions>
-              </CardContent>
-            
-            </Card>
+                  </CardActions>
+                </CardContent>
 
-            
-          </Grid>
+              </Card>
+
+
+            </Grid>
           </Grid>
         </Grid>
       </Container>
