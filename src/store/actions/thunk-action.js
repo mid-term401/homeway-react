@@ -26,7 +26,6 @@ export const login = (payload) => {
   };
 };
 
-
 export const bearerAuth = function (api, id, token) {
   return (dispatch, getState) => {
     return superagent

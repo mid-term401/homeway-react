@@ -19,8 +19,8 @@ li {
   bottom: 0;
 }
 .navBar {
-  /* background-color: rgba(84, 86, 211, 0) !important;
-  box-shadow: none !important; */
+  background-color: rgba(84, 86, 211, 0) !important;
+  box-shadow: none !important;
   color: #fb8c00 !important;
   font-size: 35px !important;
 }
