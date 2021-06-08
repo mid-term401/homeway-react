@@ -1,5 +1,94 @@
 import React from "react";
 import emailjs from "emailjs-com";
+import Typography from "@material-ui/core/Typography";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import { makeStyles} from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
+import DateFnsUtils from "@date-io/date-fns";
+import Button from "@material-ui/core/Button";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
+const useStyles = makeStyles((theme) => ({
+
+  Root: {
+      '& .MuiTextField-root': {
+          margin: theme.spacing(1),
+          width: '25ch'
+      },
+      '& label.Mui-focused': {
+          color: '#FB8C00',
+      },
+      '& .MuiInput-underline:after': {
+          borderBottomColor: 'black',
+      },
+      '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+              borderColor: 'black',
+          },
+          '&:hover fieldset': {
+              borderColor: 'black',
+          },
+          '&.Mui-focused fieldset': {
+              borderColor: 'black',
+          },
+      },
+  },
+
+  text:{
+    borderRadius: 5,
+    background:'none',
+     rows:4,
+     col:100, 
+     marginBottom: 30,
+    fontSize:15
+  
+  },
+  submit: {
+      borderRadius: 5, 
+    },
+
+    box: {
+      backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
+      borderRadius: 4,
+      marginBottom: "20px",
+      marginTop:75,
+      width:500
+
+
+    },
+
+  Font:
+{
+  fontFamily: 'Lobster, cursive',
+  color: "#FB8C00",
+  textAlign:"center",
+  marginBottom: 30
+},
+container:{
+  
+},
+button: {
+    
+  width: "135px",
+  padding: 10,
+  marginTop: 0,
+  background: '#FB8C00',
+  color: "white",
+  height: 40
+
+},
+image:{
+  width:150,
+}
+
+
+}));
+
 
 export default function ContactUs() {
   function sendEmail(e) {
@@ -21,26 +110,83 @@ export default function ContactUs() {
         }
       );
   }
+  const classes = useStyles();
+
 
   return (
     <>
-      <h3>How can we help you</h3>
       <form className="contact-form" onSubmit={sendEmail}>
-        <input type="hidden" name="contact_number" />
+      <input type="hidden" name="contact_number" />
+    <Container className={classes.container} className={classes.box} >
+    
+      <img src="https://www.fresh-flow.co.uk/wp-content/uploads/2016/08/FreshFlow-Orange-Petal-Email.png" alt="" className={classes.image}  />
+     
+    <Grid container spacing={4} >
+        <Grid
+         container
+         direction="row"
+         
+        
+             item xs={12} sm={12} md={12}
+            >
+               <Typography  className={classes.Font} variant="h6" gutterBottom >
+               How can we help you
+                </Typography>
+                        <br />
 
-        <label>Your Name: </label>
-        <input type="text" name="from_name" />
+                
+      
+  
+             
+              <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.submit} > 
+                <Grid container item xs={12} sm={12} md={12} className={classes.submit} >
+                <TextField required id="from_name" name="from_name" label="Your Name" fullWidth variant="outlined" className={classes.Root}/>
+               </Grid>
+               </Grid>
+               
+               <Grid style={{marginTop:5}} spacing={2} container item xs={12} sm={12} md={12} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
+                <TextField required id="sender_email" name="sender_email" label="Your Email" fullWidth variant="outlined" className={classes.Root}/>
+               </Grid>   
+               </Grid>
+               <Grid style={{marginTop:5}} spacing={2} container item xs={12} sm={12} md={12} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
+                <TextField id="subject" name="subject" label="Topic" fullWidth variant="outlined" className={classes.Root}/>
+               </Grid>
+               </Grid>
+               
+               
+               <Grid style={{marginTop:5}} spacing={2} container item xs={12} sm={12} md={12} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
+                <textarea required   background="#FB8C00" rows="10" cols="100" name="message" placeholder='Message...' className={classes.text} />
+               </Grid>
+               </Grid>
+               
 
-        <label>Your Email</label>
-        <input type="email" name="sender_email" />
+        {/* <label >Your Name: </label>
+        <input type="text" name="from_name" /> */}
 
-        <label>Topic: </label>
-        <input type="text" name="subject" />
+        {/* <label>Your Email</label>
+        <input type="email" name="sender_email" /> */}
 
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
+        {/* <label>Topic: </label>
+        <input type="text" name="subject" /> */}
+
+        
+        
+               <Grid container item xs={12} sm={12} md={2} className={classes.submit} >
+             <Button type="submit" variant="contained"
+               className={classes.button}>
+               Send
+             </Button>
+             </Grid>
+
+        {/* <input type="submit" value="Send" className={classes.button} /> */}
+      </Grid>
+      </Grid>
+      </Container>
       </form>
+     
     </>
   );
 }
