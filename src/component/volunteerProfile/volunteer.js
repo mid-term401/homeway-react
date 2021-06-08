@@ -4,22 +4,17 @@ import Grid from "@material-ui/core/Grid";
 import PersonIcon from "@material-ui/icons/Person";
 import EmailIcon from "@material-ui/icons/Email";
 import Container from "@material-ui/core/Container";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { If, Else, Then } from "react-if";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import superagent from "superagent";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Avatar from "@material-ui/core/Avatar";
-import Box from "@material-ui/core/Box";
 import cookie from "react-cookies";
+import Loading from "../loading/loading";
 
-let results;
 const useStyles = makeStyles((theme) => ({
   submit: {
     backgroundColor: "white",
@@ -176,7 +171,7 @@ function HostProfileViewingAsVolunteer(props) {
                 </Grid>
                 <Grid item xs={12} sm={6} md={9}>
                   <Typography className={classes.font} variant='h6' gutterBottom>
-                    {user.country}
+                    English
                   </Typography>
                 </Grid>
 
@@ -259,93 +254,7 @@ function HostProfileViewingAsVolunteer(props) {
         </Container>
       </>
     );
-  } else
-    return (
-      <div className={classes.pro}>
-        <LinearProgress /* color={theme.palette.primary} */ />
-        <Container className={classes.con}>
-          <Grid container spacing={8} className={classes.con}>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <SkeletonChildrenDemo loading />
-            </Grid>
-          </Grid>
-        </Container>
-      </div>
-    );
-}
-
-function SkeletonChildrenDemo(props) {
-  const { loading = false } = props;
-  const classes = useStyles();
-
-  return (
-    <div>
-      <Box display='flex' alignItems='center'>
-        <Box margin={1}>
-          {loading ? (
-            <Skeleton variant='circle'>
-              <Avatar />
-            </Skeleton>
-          ) : (
-            <Avatar src='https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg' />
-          )}
-        </Box>
-        <Box width='100%'>
-          {loading ? (
-            <Skeleton width='100%'>
-              <Typography>.</Typography>
-            </Skeleton>
-          ) : (
-            <Typography>Ted</Typography>
-          )}
-        </Box>
-      </Box>
-      {loading ? (
-        <Skeleton variant='rect' width='100%'>
-          <div style={{ paddingTop: "57%" }} />
-        </Skeleton>
-      ) : (
-        <img
-          className={classes.image}
-          src='https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512'
-          alt=''
-        />
-      )}
-    </div>
-  );
+  } else return <Loading />;
 }
 
 export default HostProfileViewingAsVolunteer;
