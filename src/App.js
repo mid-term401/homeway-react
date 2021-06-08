@@ -12,6 +12,7 @@ import Services from './component/Services-haneen/services';
 function App() {
   return (
     <>
+
       <Header />
       <Switch>
         <Route exact path='/' component={Home}>
@@ -21,13 +22,19 @@ function App() {
           <Home />
           <SignIn />
         </Route>
-        {/* <SearchResults /> */}
-      </Switch>
+       
+      </Switch> 
+       {/* <SearchResults /> */}
       {/* <SignIn /> */}
 
-      <Footer />
+       <Footer />
     </>
   );
 }
 
 export default App;
+
+
+{/* <Volunteer/> */}
+{/* <Host/> */}
+    {/* <Services/> */}

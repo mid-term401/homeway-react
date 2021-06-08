@@ -97,6 +97,13 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: 50,
     marginTop: 10
+  },
+
+  image:
+  {
+    width: "100%",
+    height: "100%",
+    borderRadius: "3px"
   }
 
 }));
@@ -117,7 +124,7 @@ export default function Profile() {
             className={classes.submit}
           >
             <Grid item xs={12} sm={6} md={3}>
-              <img src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"></img>
+              <img className={classes.image} src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"></img>
             </Grid>
             <Grid container item xs={12} sm={6} md={6} className={classes.grid}>
 
