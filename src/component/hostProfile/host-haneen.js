@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -21,9 +23,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { If, Else, Then } from "react-if";
 import ShowForm from "./updateFormHost";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { createMuiTheme } from "@material-ui/core/styles";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 let results;
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#fb8c00",
+      main: "#fb8c00",
+      dark: "#fb8c00",
+      contrastText: "#fb8c00",
+    },
+  },
+});
 const useStyles = makeStyles((theme) => ({
+  image: {
+    width: "100%",
+  },
+  con: {
+    marginTop: "8%",
+  },
   submit: {
     backgroundColor: "white",
     borderRadius: 4,
@@ -112,20 +133,19 @@ function HostProfileViewingAsHost(props) {
   let host;
 
   useEffect(() => {
-    console.log("useEffect ~~~~ props.userData.loggedIn", props.thunkReducer.results.text);
+    console.log("useEffect ~~~~ props.userData.loggedIn", props);
     if (props.userData.loggedIn) {
-      dispatch(
-        bearerAuth(
-          "https://robust-entity-homeway.herokuapp.com/host",
-          props.userData.id,
-          props.userData.cookie
-        )
+      props.bearerAuth(
+        "https://robust-entity-homeway.herokuapp.com/host",
+        props.userData.id,
+        props.userData.cookie
       );
+
       host = props;
     }
-    setTimeout(function () {
-      help();
-    }, 1000);
+    // setTimeout(function () {
+    //   help();
+    // }, 1000);
   }, []);
 
   const buttonClicked = () => {
@@ -142,9 +162,6 @@ function HostProfileViewingAsHost(props) {
     );
   }
 
-  // if (props.thunkReducer.results) {
-  //   results = JSON.parse(props.thunkReducer?.results?.text);
-  // }
   if (results !== undefined) {
     return (
       <>
@@ -310,9 +327,90 @@ function HostProfileViewingAsHost(props) {
   } else
     return (
       <div className={classes.pro}>
-        <LinearProgress />
+        <LinearProgress /* color={theme.palette.primary} */ />
+        <Container className={classes.con}>
+          <Grid container spacing={8} className={classes.con}>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+          </Grid>
+        </Container>
       </div>
     );
+}
+
+function SkeletonChildrenDemo(props) {
+  const { loading = false } = props;
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Box display='flex' alignItems='center'>
+        <Box margin={1}>
+          {loading ? (
+            <Skeleton variant='circle'>
+              <Avatar />
+            </Skeleton>
+          ) : (
+            <Avatar src='https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg' />
+          )}
+        </Box>
+        <Box width='100%'>
+          {loading ? (
+            <Skeleton width='100%'>
+              <Typography>.</Typography>
+            </Skeleton>
+          ) : (
+            <Typography>Ted</Typography>
+          )}
+        </Box>
+      </Box>
+      {loading ? (
+        <Skeleton variant='rect' width='100%'>
+          <div style={{ paddingTop: "57%" }} />
+        </Skeleton>
+      ) : (
+        <img
+          className={classes.image}
+          src='https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512'
+          alt=''
+        />
+      )}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {

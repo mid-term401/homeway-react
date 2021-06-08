@@ -32,7 +32,7 @@ export const bearerAuth = function (api, id, token) {
       .get(`${api}/${id}`)
       .set("authorization", `${token}`)
       .then((response) => {
-        dispatch(bearer({ results: response }));
+        bearer({ results: response });
       })
       .catch((error) => {
         console.log(`error in bearer auth ${error}`);

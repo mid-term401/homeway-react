@@ -16,7 +16,10 @@ import { checkUserType } from "../../store/actions/acl-action";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { If, Else, Then } from "react-if";
+import Avatar from "@material-ui/core/Avatar";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Box from "@material-ui/core/Box";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 let results;
 const useStyles = makeStyles((theme) => ({
@@ -259,9 +262,90 @@ function HostProfileViewingAsVolunteer(props) {
   } else
     return (
       <div className={classes.pro}>
-        <LinearProgress />
+        <LinearProgress /* color={theme.palette.primary} */ />
+        <Container className={classes.con}>
+          <Grid container spacing={8} className={classes.con}>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <SkeletonChildrenDemo loading />
+            </Grid>
+          </Grid>
+        </Container>
       </div>
     );
+}
+
+function SkeletonChildrenDemo(props) {
+  const { loading = false } = props;
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Box display='flex' alignItems='center'>
+        <Box margin={1}>
+          {loading ? (
+            <Skeleton variant='circle'>
+              <Avatar />
+            </Skeleton>
+          ) : (
+            <Avatar src='https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg' />
+          )}
+        </Box>
+        <Box width='100%'>
+          {loading ? (
+            <Skeleton width='100%'>
+              <Typography>.</Typography>
+            </Skeleton>
+          ) : (
+            <Typography>Ted</Typography>
+          )}
+        </Box>
+      </Box>
+      {loading ? (
+        <Skeleton variant='rect' width='100%'>
+          <div style={{ paddingTop: "57%" }} />
+        </Skeleton>
+      ) : (
+        <img
+          className={classes.image}
+          src='https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512'
+          alt=''
+        />
+      )}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {
