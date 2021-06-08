@@ -1,4 +1,5 @@
 import "./App.css";
+import error from "./component/errorPage/error";
 import Home from "./component/home/home";
 import Header from "./component/header/header";
 import Footer from "./component/footer/footer";
@@ -19,6 +20,7 @@ function App(props) {
       <Header />
       <Switch>
         <Route exact path='/' component={Home}></Route>
+        <Route exact path='/error' component={error}></Route>
         <Route path='/L'>
           <SignIn />
           <Home />
