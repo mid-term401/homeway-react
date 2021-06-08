@@ -7,6 +7,7 @@ import Recommended from "./recommended";
 import Search from "./search";
 import Black from "./blackImgs";
 import About from "./about";
+import SignUpVol from "../signUp/volunteer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <About />
         <LastAdd />
         <Recommended />
+        <SignUpVol />
       </Grid>
     </Box>
   );

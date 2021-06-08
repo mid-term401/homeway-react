@@ -8,7 +8,6 @@ export default (state = initalState, action) => {
       return payload;
 
     case "BEARER":
-      console.log("🚀~~~~ payloadpayloadpayloadpayload", payload);
       return payload;
 
     case "POST":

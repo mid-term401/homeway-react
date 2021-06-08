@@ -2,9 +2,11 @@ import "./App.css";
 import Home from "./component/home/home";
 import Header from "./component/header/header";
 import Footer from "./component/footer/footer";
-import HostProfile from "./component/hostProfile/host-haneen";
-import VolunteerProfile from "./component/volunteerProfile/volunteer-haneen";
+import HostProfile from "./component/hostProfile/host";
+import Profile from "./component/hostProfile/profile";
+import VolunteerProfile from "./component/volunteerProfile/volunteer";
 import SearchResults from "./component/searchResults/cards";
+import SignUpVol from "./component/signUp/volunteer";
 import SignIn from "./component/signIn/signIn";
 import { Route, Switch } from "react-router-dom";
 import { If, Else, Then } from "react-if";
@@ -23,13 +25,13 @@ function App(props) {
           <Home />
         </Route>
         {/* <If condition={props.userData.isHost}>
-          <Then> */}
+          <Then>
             <Route exact path='/Profile' component={HostProfile}></Route>
-          {/* </Then>
+          </Then>
           <Else>
-            <If condition={props.userData.isVolunteer}>
-              <Route exact path='/Profile' component={VolunteerProfile}></Route>
-            </If>
+            <If condition={props.userData.isVolunteer}> */}
+        <Route exact path='/Profile' component={Profile}></Route>
+        {/* </If>
           </Else>
         </If> */}
       </Switch>

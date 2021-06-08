@@ -24,11 +24,17 @@ const initialState = {
 };
 
 const loggin = (state = initialState, action) => {
+  if (initialState.cookie) {
+    const { id, name, role } = jwt.decode(initialState.cookie);
+    initialState.id = id;
+    initialState.user = [{ id, name, role }];
+  }
+
   const { type, payload } = action;
   switch (type) {
     case "CHECKCOOKIE":
       if (state.cookie) {
-        return { ...state, isVerified: true, loggedIn: true };
+        return { ...state, loggedIn: true };
       }
     case "BOOLEAN":
       if (payload === true) {
@@ -114,6 +120,7 @@ const loggin = (state = initialState, action) => {
         }
       } else {
         // console.log(3,'??')
+
         return {
           loggedIn: false,
           loggedOut: true,
