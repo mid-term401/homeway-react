@@ -10,7 +10,7 @@ import Signin from "./component/signIn/signIn";
 // import ContactUs from "./component/contactUs/contactUs-boshra";
 // import Tweet from "./component/home/Tweets";
 // import VlounteerProfile from "./component/volunteerProfile/volunteerProfileSamer";
-// import HostProfileAsHost from "./component/hostProfile/hostProfileSamer";
+import HostProfileAsHost from "./component/hostProfile/hostProfileSamer";
 // import ServiceDisplay from "./component/hostProfile/servicesSamer";
 // import HostAsVolunteer from './component/hostProfile/hostProfileAsVolunteer'
 import Header from './component/header/header'
@@ -23,7 +23,7 @@ function App() {
       
       <Header />
       <Signin/>
-      {/* <SignUpVolunteer/> */}
+      <HostProfileAsHost/>
 
       {/* <HostAsVolunteer /> */}
     </>
