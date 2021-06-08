@@ -1,20 +1,19 @@
 import { connect } from "react-redux";
-import { getRemoteData, bearerAuth,updateRemoteData } from "../../store/actions/thunk-action";
+import { getRemoteData, bearerAuth, updateRemoteData } from "../../store/actions/thunk-action";
 import { checkUserType } from "../../store/actions/acl-action";
-import {useEffect,useState} from 'react'
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { If, Else, Then } from "react-if";
-import ShowForm from './updateFormHost';
+import ShowForm from "./updateFormHost";
 
 const HostProfileViewingAsHost = (props) => {
-  console.log("hostprops", props.thunkReducer);
-  const [flag, setFlag] = useState(false)
+  const [flag, setFlag] = useState(false);
 
-    const dispatch = useDispatch();
-    let host;
-    useEffect( ()=>{
+  const dispatch = useDispatch();
+  let host;
+
+  useEffect(() => {
     if (props.userData.isVerified) {
- 
       dispatch(
         bearerAuth(
           "https://robust-entity-homeway.herokuapp.com/host",
@@ -22,33 +21,32 @@ const HostProfileViewingAsHost = (props) => {
           props.userData.cookie
         )
       );
-      host = props
+      host = props;
     }
-  }, [props.userData])
+  }, [props.userData]);
 
-  
+  // console.log("🚀🚀🚀 ~~~~ useEffect ~~~~   props.userData.id", props.userData.id);
+  // console.log("🚀🚀🚀 ~~~~ useEffect ~~~~ props.userData.cookie", props.userData);
   const buttonClicked = () => {
-    console.log("test")
-    setFlag(true)
-}
+    console.log("test");
+    setFlag(true);
+  };
 
-if (!flag) {
-  return (
-    <>
-      {/* <If condition={props.userData.isVerified}>
+  if (!flag) {
+    return (
+      <>
+        {/* <If condition={props.userData.isVerified}>
           <div>Hello</div>
       </If> */}
-      <div className="volunteerProfileViewingAsVolunteer">
-        <h1>Host profile as Host</h1>
-        <button onClick={buttonClicked}>update</button>
-      </div>
-    </>
-  );
-} else {
-    return(
-      <ShowForm />
-    )
-}
+        <div className='volunteerProfileViewingAsVolunteer'>
+          <h1>Host profile as Host</h1>
+          <button onClick={buttonClicked}>update</button>
+        </div>
+      </>
+    );
+  } else {
+    return <ShowForm />;
+  }
 
   //   return (
   //     <div className="hostProfileViewingAsHost">
@@ -83,15 +81,14 @@ if (!flag) {
   //   <button >Add Service</button>
   // </div>
   //   )
-  } 
+};
 
 const mapStateToProps = (state) => {
-    return { userData: state.loggin, thunkReducer: state.thunkReducer };
+  return { userData: state.loggin, thunkReducer: state.thunkReducer };
 };
 const mapDispatchToProps = { getRemoteData, bearerAuth, updateRemoteData };
-  
-export default connect(mapStateToProps, mapDispatchToProps)(HostProfileViewingAsHost);
 
+export default connect(mapStateToProps, mapDispatchToProps)(HostProfileViewingAsHost);
 
 // address: "s"
 // birth_date: "2021-12-12T00:00:00.000Z"

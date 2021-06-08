@@ -1,50 +1,47 @@
-import React, { useState } from "react";
-import axios from "axios";
 import "./App.css";
-import SignUpFormHost from "./component/signUp/hostBoshra";
-import SignUpVolunteer from "./component/signUp/volunteerBoshra";
-import Signin from "./component/signIn/signIn";
-// import SearchForm from "./component/home/search-boshra";
-// import SearchDisplay from "./component/searchResults/details-boshra";
-// import VolunteerProfile from "./component/volunteerProfile/volunteer";
-// import ContactUs from "./component/contactUs/contactUs-boshra";
-// import Tweet from "./component/home/Tweets";
-// import VlounteerProfile from "./component/volunteerProfile/volunteerProfileSamer";
-import HostProfileAsHost from "./component/hostProfile/hostProfileSamer";
-// import ServiceDisplay from "./component/hostProfile/servicesSamer";
-// import HostAsVolunteer from './component/hostProfile/hostProfileAsVolunteer'
-import Header from './component/header/header'
-function App() {
+import Home from "./component/home/home";
+import Header from "./component/header/header";
+import Footer from "./component/footer/footer";
+import HostProfile from "./component/hostProfile/host-haneen";
+import VolunteerProfile from "./component/volunteerProfile/volunteer-haneen";
+import SearchResults from "./component/searchResults/cards";
+import SignIn from "./component/signIn/signIn";
+import { Route, Switch } from "react-router-dom";
+import { If, Else, Then } from "react-if";
 
-  
+import { connect } from "react-redux";
+import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
+
+function App(props) {
   return (
     <>
-
-      
       <Header />
-      <Signin/>
-      <HostProfileAsHost/>
+      <Switch>
+        <Route exact path='/' component={Home}></Route>
+        <Route path='/L'>
+          <SignIn />
+          <Home />
+        </Route>
+        {/* <If condition={props.userData.isHost}>
+          <Then> */}
+            <Route exact path='/Profile' component={HostProfile}></Route>
+          {/* </Then>
+          <Else>
+            <If condition={props.userData.isVolunteer}>
+              <Route exact path='/Profile' component={VolunteerProfile}></Route>
+            </If>
+          </Else>
+        </If> */}
+      </Switch>
 
-      {/* <HostAsVolunteer /> */}
+      {/* <Footer /> */}
     </>
   );
 }
 
-// Haneen code:
+const mapStateToProps = (state) => {
+  return { userData: state.loggin, thunkReducer: state.thunkReducer };
+};
+const mapDispatchToProps = { getRemoteData, bearerAuth, updateRemoteData };
 
-{
-  /* <div className="App">
-<header className="App-header">
- <SignUpFormHost/>
-
-</header>
-
-<header className="App-header">
- <SignUpVolunteer/>
-</header>
-
-
-</div> */
-}
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

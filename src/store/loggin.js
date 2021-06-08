@@ -24,15 +24,13 @@ const initialState = {
 };
 
 const loggin = (state = initialState, action) => {
-  
   const { type, payload } = action;
   switch (type) {
-    case 'CHECKCOOKIE':
-      if(state.cookie){
-        return {...state, isVerified : true }
+    case "CHECKCOOKIE":
+      if (state.cookie) {
+        return { ...state, isVerified: true, loggedIn: true };
       }
     case "BOOLEAN":
-      console.log(5555555555, payload);
       if (payload === true) {
         return { ...state, isOpen: false };
       } else if (payload === false) {
@@ -142,7 +140,7 @@ const loggin = (state = initialState, action) => {
         isHost: false,
         isVolunteer: false,
         user: [],
-        cookie: cookie.remove("auth", { path: "/" })
+        cookie: cookie.remove("auth", { path: "/" }),
       };
 
     case "RESET":

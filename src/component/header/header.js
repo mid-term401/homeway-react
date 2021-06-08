@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,10 +16,8 @@ import Grid from "@material-ui/core/Grid";
 import { NavLink } from "react-router-dom";
 
 import { connect } from "react-redux";
-import {toggleOpen, loggout } from "../../store/actions/loggin-action";
-import {checkCookie} from '../../store/actions/acl-action';
-
-
+import { toggleOpen, loggout } from "../../store/actions/loggin-action";
+import { checkCookie } from "../../store/actions/acl-action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +33,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuAppBar(props) {
-  useEffect( ()=>{
-    props.checkCookie()
-  })
-  
-console.log(2222,props)
+  useEffect(() => {
+    props.checkCookie();
+  }, []);
 
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
@@ -67,7 +63,7 @@ console.log(2222,props)
           <Typography variant='h3' className='logoName'>
             Home Way
           </Typography>
-          {(props.userData.isVerified) ? (
+          {props.userData.loggedIn ? (
             <div>
               <IconButton
                 aria-label='account of current user'
@@ -93,23 +89,43 @@ console.log(2222,props)
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={()=>{props.loggout()}}>Log out</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <NavLink to='/Profile'>Profile</NavLink>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    props.loggout();
+                  }}
+                >
+                  Log out
+                </MenuItem>
               </Menu>
             </div>
           ) : (
-            <Grid className='loginBar' container spacing={8}>
-              <Grid item xs={12} sm={2} md={7}></Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink exact to='/'>
-                  Home
-                </NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/LogIn' onClick={()=> {props.toggleOpen(false);props.checkCookie()}}>LogIn</NavLink>
-              </Grid>
-              <Grid item xs={4} sm={2} md={1}>
-                <NavLink to='/aboutUs'>AboutUs</NavLink>
+            <Grid className='loginBar' container>
+              <Grid item xs={12} sm={2} md={6}></Grid>
+              <Grid item xs={4} sm={2} md={5}>
+                <ul>
+                  <li>
+                    <NavLink exact to='/'>
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to='/L'
+                      onClick={() => {
+                        props.toggleOpen(false);
+                        props.checkCookie();
+                      }}
+                    >
+                      LogIn
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to='/aboutUs'>AboutUs</NavLink>
+                  </li>
+                </ul>
               </Grid>
             </Grid>
           )}
@@ -127,11 +143,81 @@ console.log(2222,props)
   );
 }
 
+// return (
+//   // <Container>
+//   //   <Grid container spacing={4}>
+//   <div className={classes.root}>
+//     <AppBar className='navBar' position='absolute'>
+//       <Toolbar>
+//         <Typography variant='h3' className='logoName'>
+//           Home Way
+//         </Typography>
+//         {auth ? (
+//           <div>
+//             <IconButton
+//               aria-label='account of current user'
+//               aria-controls='menu-appbar'
+//               aria-haspopup='true'
+//               onClick={handleMenu}
+//               color='inherit'
+//             >
+//               <AccountCircle fontSize='large' />
+//             </IconButton>
+//             <Menu
+//               id='menu-appbar'
+//               anchorEl={anchorEl}
+//               anchorOrigin={{
+//                 vertical: "top",
+//                 horizontal: "right",
+//               }}
+//               keepMounted
+//               transformOrigin={{
+//                 vertical: "top",
+//                 horizontal: "right",
+//               }}
+//               open={open}
+//               onClose={handleClose}
+//             >
+//               <MenuItem onClick={handleClose}>Profile</MenuItem>
+//               <MenuItem onClick={handleClose}>My account</MenuItem>
+//             </Menu>
+//           </div>
+//         ) : (
+//           <Grid className='loginBar' container>
+//             <Grid item xs={12} sm={2} md={6}></Grid>
+//             <Grid item xs={4} sm={2} md={5}>
+//               <ul>
+//                 <li>
+//                   <NavLink exact to='/'>
+//                     Home
+//                   </NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink to='/LogIn'>LogIn</NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink to='/aboutUs'>AboutUs</NavLink>
+//                 </li>
+//               </ul>
+//             </Grid>
+//           </Grid>
+//         )}
+//       </Toolbar>
+//     </AppBar>
+//     {/* <FormGroup>
+//       <FormControlLabel
+//         control={<Switch checked={auth} onChange={handleChange} aria-label='login switch' />}
+//         label={auth ? "Logout" : "Login"}
+//       />
+//     </FormGroup> */}
+//   </div>
+//   //   </Grid>
+//   // </Container>
+// );
 
 const mapStateToProps = (state) => {
-    return { userData: state.loggin};
-  };
-  const mapDispatchToProps = { toggleOpen, checkCookie, loggout};
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar);
-  
+  return { userData: state.loggin };
+};
+const mapDispatchToProps = { toggleOpen, checkCookie, loggout };
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar);
