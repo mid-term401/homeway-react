@@ -8,6 +8,8 @@ import { Route, Switch } from "react-router-dom";
 import Host from './component/hostProfile/host-haneen';
 import Volunteer from './component/volunteerProfile/volunteer-haneen';
 import Services from './component/Services-haneen/services';
+import AboutUS from './component/aboutUs/aboutUs';
+
 
 function App() {
   return (
@@ -24,10 +26,16 @@ function App() {
         </Route>
        
       </Switch> 
-       {/* <SearchResults /> */}
-      {/* <SignIn /> */}
+    
 
        <Footer />
+
+      {/* <SearchResults /> */}
+      {/* <SignIn /> */}
+       {/* <AboutUS/> */}
+       {/* <Volunteer/> */}
+       {/* <Host/> */}
+       {/* <Services/> */}
     </>
   );
 }
@@ -35,6 +43,3 @@ function App() {
 export default App;
 
 
-{/* <Volunteer/> */}
-{/* <Host/> */}
-    {/* <Services/> */}

@@ -91,6 +91,22 @@ select::placeholder {
   background-image: url(./component/assets/homeImage/backGround2.jpg);
   height: 720px;
 }
+
+.ServiceBox
+{
+  background-image: url(./component/assets/homeImage/backGround2.jpg);
+  height: 720px;
+  margin-Top:50px ;
+  
+}
+
+.RecommendedBox
+{
+  background-image: url(./component/assets/homeImage/backGround2.jpg);
+  height: 720px;
+  margin-Top:50px ;
+  
+}
 .TextImgDiv {
   padding-top: 75px !important;
 }
