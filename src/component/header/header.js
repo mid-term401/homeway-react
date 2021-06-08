@@ -33,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuAppBar(props) {
-  useEffect(() => {
-    props.checkCookie();
-  }, []);
-
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);

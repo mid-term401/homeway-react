@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 
-    submit: {
+    Submit: {
         borderRadius: 5, 
       },
 
@@ -106,36 +106,36 @@ export default function Profile() {
                   Service Form
                 </Typography>
 
-             <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.submit} >
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit} >
+             <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.Submit} >
+                <Grid container item xs={12} sm={12} md={6} className={classes.Submit} >
                 <TextField required id="title" name="title" label="Service Title" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>
 
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
                 <TextField required id="description" name="description" label="Description" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>    
                </Grid>
 
-               <Grid style={{marginTop:20}} spacing={2} container item xs={12} sm={12} md={12} className={classes.submit}>
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+               <Grid style={{marginTop:20}} spacing={2} container item xs={12} sm={12} md={12} className={classes.Submit}>
+                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
                 <TextField required id="type" name="type" label="Service Type" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>
 
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
                 <TextField required id="country" name="country" label="Country" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>    
                </Grid>
 
-               <Grid style={{marginTop:20}}  container item xs={12} sm={12} md={12} className={classes.submit}>
+               <Grid style={{marginTop:20}}  container item xs={12} sm={12} md={12} className={classes.Submit}>
                 <TextField required id="details" name="details" label="Details" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>
 
-               <Grid style={{marginTop:20}} spacing={2} container item xs={12} sm={12} md={12} className={classes.submit}>
-                <Grid container item xs={12} sm={12} md={4} className={classes.submit}>
+               <Grid style={{marginTop:20}} spacing={2} container item xs={12} sm={12} md={12} className={classes.Submit}>
+                <Grid container item xs={12} sm={12} md={4} className={classes.Submit}>
                 <TextField id="duration" name="duration" label="Duration" fullWidth variant="outlined" className={classes.Root}/>
                </Grid>
 
-                <Grid container item xs={12} sm={12} md={4} className={classes.submit}>
+                <Grid container item xs={12} sm={12} md={4} className={classes.Submit}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
            
                <KeyboardDatePicker
