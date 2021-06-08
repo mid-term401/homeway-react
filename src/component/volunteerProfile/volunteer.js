@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +18,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import cookie from "react-cookies";
+import { NavLink } from "react-router-dom";
+
 
 let results;
 const useStyles = makeStyles((theme) => ({
@@ -98,7 +100,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function HostProfileViewingAsVolunteer(props) {
+
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
 
@@ -188,9 +192,10 @@ function HostProfileViewingAsVolunteer(props) {
               </Grid>
 
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
-                <Button variant='h6' type='submit' variant='contained' className={classes.button}>
-                  Edit profile
-                </Button>
+                {/* <Button 
+                variant='h6' type='submit' variant='contained' className={classes.button}> */}
+                  <NavLink exact  to="/updateProfile"> Edit profile </NavLink>
+                {/* </Button> */}
               </Grid>
             </Grid>
 
