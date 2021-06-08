@@ -20,42 +20,43 @@ export default function Home() {
   // const [user, setUser] = useState({});
   // const [service, setService] = useState({});
 
-  const state = useSelector((state) => {
-    return {
-      userData: state.loggin,
-      thunkReducer: state.thunkReducer,
-    };
-  });
+  // const state = useSelector((state) => {
+  //   return {
+  //     userData: state.loggin,
+  //     thunkReducer: state.thunkReducer,
+  //   };
+  // });
 
-  useEffect(() => {
-    if (state.userData.loggedIn) {
-      loadProfile();
-    }
-  }, [state.userData.loggedIn]);
+  // useEffect(() => {
+  //   if (state.userData.loggedIn) {
+  //     loadProfile();
+  //   }
+  // }, [state.userData.loggedIn]);
 
-  function loadProfile() {
-    superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
-      // let text = JSON.parse(response);
-      console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", response);
-      // setUser(response);
-      setLoading(false);
-    });
-  }
-  if (!loading) {
-    return (
-      <Box>
-        <Grid>
-          <Slider />
-          <Search />
-        </Grid>
-        <Grid>
-          <Black />
-          <About />
-          <LastAdd />
-          <Recommended />
-          <SignUpVol />
-        </Grid>
-      </Box>
-    );
-  } else return <Loading />;
+  // function loadProfile() {
+  //   superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
+  //     // let text = JSON.parse(response);
+  //     console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", response);
+  //     // setUser(response);
+  //     setLoading(false);
+  //   });
+  // }
+  // if (!loading) {
+  return (
+    <Box>
+      <Grid>
+        <Slider />
+        <Search />
+      </Grid>
+      <Grid>
+        <Black />
+        <About />
+        <LastAdd />
+        <Recommended />
+        <SignUpVol />
+      </Grid>
+    </Box>
+  );
 }
+//  else return <Loading />;
+// }
