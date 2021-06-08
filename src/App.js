@@ -1,4 +1,6 @@
 import "./App.css";
+import services from "./component/Services-haneen/services";
+import contact from "./component/contactUs/contactUs-boshra";
 import error from "./component/errorPage/error";
 import Home from "./component/home/home";
 import Header from "./component/header/header";
@@ -21,6 +23,8 @@ function App(props) {
       <Switch>
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/error' component={error}></Route>
+        <Route exact path='/services' component={services}></Route>
+        <Route exact path='/contact' component={contact}></Route>
         <Route path='/L'>
           <SignIn />
           <Home />
