@@ -108,8 +108,7 @@ a {
 .logoName {
   width: 100%;
 }
-
-
-
-
-
+.profileImage {
+  width: 100% !important;
+  height: 100% !important;
+}

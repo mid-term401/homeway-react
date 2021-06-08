@@ -36,7 +36,6 @@ function MenuAppBar(props) {
   useEffect(() => {
     props.checkCookie();
   }, []);
-  console.log("🚀🚀🚀 ~~~~ MenuAppBar ~~~~ props", props);
 
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
@@ -90,7 +89,9 @@ function MenuAppBar(props) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <NavLink to='/Profile'>Profile</NavLink>
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     props.loggout();

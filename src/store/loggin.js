@@ -28,10 +28,9 @@ const loggin = (state = initialState, action) => {
   switch (type) {
     case "CHECKCOOKIE":
       if (state.cookie) {
-        return { ...state, isVerified: true };
+        return { ...state, isVerified: true, loggedIn: true };
       }
     case "BOOLEAN":
-      console.log(5555555555, payload);
       if (payload === true) {
         return { ...state, isOpen: false };
       } else if (payload === false) {

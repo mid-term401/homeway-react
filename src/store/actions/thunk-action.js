@@ -12,10 +12,9 @@ export const verifyUser = function (api, username, password) {
       .post(api)
       .set("authorization", `Basic ${btoa(`${username}:${password}`)}`)
       .then((response) => {
-        console.log('2', response.body)
-        
-        dispatch(login({ results: response }));
+        console.log("2", response.body);
 
+        dispatch(login({ results: response }));
       });
   };
 };
@@ -27,16 +26,16 @@ export const login = (payload) => {
   };
 };
 
-
-export const bearerAuth = function (api,id,token) {
-  return (dispatch,  getState) => {
+export const bearerAuth = function (api, id, token) {
+  return (dispatch, getState) => {
     return superagent
       .get(`${api}/${id}`)
       .set("authorization", `${token}`)
       .then((response) => {
         dispatch(bearer({ results: response }));
-      }).catch(error =>{
-        console.log(`error in bearer auth ${error}`)
+      })
+      .catch((error) => {
+        console.log(`error in bearer auth ${error}`);
       });
   };
 };
@@ -63,10 +62,10 @@ export const postRemoteData = function (api, sendBody, id) {
   };
 };
 
-export const getRemoteData = function (api,id) {
+export const getRemoteData = async function (api, id) {
   return (dispatch) => {
     return superagent.get(`${api}/${id}`).then((response) => {
-      console.log('response in action',response)
+      console.log("response in action", response);
       dispatch(getAction({ results: response }));
     });
   };

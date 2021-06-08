@@ -5,15 +5,15 @@ export default (state = initalState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "GET":
-      console.log('get request', payload);
       return payload;
 
-      case "BEARER":
-        return payload;
+    case "BEARER":
+      console.log("🚀~~~~ payloadpayloadpayloadpayload", payload);
+      return payload;
 
     case "POST":
       return payload;
-      
+
     case "PUT":
       return payload;
 
