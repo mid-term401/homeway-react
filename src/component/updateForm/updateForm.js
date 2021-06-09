@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Profile() {
+export default function UpdateProfile() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(
     new Date("2014-08-18T21:11:54")
@@ -87,7 +87,7 @@ export default function Profile() {
         <Grid container spacing={8}>
           <Grid container item xs={12} sm={12} md={12} className={classes.box}>
             <Typography className={classes.Font} variant="h6" gutterBottom>
-              Service Form
+              Update your information
             </Typography>
 
             <Grid
@@ -109,9 +109,9 @@ export default function Profile() {
               >
                 <TextField
                   required
-                  id="title"
-                  name="title"
-                  label="Service Title"
+                  id="user_name"
+                  name="user_name"
+                  label="Username"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
@@ -128,9 +128,9 @@ export default function Profile() {
               >
                 <TextField
                   required
-                  id="description"
-                  name="description"
-                  label="Description"
+                  id="password"
+                  name="password"
+                  label="Password"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
@@ -158,9 +158,9 @@ export default function Profile() {
               >
                 <TextField
                   required
-                  id="type"
-                  name="type"
-                  label="Service Type"
+                  id="first_name"
+                  name="first_name"
+                  label="First Name"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
@@ -177,114 +177,13 @@ export default function Profile() {
               >
                 <TextField
                   required
-                  id="country"
-                  name="country"
-                  label="Country"
+                  id="last_name"
+                  name="last_name"
+                  label="Last Name"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
                 />
-              </Grid>
-            </Grid>
-
-            <Grid
-              style={{ marginTop: 20 }}
-              container
-              item
-              xs={12}
-              sm={12}
-              md={12}
-              className={classes.Submit}
-            >
-              <TextField
-                required
-                id="details"
-                name="details"
-                label="Details"
-                fullWidth
-                variant="outlined"
-                className={classes.Root}
-              />
-            </Grid>
-
-            <Grid
-              style={{ marginTop: 20 }}
-              spacing={2}
-              container
-              item
-              xs={12}
-              sm={12}
-              md={12}
-              className={classes.Submit}
-            >
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                className={classes.Submit}
-              >
-                <TextField
-                  id="duration"
-                  name="duration"
-                  label="Duration"
-                  fullWidth
-                  variant="outlined"
-                  className={classes.Root}
-                />
-              </Grid>
-
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                className={classes.Submit}
-              >
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    style={{ width: "400px" }}
-                    variant="outlined"
-                    id="date-picker-dialog"
-                    name="from_date"
-                    label="From"
-                    format="MM-dd-yyyy"
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    className={classes.Root}
-                    onChange={handleDateChange}
-                    value={selectedDate}
-                  />
-                </MuiPickersUtilsProvider>
-              </Grid>
-
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={4}
-                className={classes.submit}
-              >
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    style={{ width: "400px" }}
-                    variant="outlined"
-                    id="date-picker-dialog"
-                    name="to_date"
-                    label="To"
-                    format="MM-dd-yyyy"
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                    className={classes.Root}
-                    onChange={handleDateChangeTo}
-                    value={selectedDateTo}
-                  />
-                </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
 
@@ -307,44 +206,15 @@ export default function Profile() {
                 className={classes.submit}
               >
                 <TextField
-                  id="working_days"
-                  name="working_days"
-                  label="Working Days"
+                  id="email"
+                  name="email"
+                  label="Email"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
                 />
               </Grid>
 
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={6}
-                className={classes.submit}
-              >
-                <TextField
-                  id="working_hours"
-                  name="working_hours"
-                  label="Working Hours"
-                  fullWidth
-                  variant="outlined"
-                  className={classes.Root}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid
-              style={{ marginTop: 20 }}
-              spacing={2}
-              container
-              item
-              xs={12}
-              sm={12}
-              md={12}
-              className={classes.submit}
-            >
               <Grid
                 container
                 item
@@ -362,6 +232,35 @@ export default function Profile() {
                   className={classes.Root}
                 />
               </Grid>
+            </Grid>
+
+            <Grid
+              style={{ marginTop: 20 }}
+              spacing={2}
+              container
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              className={classes.submit}
+            >
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                className={classes.submit}
+              >
+                <TextField
+                  id="country"
+                  name="country"
+                  label="Country"
+                  fullWidth
+                  variant="outlined"
+                  className={classes.Root}
+                />
+              </Grid>
 
               <Grid
                 container
@@ -374,12 +273,59 @@ export default function Profile() {
                 <TextField
                   id="profile_image"
                   name="profile_image"
-                  label="Service Image"
+                  label="Profile Image URL"
                   fullWidth
                   variant="outlined"
                   className={classes.Root}
                 />
               </Grid>
+            </Grid>
+
+            <Grid
+              style={{ marginTop: 20 }}
+              spacing={2}
+              container
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              className={classes.submit}
+            >
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                className={classes.submit}
+              >
+                <TextField
+                  id="description"
+                  name="description"
+                  label="Description"
+                  fullWidth
+                  variant="outlined"
+                  className={classes.Root}
+                />
+              </Grid>
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid item sm={6}>
+                  <KeyboardDatePicker
+                    style={{ marginLeft: "10px", width: "100%" }}
+                    variant="outlined"
+                    margin="normal"
+                    id="date-picker-dialog"
+                    name="birthdate"
+                    label="Birth Date"
+                    format="MM-dd-yyyy"
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
             </Grid>
 
             <Grid

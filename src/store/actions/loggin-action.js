@@ -5,30 +5,36 @@ export const reset = () => {
   };
 };
 
-export const removeCookie =()=>{
+export const removeCookie = () => {
   return {
     type: "REMOVECOOKIE",
     payload: null,
   };
-}
+};
 
-export const saveID = (id) =>{
+export const saveID = (id) => {
   return {
     type: "SAVEID",
     payload: id,
-  }
-}
+  };
+};
 
-export const toggleOpen = (boolean)=>{
+export const toggleOpen = (boolean) => {
   return {
-    type: 'BOOLEAN',
+    type: "BOOLEAN",
     payload: boolean,
   };
-}
+};
 
-export const loggout = ()=>{
+export const loggout = () => {
   return {
-    type: 'LOGOUT',
+    type: "LOGOUT",
     payload: null,
   };
-}
+};
+export const getRoutId = (payload) => {
+  return {
+    type: "GETROUTID",
+    payload: payload,
+  };
+};

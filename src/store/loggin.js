@@ -21,6 +21,7 @@ const initialState = {
   cookie: cookie.load("auth", { path: "/" }), //Returns undefined if the cookie does not exist.
   error: null,
   isOpen: false,
+  routeId: null,
 };
 
 const loggin = (state = initialState, action) => {
@@ -45,6 +46,9 @@ const loggin = (state = initialState, action) => {
 
     case "saveID":
       return { ...state, idHost: payload };
+
+    case "GETROUTID":
+      return { ...state, routeId: payload };
 
     // case "REMOVECOOKIE":
     //   cookie.remove("auth");

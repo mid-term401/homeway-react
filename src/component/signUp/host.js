@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AddressForm(props) {
-  console.log(props);
   // props.checkUserType("host");
   const dispatch = useDispatch();
   function SubmitSignInForm(e) {

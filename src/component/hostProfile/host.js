@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import superagent from "superagent";
 import cookie from "react-cookies";
 import Loading from "../loading/loading";
+import SocketBtn from "../Socketio/Socketio";
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -109,8 +110,6 @@ function HostProfileViewingAsHost(props) {
   const [rating, setRating] = useState(3);
   const [hover, setHover] = useState(-1);
 
-
-
   const state = useSelector((state) => {
     return {
       userData: state.loggin,
@@ -123,15 +122,20 @@ function HostProfileViewingAsHost(props) {
       loadProfile();
     }
   }, [state.userData.loggedIn]);
-
   function loadProfile() {
+    let id = state.userData.routeId;
+
+    if (!id) {
+      id = state.userData.id;
+    }
+
+    console.log("🚀🚀🚀🚀🚀🚀🚀host🚀🚀🚀🚀🚀🚀🚀🚀", id);
     superagent
-      .get(`https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}`)
+      .get(`https://robust-entity-homeway.herokuapp.com/host/${id}`)
       .set("authorization", `${state.userData.cookie}`)
       .then((response) => {
         cookie.save("profileData", response.body[0]);
         setUser(cookie.load("profileData"));
-        // setLoading(false);
       });
 
     superagent
@@ -139,8 +143,6 @@ function HostProfileViewingAsHost(props) {
       .set("authorization", `${state.userData.cookie}`)
       .then((response) => {
         let text = JSON.parse(response.text);
-        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", text);
-        // setUser(response);
         setLoading(false);
       });
   }
@@ -196,7 +198,12 @@ function HostProfileViewingAsHost(props) {
 
                 <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
-                    <Rating name='half-rating' value={rating}  precision={0.5} onChange={(e,value) => setRating(value)} />
+                    <Rating
+                      name='half-rating'
+                      value={rating}
+                      precision={0.5}
+                      onChange={(e, value) => setRating(value)}
+                    />
                   </div>
                 </Grid>
               </Grid>
@@ -205,6 +212,7 @@ function HostProfileViewingAsHost(props) {
                 <Button variant='h6' type='submit' variant='contained' className={classes.button}>
                   Edit profile
                 </Button>
+                <SocketBtn />
               </Grid>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>

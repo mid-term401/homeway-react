@@ -13,9 +13,9 @@ import Menu from "@material-ui/core/Menu";
 import Grid from "@material-ui/core/Grid";
 import { NavLink } from "react-router-dom";
 import SimpleMenu from "./menu";
-
+import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
-import { toggleOpen, loggout } from "../../store/actions/loggin-action";
+import { toggleOpen, loggout, getRoutId } from "../../store/actions/loggin-action";
 import { checkCookie } from "../../store/actions/acl-action";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,11 +33,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuAppBar(props) {
+  console.log("🚀🚀🚀🚀🚀head🚀🚀🚀🚀🚀🚀🚀", props);
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  const state = useSelector((state) => {
+    return {
+      userData: state.loggin,
+      thunkReducer: state.thunkReducer,
+    };
+  });
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -45,6 +51,7 @@ function MenuAppBar(props) {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -114,14 +121,22 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <NavLink to='/Profile'>Profile</NavLink>
+                  <NavLink
+                    to={`/Profile/${props.userData.id}`}
+                    onClick={() => {
+                      dispatch(getRoutId(props.userData.id));
+                    }}
+                  >
+                    Profile
+                  </NavLink>
                 </MenuItem>
+
                 <MenuItem
                   onClick={() => {
                     props.loggout();
                   }}
                 >
-                  Log out
+                  <NavLink to='/'>Log out</NavLink>
                 </MenuItem>
               </Menu>
             </div>
@@ -129,20 +144,14 @@ function MenuAppBar(props) {
             <Grid className='loginBar' container>
               <Grid item xs={8} sm={2} md={5}></Grid>
               <Grid item xs={4} sm={10} md={7} container style={{ justifyContent: "space-evenly" }}>
-                {/* <ul> */}
-                {/* <li> */}
                 <Grid>
                   <NavLink exact to='/'>
                     Home
                   </NavLink>
                 </Grid>
-                {/* </li> */}
-                {/* <li> */}
                 <Grid>
                   <SimpleMenu className='loginTitle' />
                 </Grid>
-                {/* </li> */}
-                {/* <li> */}
                 <Grid>
                   <NavLink
                     to='/L'
@@ -154,13 +163,10 @@ function MenuAppBar(props) {
                     LogIn
                   </NavLink>
                 </Grid>
-                {/* </li> */}
-                {/* <li> */}
+
                 <Grid>
                   <NavLink to='/aboutUs'>AboutUs</NavLink>
                 </Grid>
-                {/* </li> */}
-                {/* </ul> */}
               </Grid>
             </Grid>
           )}

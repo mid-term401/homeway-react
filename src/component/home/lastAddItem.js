@@ -15,6 +15,8 @@ import PublicIcon from "@material-ui/icons/Public";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import CategoryIcon from "@material-ui/icons/Category";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getRoutId } from "../../store/actions/loggin-action";
 
 const useStyles = makeStyles((theme) => ({
   font: {
@@ -62,6 +64,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LastAddItem() {
+  const state = useSelector((state) => {
+    return {
+      userData: state.loggin,
+      thunkReducer: state.thunkReducer,
+    };
+  });
+
+  const dispatch = useDispatch();
   const classes = useStyles();
   const data = JSON.parse(localStorage.getItem("services"));
   let lastAdd = [];
@@ -98,143 +108,152 @@ export default function LastAddItem() {
         <Grid container spacing={4}>
           {lastAdd.map((item) => (
             <Grid key={item} item xs={12} sm={4} md={3}>
-              <Card
-                style={{ overflowY: "auto" }}
-                className={classes.Card}
+              <NavLink
+                to={`/profile/${item.host_id}`}
                 onClick={() => {
-                  <NavLink to='/aboutUs'></NavLink>;
+                  dispatch(getRoutId(item.host_id));
                 }}
               >
-                <CardActionArea>
-                  <CardMedia
-                    component='img'
-                    alt='Contemplative Reptile'
-                    height='250'
-                    width='200'
-                    image={item.profile_image}
-                    title='Contemplative Reptile'
-                    className={classes.BackImg}
-                  />
-                  <Grid justify='center' alignItems='center' container item xs={12} sm={12} md={8}>
-                    <Grid item xs={12} sm={12} md={5}>
-                      <img className={classes.Profile} src={item.hostImage || ""}></img>
+                <Card style={{ overflowY: "auto" }} className={classes.Card}>
+                  <CardActionArea>
+                    <CardMedia
+                      component='img'
+                      alt='Contemplative Reptile'
+                      height='250'
+                      width='200'
+                      image={item.profile_image}
+                      title='Contemplative Reptile'
+                      className={classes.BackImg}
+                    />
+                    <Grid
+                      justify='center'
+                      alignItems='center'
+                      container
+                      item
+                      xs={12}
+                      sm={12}
+                      md={8}
+                    >
+                      <Grid item xs={12} sm={12} md={5}>
+                        <img className={classes.Profile} src={item.hostImage || ""}></img>
+                      </Grid>
+                      <Grid justify='center' alignItems='center' item xs={12} sm={12} md={7}>
+                        <Typography
+                          className={classes.CardFont}
+                          variant='subtitle1'
+                          color='textSecondary'
+                        >
+                          {item.userTitle}
+                        </Typography>
+
+                        <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
+                          <div className={classes.rating}>
+                            <Rating
+                              name='half-rating'
+                              value={rating}
+                              precision={0.5}
+                              onChange={(e, value) => setRating(value)}
+                              onChangeActive={(event, newHover) => {
+                                setHover(newHover);
+                              }}
+                            />
+                            {rating !== null && <Box sx={{ ml: 2 }}>{rating}</Box>}
+                          </div>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                    <Grid justify='center' alignItems='center' item xs={12} sm={12} md={7}>
-                      <Typography
-                        className={classes.CardFont}
-                        variant='subtitle1'
-                        color='textSecondary'
-                      >
-                        {item.userTitle}
+                    <Grid
+                      container
+                      style={{ backgroundColor: "#ffb400", height: 1, marginTop: 10 }}
+                      item
+                      xs={12}
+                      sm={12}
+                      md={12}
+                    ></Grid>
+                    <Grid container item xs={12} sm={12} md={12}>
+                      <Typography gutterBottom variant='h5' component='h5' className={classes.font}>
+                        {item.description}
                       </Typography>
+                    </Grid>
+                    <CardContent>
+                      <Grid container item xs={12} sm={12} md={12}>
+                        <Grid container item xs={12} sm={12} md={2}>
+                          <DetailsIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                        </Grid>
+                        <Grid container item xs={12} sm={12} md={10}>
+                          <Typography
+                            className={classes.CardFont}
+                            variant='subtitle1'
+                            color='textSecondary'
+                          >
+                            {item.details}
+                          </Typography>
+                        </Grid>
+                      </Grid>
 
-                      <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
-                        <div className={classes.rating}>
-                          <Rating
-                            name='half-rating'
-                            value={rating}
-                            precision={0.5}
-                            onChange={(e, value) => setRating(value)}
-                            onChangeActive={(event, newHover) => {
-                              setHover(newHover);
-                            }}
-                          />
-                          {rating !== null && <Box sx={{ ml: 2 }}>{rating}</Box>}
-                        </div>
+                      <Grid container item xs={12} sm={12} md={12}>
+                        <Grid container item xs={12} sm={12} md={2}>
+                          <TimelapseIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                        </Grid>
+                        <Grid container item xs={12} sm={12} md={10}>
+                          <Typography
+                            className={classes.CardFont}
+                            variant='subtitle1'
+                            color='textSecondary'
+                          >
+                            {item.duration}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    container
-                    style={{ backgroundColor: "#ffb400", height: 1, marginTop: 10 }}
-                    item
-                    xs={12}
-                    sm={12}
-                    md={12}
-                  ></Grid>
-                  <Grid container item xs={12} sm={12} md={12}>
-                    <Typography gutterBottom variant='h5' component='h5' className={classes.font}>
-                      {item.description}
-                    </Typography>
-                  </Grid>
-                  <CardContent>
-                    <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
-                        <DetailsIcon className={classes.Iconic} style={{ fontSize: 30 }} />
-                      </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
-                        <Typography
-                          className={classes.CardFont}
-                          variant='subtitle1'
-                          color='textSecondary'
-                        >
-                          {item.details}
-                        </Typography>
-                      </Grid>
-                    </Grid>
 
-                    <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
-                        <TimelapseIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                      <Grid container item xs={12} sm={12} md={12}>
+                        <Grid container item xs={12} sm={12} md={2}>
+                          <PublicIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                        </Grid>
+                        <Grid container item xs={12} sm={12} md={10}>
+                          <Typography
+                            className={classes.CardFont}
+                            variant='subtitle1'
+                            color='textSecondary'
+                          >
+                            {item.country}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
-                        <Typography
-                          className={classes.CardFont}
-                          variant='subtitle1'
-                          color='textSecondary'
-                        >
-                          {item.duration}
-                        </Typography>
-                      </Grid>
-                    </Grid>
 
-                    <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
-                        <PublicIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                      <Grid container item xs={12} sm={12} md={12}>
+                        <Grid container item xs={12} sm={12} md={2}>
+                          <CategoryIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                        </Grid>
+                        <Grid container item xs={12} sm={12} md={10}>
+                          <Typography
+                            className={classes.CardFont}
+                            variant='subtitle1'
+                            color='textSecondary'
+                          >
+                            {item.title}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
-                        <Typography
-                          className={classes.CardFont}
-                          variant='subtitle1'
-                          color='textSecondary'
-                        >
-                          {item.country}
-                        </Typography>
-                      </Grid>
-                    </Grid>
 
-                    <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
-                        <CategoryIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                      <Grid container item xs={12} sm={12} md={12}>
+                        <Grid container item xs={12} sm={12} md={2}>
+                          <CalendarTodayIcon className={classes.Iconic} style={{ fontSize: 30 }} />
+                        </Grid>
+                        <Grid container item xs={12} sm={12} md={10}>
+                          <Typography
+                            className={classes.CardFont}
+                            variant='subtitle1'
+                            color='textSecondary'
+                          >
+                            {"Minimum  Age " + item.minumim_age}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
-                        <Typography
-                          className={classes.CardFont}
-                          variant='subtitle1'
-                          color='textSecondary'
-                        >
-                          {item.title}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-
-                    <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
-                        <CalendarTodayIcon className={classes.Iconic} style={{ fontSize: 30 }} />
-                      </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
-                        <Typography
-                          className={classes.CardFont}
-                          variant='subtitle1'
-                          color='textSecondary'
-                        >
-                          {"Minimum  Age " + item.minumim_age}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </NavLink>
             </Grid>
           ))}
         </Grid>

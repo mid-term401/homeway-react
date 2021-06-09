@@ -48,11 +48,10 @@ export default function LastAddItem() {
 
   const data = JSON.parse(localStorage.getItem("services"));
   let lastAdd = data.services;
-  let host = data.hosts;
 
   const firstCountry = "Ireland";
   const sectCountry = "Zambia";
-  let items2 = [];
+  const items2 = [];
   const items1 = [];
 
   lastAdd.map((serviceCountry, idx) => {
@@ -73,7 +72,6 @@ export default function LastAddItem() {
       });
     }
   });
-  console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", items2);
 
   //addd
   //Ireland  Zambia  Thailand

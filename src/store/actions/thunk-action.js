@@ -53,6 +53,7 @@ export const postRemoteData = function (api, sendBody, id) {
       .post(`${api}/${id}`)
       .send(sendBody)
       .then((response) => {
+        console.log("🚀🚀🚀 ~~~~ postRemoteData ~~~~ api", response);
         // console.log(`sign-in response`, response);
         dispatch(postAction({ results: response }));
       })
