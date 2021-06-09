@@ -11,6 +11,7 @@ import SignIn from "./component/signIn/signIn";
 import { Route, Switch } from "react-router-dom";
 import { If, Else, Then } from "react-if";
 import UpdateVolunteerForm from './component/volunteerProfile/updateVolunteerForm'
+import UpdateHostForm from './component/hostProfile/updateFormHost'
 
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
@@ -33,6 +34,7 @@ function App(props) {
             <If condition={props.userData.isVolunteer}> */}
         <Route exact path='/Profile' component={Profile}></Route>
         <Route exact path="/updateProfile" component={UpdateVolunteerForm}></Route>
+        <Route exact path="/updateHostProfile" component={UpdateHostForm}></Route>
         {/* </If>
           </Else>
         </If> */}

@@ -1,154 +1,213 @@
-import { connect } from "react-redux";
-import {
-  getRemoteData,
-  bearerAuth,
-  updateRemoteData,
-} from "../../store/actions/thunk-action";
-import { checkUserType } from "../../store/actions/acl-action";
+import React from "react";
 import { useEffect, useState } from "react";
-import { If, Else, Then } from "react-if";
-
 import { useSelector, useDispatch } from "react-redux";
+import superagent from "superagent";
+import { NavLink } from "react-router-dom";
+import cookie from "react-cookies";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
+function UpdateHostForm() {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
 
+  const state = useSelector((state) => {
+    return {
+      userData: state.loggin,
+      thunkReducer: state.thunkReducer,
+    };
+  });
 
+  function loadProfile() {
+    superagent
+      .get(
+        `https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}`
+      )
+      .set("authorization", `${state.userData.cookie}`)
+      .then((response) => {
+        cookie.save("profileData", response.body);
+        setUser(cookie.load("profileData"));
+        console.log(1111111111111, response.body);
+        setLoading(false);
+      });
+  }
 
+  useEffect(() => {
+    if (state.userData.loggedIn) {
+      loadProfile();
+    }
+  }, [state.userData.loggedIn]);
 
+  /////////////// Updating Funtionality ///////////////////
 
-const ShowForm = (props) => {
-    const [flag, setFlag] = useState(false)
-        if(props){
+  function updateDataBase(e) {
+    e.preventDefault();
 
-   
-    console.log('props55hostttttssss', props)
-  
-  return (
-    <If condition={false}>
-      <Then>Waiting for data</Then>
-      <Else>
-        <form>
-          <label htmlFor="Password">Password</label>
-          <input
-            type="password"
-            id="Password"
-            name="password"
-            value={ flag ? props.thunkReducer.results.body[0].password : "" }
+    // console.log(333333333333333, newData);
+
+    if (state.userData.loggedIn) {
+      let newData = {
+        first_name: document.getElementById("first_name").value,
+        last_name: document.getElementById("last_name").value,
+        user_name: document.getElementById("user_name").value,
+        description: document.getElementById("description").value,
+        country: document.getElementById("country").value,
+        birth_date: user[0].birth_date,
+        address: user[0].address,
+        rating: user[0].rating,
+        profile_image: user[0].profile_image,
+        id: user[0].id,
+        password: user[0].password,
+        skills: user.skills,
+        email: document.getElementById("email").value,
+      };
+      console.log(state.userData.newData);
+      update(newData)
+    }
+  }
+
+  function update(newData) {
+    superagent
+      .put(
+        `https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}`
+      )
+      .set("authorization", state.userData.cookie)
+      .send(newData)
+      .then((response) => {
+        cookie.save("profileData2", response.body);
+        console.log("Here is the updated data", response.body);
+        setUser(cookie.load("profileData2"));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error in updating value", error);
+      });
+  }
+
+  //////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////
+  if (!loading) {
+    return (
+      <>
+        <form onSubmit={updateDataBase}>
+          <TextField
+            id="user_name"
+            name="user_name"
+            label="user name"
+            variant="outlined"
+            id="user_name"
+            defaultValue={user[0].user_name}
           />
-          <label htmlFor="First-Name">First-Name</label>
-          <input
-            type="text"
-            id="First-Name"
-            name="firstname"
-            value={props.thunkReducer.results.body[0].first_name}
+
+          <TextField
+            id="firstName"
+            name="first_name"
+            label="First name"
+            variant="outlined"
+            id="first_name"
+            defaultValue={user[0].first_name}
           />
-          <label htmlFor="Last-Name">Last-Name</label>
-          <input
-            type="text"
-            id="Last-Name"
+          <TextField
+            id="lastName"
             name="lastname"
-            value={props.thunkReducer.results.body[0].last_name}
+            label="Last name"
+            variant="outlined"
+            id="last_name"
+            defaultValue={user[0].last_name}
           />
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
+
+          <TextField
+            id="email"
+            name="email"
+            label="E-mail"
+            variant="outlined"
+            defaultValue={user[0].email}
+          />
+
+          <TextField
+            id="country"
+            name="country"
+            label="Country"
+            variant="outlined"
+            id="country"
+            defaultValue={user[0].country}
+          />
+
+          <TextField
+            id="email"
+            name="email"
+            label="E mai;"
+            variant="outlined"
+            id="email"
+            defaultValue={user[0].email}
+          />
+
+          <TextField
+            id="category"
+            name="category"
+            label="category"
+            variant="outlined"
+            id="category"
+            defaultValue={user[0].category}
+          />
+
+          <TextField
             id="description"
             name="description"
-            value={props.thunkReducer.results.body[0].description}
+            label="description"
+            variant="outlined"
+            id="description"
+            defaultValue={
+              user[0].description ? user[0].description : "No description yet"
+            }
           />
-          <label htmlFor="skills">Skills</label>
-          <input
-            type="text"
-            id="skills"
-            name="skills"
-            value={props.thunkReducer.results.body[0].skills}
-          />
-          <label htmlFor="gender">Gender:</label>
-          <input
-            type="radio"
-            value="female"
-            name="gender"
-            // value={props.thunkReducer.results.body.gender}
-          />
-          <label htmlFor="female">female:</label>
-          <input
-            type="radio"
-            value="male"
-            name="gender"
-            //    value={props.thunkReducer.results.body.gender}
-          />
-          <label htmlFor="male">male:</label>
-          <input
-            type="radio"
-            value="other"
-            name="gender"
-            //    value={props.thunkReducer.results.body.gender}
-          />
-          <label htmlFor="other">other:</label>
-          <label htmlFor="Email">Email</label>
-          <input
-            type="text"
-            id="Email"
-            name="email"
-            value={props.thunkReducer.results.body[0].email}
-          />
-          <label htmlFor="Country">Country</label>
-          <input
-            type="text"
-            id="Country"
-            name="country"
-            value={props.thunkReducer.results.body[0].country}
-          />
-          <label htmlFor="Address">Address</label>
-          <input
-            type="text"
-            id="Address"
-            name="address"
-            value={props.thunkReducer.results.body[0].address}
-          />
-          <label htmlFor="Birth-Date">Birth-Date</label>
-          <input
-            type="text"
-            id="Birth-Date"
-            name="birthdate"
-            value={props.thunkReducer.results.body[0].birth_date}
-          />
-          <label htmlFor="image">image</label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            placeholder="please put the url for the image"
-          />
-          <button type="submit">Update</button>
+
+          <Button type="submit" variant="contained" color="primary">
+            update
+          </Button>
+          <NavLink exact to="/Profile">
+            {" "}
+            Go back to profile{" "}
+          </NavLink>
         </form>
-      </Else>
-    </If>
-  );
-} else{
-    return(<h1>loading</h1>)
+      </>
+    );
+  } else {
+    return (
+      <>
+        <p>Loading ........</p>
+      </>
+    );
+  }
 }
-};
 
-const mapStateToProps = (state) => {
-  return { userData: state.loggin, thunkReducer: state.thunkReducer };
-};
-const mapDispatchToProps = { getRemoteData, bearerAuth, updateRemoteData };
+export default UpdateHostForm;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowForm);
+// address: "s"
+// birth_date: "2021-12-12T00:00:00.000Z"
+// category: "test1"
+// country: "s"
+// description: null
+// email: "tynntnghn"
+// first_name: "samer"
+// id: 10
+// last_name: "alnajjar"
+// password: "$2b$10$7ETB/hEVwX3rVIhhmuz4c.vJ60a.twsmE3l0GmpXZL5VPR8V2mK.K"
+// profile_image: null
+// rating: null
+// token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiI0NDQ0Iiwicm9sZSI6Imhvc3QiLCJpYXQiOjE2MjMyNjEzMzF9.UH8Gd5kF_H1vJwCNQ51ji0Jxl_61KHklZAgFiGcD0-g"
+// user_name: "4444"
 
-//  address: "Aut veritatis aute e"
-//  birth_date: "2020-01-20T00:00:00.000Z"
-//  country: "Amet obcaecati ut m"
-//  description: null
-//  email: "mymezah0000a@mailinator.com"
-//  first_name: "Astra"
-//  id: 10
-//  last_name: "Mcknight"
-//  passport: null
-//  password: "$2b$10$Nq9qU6Ymi03jU6r0HY8oX.qmHItw0CNUMY0TymeZAq62KeRcvgX2G"
-//  profile_image: null
-//  rating: null
-// skills: null
-// token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiIwMDAwIiwicm9sZSI6InZvbHVudGVlciIsImlhdCI6MTYyMjk4NTAyMH0.DZ6YNWt7DA6RXbguvdpfZF4yAMFInqJoC593vYcUxPc"
-// user_name: "0000"
-// __proto__: Object
+// req.body.user_name,
+// req.body.first_name,
+// req.body.last_name,
+// req.body.password,
+// req.body.description,
+// req.body.country,
+// req.body.birth_date,
+// req.body.category,
+// req.body.address,
+// req.body.rating,
+// req.body.profile_image,
+// id,

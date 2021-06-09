@@ -15,13 +15,12 @@ import CardActions from "@material-ui/core/CardActions";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { If, Else, Then } from "react-if";
-import ShowForm from "./updateFormHost";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import superagent from "superagent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
+import { NavLink } from "react-router-dom";
 
 let results;
 const useStyles = makeStyles((theme) => ({
@@ -126,7 +125,9 @@ function HostProfileViewingAsHost(props) {
 
   function loadProfile() {
     superagent
-      .get(`https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}`)
+      .get(
+        `https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}`
+      )
       .set("authorization", `${state.userData.cookie}`)
       .then((response) => {
         setUser(response.body[0]);
@@ -139,67 +140,123 @@ function HostProfileViewingAsHost(props) {
       <>
         <Container>
           <Grid container spacing={6}>
-            <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
+            <Grid
+              container
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              className={classes.submit}
+            >
               <Grid item xs={12} sm={6} md={3}>
                 <img
-                  className='profileImage'
-                  src='https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70'
+                  className="profileImage"
+                  src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70"
                 ></img>
               </Grid>
-              <Grid container item xs={12} sm={6} md={6} className={classes.grid}>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                className={classes.grid}
+              >
                 <Grid item xs={12} sm={6} md={2}>
-                  <PersonIcon fontSize='large' className={classes.icon} />
+                  <PersonIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={10}>
-                  <Typography className={classes.font} variant='h6' gutterBottom>
+                  <Typography
+                    className={classes.font}
+                    variant="h6"
+                    gutterBottom
+                  >
                     {`${user.first_name}  ${user.last_name}`}
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={2}>
-                  <EmailIcon fontSize='large' className={classes.icon} />
+                  <EmailIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={10}>
-                  <Typography className={classes.font} variant='h6' gutterBottom>
+                  <Typography
+                    className={classes.font}
+                    variant="h6"
+                    gutterBottom
+                  >
                     {`${user.email}`}
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={2}>
-                  <PublicIcon fontSize='large' className={classes.icon} />
+                  <PublicIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={10}>
-                  <Typography className={classes.font} variant='h6' gutterBottom>
+                  <Typography
+                    className={classes.font}
+                    variant="h6"
+                    gutterBottom
+                  >
                     {`${user.country}`}
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={2}>
-                  <LanguageIcon fontSize='large' className={classes.icon} />
+                  <LanguageIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={9}>
-                  <Typography className={classes.font} variant='h6' gutterBottom>
+                  <Typography
+                    className={classes.font}
+                    variant="h6"
+                    gutterBottom
+                  >
                     {`${user.category}`}
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
-                    <Rating name='half-rating' defaultValue={2.5} precision={0.5} />
+                    <Rating
+                      name="half-rating"
+                      defaultValue={2.5}
+                      precision={0.5}
+                    />
                   </div>
                 </Grid>
               </Grid>
 
-              <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
-                <Button variant='h6' type='submit' variant='contained' className={classes.button}>
+              <Grid
+                container
+                item
+                xs={12}
+                sm={6}
+                md={2}
+                className={classes.grid}
+              >
+                {/* <Button
+                  variant="h6"
+                  type="submit"
+                  variant="contained"
+                  className={classes.button}
+                >
                   Edit profile
-                </Button>
+                </Button> */}
+                   <NavLink exact to="/updateHostProfile">
+                        Edit profile
+                      </NavLink>
               </Grid>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  spacing={5}
+                  className={classes.description}
+                >
                   <Typography
                     className={classes.font}
-                    variant='h5'
+                    variant="h5"
                     className={classes.About}
                     style={{ color: "#FB8C00" }}
                   >
@@ -210,11 +267,19 @@ function HostProfileViewingAsHost(props) {
               </Grid>
             </Grid>
 
-            <Grid container spacing={0} item xs={12} sm={12} md={12} className={classes.Card}>
+            <Grid
+              container
+              spacing={0}
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              className={classes.Card}
+            >
               <Typography
                 className={classes.font}
                 style={{ color: "#FB8C00" }}
-                variant='h6'
+                variant="h6"
                 gutterBottom
               >
                 Services:
@@ -224,33 +289,50 @@ function HostProfileViewingAsHost(props) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.cover}
-                    image='https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833'
-                    title='Live from space album cover'
+                    image="https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833"
+                    title="Live from space album cover"
                   />
 
                   <CardContent className={classes.content}>
-                    <Typography className={classes.font} component='h5' variant='h5'>
+                    <Typography
+                      className={classes.font}
+                      component="h5"
+                      variant="h5"
+                    >
                       Farmer
                     </Typography>
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Details: We need a persion with physical skills that have a capabilty to work
-                      prush.
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
+                      Details: We need a persion with physical skills that have
+                      a capabilty to work prush.
                     </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       Country: Australia
                     </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       Duration: 6 Months
                     </Typography>
                     <CardActions>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
+                      <Button size="small" style={{ color: "#FB8C00" }}>
                         Delete
                       </Button>
                       <Button size='small' style={{ color: "#FB8C00" }}>
                         Edit
                       </Button>
+                   
                     </CardActions>
                   </CardContent>
                 </Card>
@@ -260,31 +342,47 @@ function HostProfileViewingAsHost(props) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.cover}
-                    image='https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg'
-                    title='Live from space album cover'
+                    image="https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg"
+                    title="Live from space album cover"
                   />
 
                   <CardContent className={classes.content}>
-                    <Typography className={classes.font} component='h5' variant='h5'>
+                    <Typography
+                      className={classes.font}
+                      component="h5"
+                      variant="h5"
+                    >
                       Build
                     </Typography>
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Details: We need a persion with physical skills that have a capabilty to work
-                      prush .
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
+                      Details: We need a persion with physical skills that have
+                      a capabilty to work prush .
                     </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       Country: Newyork
                     </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                    <Typography
+                      className={classes.font}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       Duration: 1 year
                     </Typography>
                     <CardActions>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
+                      <Button size="small" style={{ color: "#FB8C00" }}>
                         Delete
                       </Button>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
+                      <Button size="small" style={{ color: "#FB8C00" }}>
                         Edit
                       </Button>
                     </CardActions>
@@ -350,19 +448,19 @@ function SkeletonChildrenDemo(props) {
 
   return (
     <div>
-      <Box display='flex' alignItems='center'>
+      <Box display="flex" alignItems="center">
         <Box margin={1}>
           {loading ? (
-            <Skeleton variant='circle'>
+            <Skeleton variant="circle">
               <Avatar />
             </Skeleton>
           ) : (
-            <Avatar src='https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg' />
+            <Avatar src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg" />
           )}
         </Box>
-        <Box width='100%'>
+        <Box width="100%">
           {loading ? (
-            <Skeleton width='100%'>
+            <Skeleton width="100%">
               <Typography>.</Typography>
             </Skeleton>
           ) : (
@@ -371,14 +469,14 @@ function SkeletonChildrenDemo(props) {
         </Box>
       </Box>
       {loading ? (
-        <Skeleton variant='rect' width='100%'>
+        <Skeleton variant="rect" width="100%">
           <div style={{ paddingTop: "57%" }} />
         </Skeleton>
       ) : (
         <img
           className={classes.image}
-          src='https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512'
-          alt=''
+          src="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512"
+          alt=""
         />
       )}
     </div>

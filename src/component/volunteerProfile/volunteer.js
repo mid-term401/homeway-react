@@ -11,7 +11,6 @@ import LanguageIcon from "@material-ui/icons/Language";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { If, Else, Then } from "react-if";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import superagent from "superagent";
 import Skeleton from "@material-ui/lab/Skeleton";
