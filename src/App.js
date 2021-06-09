@@ -39,7 +39,8 @@ function App(props) {
         <Route exact path='/updateProfile' component={UpdateVolunteerForm}></Route>
         <Route exact path='/updateHostProfile' component={UpdateHostForm}></Route>
       </Switch>
-
+      {/* <Search/> */}
+      {/* <Volunteer/> */}
       <Footer />
     </>
   );

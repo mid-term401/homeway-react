@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     backgroundColor: "white",
     borderRadius: 4,
+    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
   },
 
   button: {
@@ -66,9 +67,10 @@ const useStyles = makeStyles((theme) => ({
   description: {
     // border:"2px solid",
     marginTop: "20px",
+    marginLeft: "8px",
     borderRadius: 3,
-    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
-  },
+    backgroundColor:"#fb8c0024"
+    },
 
   font: {
     fontFamily: "Lobster, cursive",
@@ -175,7 +177,7 @@ function HostProfileViewingAsVolunteer(props) {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={2}>
+                {/* <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
                     <Rating
                       name='half-rating'
@@ -184,7 +186,7 @@ function HostProfileViewingAsVolunteer(props) {
                       onChange={(e, value) => setRating(value)}
                     />
                   </div>
-                </Grid>
+                </Grid> */}
               </Grid>
 
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>

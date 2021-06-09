@@ -1,12 +1,12 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import Paper from "@material-ui/core/Paper";
-import image1 from "../assets/homeImage/img3.jpg";
-import image2 from "../assets/homeImage/img1.jpg";
-import image3 from "../assets/homeImage/img2.jpg";
-import image4 from "../assets/homeImage/img3.jpg";
-import image5 from "../assets/homeImage/img2.jpg";
-import image6 from "../assets/homeImage/img1.jpg";
+import image1 from "../assets/vol/26.png";
+import image2 from "../assets/vol/22.png";
+import image3 from "../assets/vol/21.png";
+import image4 from "../assets/vol/20.png";
+import image5 from "../assets/vol/19.png";
+import image6 from "../assets/vol/25.png";
 import between from "../assets/homeImage/between.png";
 
 export default function Slider() {

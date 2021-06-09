@@ -21,10 +21,21 @@ import Loading from "../loading/loading";
 import SocketBtn from "../Socketio/Socketio";
 import { NavLink } from "react-router-dom";
 
+
+
 const useStyles = makeStyles((theme) => ({
   submit: {
     backgroundColor: "white",
     borderRadius: 4,
+    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
+ 
+    
+  },
+
+  Space:
+  {
+    marginTop:120,
+    
   },
 
   button: {
@@ -34,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
     background: "#FB8C00",
     color: "white",
     height: 40,
+
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#FB8C00',
+    }
   },
 
   icon: {
@@ -51,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
   cover: {
     width: 300,
-    height: "200px",
+    height: "auto",
   },
 
   Card: {
@@ -70,12 +86,14 @@ const useStyles = makeStyles((theme) => ({
   description: {
     width: "100%",
     marginTop: "20px",
+    marginLeft: "8px",
     borderRadius: 3,
-    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
-  },
+    backgroundColor:"#fb8c0024"
+     },
 
   font: {
     fontFamily: "Lobster, cursive",
+    
   },
 
   About: {
@@ -152,8 +170,8 @@ function HostProfileViewingAsHost(props) {
     return (
       <>
         <Container>
-          <Grid container spacing={6}>
-            <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
+          <Grid container spacing={6} className={classes.Space}>
+            <Grid  container item xs={12} sm={12} md={12} className={classes.submit}>
               <Grid item xs={12} sm={6} md={3}>
                 <img
                   className='profileImage'
@@ -197,7 +215,7 @@ function HostProfileViewingAsHost(props) {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={2}>
+                {/* <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
                     <Rating
                       name='half-rating'
@@ -206,7 +224,7 @@ function HostProfileViewingAsHost(props) {
                       onChange={(e, value) => setRating(value)}
                     />
                   </div>
-                </Grid>
+                </Grid> */}
               </Grid>
 
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
@@ -223,16 +241,20 @@ function HostProfileViewingAsHost(props) {
                 </NavLink>
               </Grid>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>
+                <Grid spacing={1} container item xs={12} sm={12} md={12}  className={classes.description}>
+                <Grid container item xs={12} sm={12} md={12} >
                   <Typography
                     className={classes.font}
                     variant='h5'
-                    className={classes.About}
                     style={{ color: "#FB8C00" }}
                   >
                     About Me:
                   </Typography>
+                  </Grid>
+
+                  <Grid container item xs={12} sm={12} md={12} >
                   {`${user.description}`}
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -241,7 +263,7 @@ function HostProfileViewingAsHost(props) {
               <Typography
                 className={classes.font}
                 style={{ color: "#FB8C00" }}
-                variant='h6'
+                variant='h5'
                 gutterBottom
               >
                 Services:
@@ -265,19 +287,34 @@ function HostProfileViewingAsHost(props) {
                     </Typography>
 
                     <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Type: Farming.
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
                       Country: Australia
                     </Typography>
 
                     <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
                       Duration: 6 Months
                     </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Working Days: 5 Days/Week.
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Working Hours: 8 Hours.
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Minimum Age: 18 Years.
+                    </Typography>
+
                     <CardActions>
                       <Button size='small' style={{ color: "#FB8C00" }}>
                         Delete
                       </Button>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
-                        Edit
-                      </Button>
+                    
                     </CardActions>
                   </CardContent>
                 </Card>
@@ -297,7 +334,11 @@ function HostProfileViewingAsHost(props) {
                     </Typography>
                     <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
                       Details: We need a persion with physical skills that have a capabilty to work
-                      prush .
+                      prush 
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Type: Farming
                     </Typography>
 
                     <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
@@ -307,12 +348,22 @@ function HostProfileViewingAsHost(props) {
                     <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
                       Duration: 1 year
                     </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Working Days: 5 Days/Week.
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Working Hours: 8 Hours.
+                    </Typography>
+
+                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
+                      Minimum Age: 18 Years.
+                    </Typography>
+
                     <CardActions>
                       <Button size='small' style={{ color: "#FB8C00" }}>
                         Delete
-                      </Button>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
-                        Edit
                       </Button>
                     </CardActions>
                   </CardContent>
