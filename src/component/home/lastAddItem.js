@@ -1,3 +1,4 @@
+import { React, useState } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -6,14 +7,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
-import image1 from "../assets/homeImage/1.jpg";
-import image2 from "../assets/homeImage/2.jpg";
-import image3 from "../assets/homeImage/3.jpg";
-import image4 from "../assets/homeImage/4.jpg";
-import image5 from "../assets/homeImage/p5.jpg";
-import image6 from "../assets/homeImage/p01.jpg";
-import image7 from "../assets/homeImage/p02.jpg";
-import image8 from "../assets/homeImage/p03.jpg";
 import Rating from "@material-ui/lab/Rating";
 import DetailsIcon from "@material-ui/icons/Details";
 import { makeStyles } from "@material-ui/core/styles";
@@ -86,6 +79,8 @@ export default function LastAddItem() {
     });
   });
   console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", lastAdd);
+  const [rating, setRating] = useState(3);
+  const [hover, setHover] = useState(-1);
 
   return (
     <Box className='ServiceBox'>
@@ -129,7 +124,16 @@ export default function LastAddItem() {
 
                       <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
                         <div className={classes.rating}>
-                          <Rating name='half-rating' defaultValue={2.5} precision={0.5} />
+                          <Rating
+                            name='half-rating'
+                            value={rating}
+                            precision={0.5}
+                            onChange={(e, value) => setRating(value)}
+                            onChangeActive={(event, newHover) => {
+                              setHover(newHover);
+                            }}
+                          />
+                          {rating !== null && <Box sx={{ ml: 2 }}>{rating}</Box>}
                         </div>
                       </Grid>
                     </Grid>

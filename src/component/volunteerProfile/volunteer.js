@@ -96,6 +96,10 @@ const useStyles = makeStyles((theme) => ({
 function HostProfileViewingAsVolunteer(props) {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
+  const [rating, setRating] = useState(3);
+
+  
+
 
   const state = useSelector((state) => {
     return {
@@ -174,7 +178,7 @@ function HostProfileViewingAsVolunteer(props) {
 
                 <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
-                    <Rating name='half-rating' defaultValue={2.5} precision={0.5} />
+                  <Rating name='half-rating' value={rating}  precision={0.5} onChange={(e,value) => setRating(value)}  />
                   </div>
                 </Grid>
               </Grid>
