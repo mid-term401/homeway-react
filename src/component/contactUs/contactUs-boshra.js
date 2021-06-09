@@ -84,6 +84,15 @@ button: {
 },
 image:{
   width:150,
+},
+mark:{
+  borderRadius: 4,
+      marginBottom: "20px",
+      marginTop:75,
+      background: '#FB8C00',
+  color: "white",
+  height: 40
+
 }
 
 
@@ -174,11 +183,22 @@ export default function ContactUs() {
 
         
         
-               <Grid container item xs={12} sm={12} md={2} className={classes.submit} >
+               <Grid spacing={8} container item xs={12} sm={12} md={12} className={classes.submit} >
+               <Grid container item xs={12} sm={12} md={4} className={classes.submit} >
              <Button type="submit" variant="contained"
                className={classes.button}>
                Send
              </Button>
+             </Grid>
+             <Grid  container item xs={12} sm={12} md={4} className={classes.submit} >
+
+             <Button  variant="contained"
+               className={classes.button}>
+                 
+                 cancel
+             </Button>
+            
+             </Grid>
              </Grid>
 
         {/* <input type="submit" value="Send" className={classes.button} /> */}
