@@ -60,6 +60,8 @@ export default function LastAddItem() {
     //   }
     // });
   });
+
+  //addd
   //Ireland  Zambia  Thailand
   const items2 = [
     {
