@@ -10,7 +10,7 @@ import LanguageIcon from "@material-ui/icons/Language";
 import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import superagent from "superagent";
 import cookie from "react-cookies";
 import Loading from "../loading/loading";
@@ -105,9 +105,6 @@ function HostProfileViewingAsVolunteer(props) {
   });
 
   const classes = useStyles();
-
-  const dispatch = useDispatch();
-  let host;
 
   function loadProfile() {
     superagent

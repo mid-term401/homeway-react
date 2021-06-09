@@ -9,54 +9,51 @@ import Black from "./blackImgs";
 import About from "./about";
 import SignUpVol from "../signUp/volunteer";
 import Loading from "../loading/loading";
-import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import superagent from "superagent";
+import cookie from "react-cookies";
 
 export default function Home() {
   // const classes = useStyles();
   const [loading, setLoading] = useState(true);
-  // const [user, setUser] = useState({});
-  // const [service, setService] = useState({});
+  const [data, setdata] = useState({});
 
-  // const state = useSelector((state) => {
-  //   return {
-  //     userData: state.loggin,
-  //     thunkReducer: state.thunkReducer,
-  //   };
-  // });
+  const state1 = useSelector((state) => {
+    console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
+    return {
+      userData: state.loggin,
+      thunkReducer: state.thunkReducer,
+    };
+  });
 
-  // useEffect(() => {
-  //   if (state.userData.loggedIn) {
-  //     loadProfile();
-  //   }
-  // }, [state.userData.loggedIn]);
+  useEffect(() => {
+    loadProfile();
+  }, []);
 
-  // function loadProfile() {
-  //   superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
-  //     // let text = JSON.parse(response);
-  //     console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", response);
-  //     // setUser(response);
-  //     setLoading(false);
-  //   });
-  // }
-  // if (!loading) {
-  return (
-    <Box>
-      <Grid>
-        <Slider />
-        <Search />
-      </Grid>
-      <Grid>
-        <Black />
-        <About />
-        <LastAdd />
-        <Recommended />
-        <SignUpVol />
-      </Grid>
-    </Box>
-  );
+  function loadProfile() {
+    superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
+      setdata(response.body.hosts);
+      console.log("🚀🚀🚀 ~~~~ superagent.get ~~~~ da", data);
+      cookie.save("serviceData", data);
+      setLoading(false);
+    });
+  }
+  if (!loading) {
+    return (
+      <Box>
+        <Grid>
+          <Slider />
+          <Search />
+        </Grid>
+        <Grid>
+          <Black />
+          <About />
+          <LastAdd />
+          <Recommended />
+          <SignUpVol />
+        </Grid>
+      </Box>
+    );
+  } else return <Loading />;
 }
-//  else return <Loading />;
-// }

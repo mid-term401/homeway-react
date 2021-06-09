@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth } from "../../store/actions/thunk-action";
-import { checkUserType } from "../../store/actions/acl-action";
 import { saveID } from "../../store/actions/loggin-action";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 const ServiceDisplay = (props) => {
   console.log("service", props);
