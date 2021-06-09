@@ -13,8 +13,6 @@ import Menu from "@material-ui/core/Menu";
 import Grid from "@material-ui/core/Grid";
 import { NavLink } from "react-router-dom";
 import SimpleMenu from "./menu";
-// import Socketio from "../Socketio/Socketio";
-// import logo from "../../../public/logo.jpeg";
 
 import { connect } from "react-redux";
 import { toggleOpen, loggout } from "../../store/actions/loggin-action";
@@ -31,9 +29,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "100",
   },
-  sign_up: {
-    
-  }
+  sign_up: {},
 }));
 
 function MenuAppBar(props) {
@@ -58,9 +54,9 @@ function MenuAppBar(props) {
     <div className={classes.root}>
       <AppBar className='navBar' position='relative'>
         <Toolbar>
-          <Typography variant="h1" className="logoName">
+          <Typography variant='h1' className='logoName'>
             <img
-              src="./logo-2.png"
+              src='./logo-2.png'
               style={{
                 width: 200,
                 borderRadius: 100,
@@ -78,7 +74,7 @@ function MenuAppBar(props) {
               }}
             >
               <span style={{ display: "flex", width: 350, marginTop: 12 }}>
-                <NavLink exact to="/">
+                <NavLink exact to='/'>
                   Home
                 </NavLink>
                 {/* <NavLink
@@ -90,20 +86,20 @@ function MenuAppBar(props) {
                 >
                   LogIn
                 </NavLink> */}
-                <NavLink to="/aboutUs">AboutUs</NavLink>
+                <NavLink to='/aboutUs'>AboutUs</NavLink>
               </span>
 
               <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
+                aria-label='account of current user'
+                aria-controls='menu-appbar'
+                aria-haspopup='true'
                 onClick={handleMenu}
-                color="inherit"
+                color='inherit'
               >
-                <AccountCircle fontSize="large" />
+                <AccountCircle fontSize='large' />
               </IconButton>
               <Menu
-                id="menu-appbar"
+                id='menu-appbar'
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: "top",
@@ -118,7 +114,7 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <NavLink to="/Profile">Profile</NavLink>
+                  <NavLink to='/Profile'>Profile</NavLink>
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -130,26 +126,26 @@ function MenuAppBar(props) {
               </Menu>
             </div>
           ) : (
-            <Grid className="loginBar" container>
+            <Grid className='loginBar' container>
               <Grid item xs={8} sm={2} md={5}></Grid>
-              <Grid item xs={4} sm={10} md={7} container style={{justifyContent: "space-evenly"}}>
+              <Grid item xs={4} sm={10} md={7} container style={{ justifyContent: "space-evenly" }}>
                 {/* <ul> */}
                 {/* <li> */}
                 <Grid>
-                  <NavLink exact to="/">
+                  <NavLink exact to='/'>
                     Home
                   </NavLink>
                 </Grid>
                 {/* </li> */}
                 {/* <li> */}
                 <Grid>
-                  <SimpleMenu className="loginTitle"/>
+                  <SimpleMenu className='loginTitle' />
                 </Grid>
                 {/* </li> */}
                 {/* <li> */}
                 <Grid>
                   <NavLink
-                    to="/L"
+                    to='/L'
                     onClick={() => {
                       props.toggleOpen(false);
                       props.checkCookie();
@@ -161,7 +157,7 @@ function MenuAppBar(props) {
                 {/* </li> */}
                 {/* <li> */}
                 <Grid>
-                  <NavLink to="/aboutUs">AboutUs</NavLink>
+                  <NavLink to='/aboutUs'>AboutUs</NavLink>
                 </Grid>
                 {/* </li> */}
                 {/* </ul> */}

@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     height: 440,
   },
 }));
-
 export default function LastAddItem() {
   const classes = useStyles();
 
@@ -51,67 +50,33 @@ export default function LastAddItem() {
   let lastAdd = data.services;
   let host = data.hosts;
 
-  lastAdd.map((service) => {
-    console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", service.country);
-    // lastAdd.map((hostService, idx) => {
-    //   if (hostId.id === hostService.host_id) {
-    //     lastAdd[idx].hostImage = hostId.profile_image;
-    //     lastAdd[idx].userTitle = hostId.first_name + " " + hostId.last_name;
-    //   }
-    // });
+  const firstCountry = "Ireland";
+  const sectCountry = "Zambia";
+  let items2 = [];
+  const items1 = [];
+
+  lastAdd.map((serviceCountry, idx) => {
+    if (serviceCountry.country.includes(firstCountry)) {
+      items2.push({
+        image: serviceCountry.profile_image,
+        title: serviceCountry.description,
+        during: serviceCountry.duration,
+        country: serviceCountry.title,
+      });
+    }
+    if (serviceCountry.country.includes(sectCountry)) {
+      items1.push({
+        image: serviceCountry.profile_image,
+        title: serviceCountry.description,
+        during: serviceCountry.duration,
+        country: serviceCountry.title,
+      });
+    }
   });
+  console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", items2);
 
   //addd
   //Ireland  Zambia  Thailand
-  const items2 = [
-    {
-      image: image1,
-      title: "Person have ability to teach kids",
-      during: "3 Months",
-      country: "New York",
-    },
-    {
-      image: image2,
-      title: "Person have ability on work in building",
-      during: "9 Months",
-      country: "Maiami",
-    },
-    {
-      image: image3,
-      title: "Person have ability to cook traditional food",
-      during: "1 Month",
-      country: "New Jersi",
-    },
-  ];
-  const items1 = [
-    {
-      image: image4,
-      title: "Person have ability to Lawn mowers",
-      during: "6 Months",
-      country: "Alberta",
-    },
-    {
-      image: image5,
-      title: "Person have ability to cook a mexican food",
-      during: "3 Months",
-      country: "British Columbia",
-    },
-    {
-      image: image6,
-      title: "Person have ability to give the a lecture on technology",
-      during: "1 day",
-      country: "Ontario",
-    },
-  ];
-
-  const contry = [
-    {
-      name: "USA",
-    },
-    {
-      name: "Canada",
-    },
-  ];
 
   function Item(props) {
     return (
@@ -140,7 +105,7 @@ export default function LastAddItem() {
               variant='h5'
               component='h2'
             >
-              USA
+              Ireland
             </Typography>
             <Carousel
               animation='slide'
@@ -218,7 +183,7 @@ export default function LastAddItem() {
               variant='h5'
               component='h2'
             >
-              Canada
+              Zambia
             </Typography>
             <Carousel
               animation='slide'

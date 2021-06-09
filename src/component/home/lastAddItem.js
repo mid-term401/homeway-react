@@ -14,6 +14,7 @@ import TimelapseIcon from "@material-ui/icons/Timelapse";
 import PublicIcon from "@material-ui/icons/Public";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import CategoryIcon from "@material-ui/icons/Category";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   font: {
@@ -78,7 +79,6 @@ export default function LastAddItem() {
       }
     });
   });
-  console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", lastAdd);
   const [rating, setRating] = useState(3);
   const [hover, setHover] = useState(-1);
 
@@ -98,7 +98,13 @@ export default function LastAddItem() {
         <Grid container spacing={4}>
           {lastAdd.map((item) => (
             <Grid key={item} item xs={12} sm={4} md={3}>
-              <Card style={{ overflowY: "auto" }} className={classes.Card}>
+              <Card
+                style={{ overflowY: "auto" }}
+                className={classes.Card}
+                onClick={() => {
+                  <NavLink to='/aboutUs'></NavLink>;
+                }}
+              >
                 <CardActionArea>
                   <CardMedia
                     component='img'
