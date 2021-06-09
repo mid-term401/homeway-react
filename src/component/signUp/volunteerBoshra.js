@@ -18,7 +18,6 @@ import { checkUserType } from "../../store/actions/acl-action";
 
 import { useSelector, useDispatch } from "react-redux";
 
-
 const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%",
@@ -37,31 +36,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function AddressForm(props) {
-  props.checkUserType('volunteer');
+  props.checkUserType("volunteer");
 
-  console.log(props)
+  console.log(props);
 
   const dispatch = useDispatch();
   function SubmitSignInForm(e) {
     e.preventDefault();
-  
+
     dispatch(
-      postRemoteData("https://robust-entity-homeway.herokuapp.com/volunteers/sign_up", {
-        username: e.target.username.value,
-        password: e.target.password.value,
-        first_name: e.target.firstname.value,
-        last_name: e.target.lastname.value,
-        email: e.target.email.value,
-        country: e.target.country.value,
-        address: e.target.address.value,
-        birth_date: e.target.birthdate.value,
-      },'')
+      postRemoteData(
+        "https://robust-entity-homeway.herokuapp.com/volunteers/sign_up",
+        {
+          username: e.target.username.value,
+          password: e.target.password.value,
+          first_name: e.target.firstname.value,
+          last_name: e.target.lastname.value,
+          email: e.target.email.value,
+          country: e.target.country.value,
+          address: e.target.address.value,
+          birth_date: e.target.birthdate.value,
+        },
+        ""
+      )
     );
   }
-  
-
 
   const classes = useStyles();
 
@@ -88,82 +88,84 @@ function AddressForm(props) {
         width: "1300px",
         padding: "20px",
         color: "#0c2644",
+        marginLeft: "6%",
       }}
     >
       <Typography variant="h6" gutterBottom>
         Sign Up as Volunteer
       </Typography>
-      <form Validate onSubmit={SubmitSignInForm}>
-        <Grid container spacing={3} style={{ marginTop: "60px" }}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="userName"
-              name="username"
-              label="User Name"
-              fullWidth
-              autoComplete="username"
-              variant="outlined"
-              // onChange={(e) => { setUserNameReg(e.target.value) }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="password"
-              name="password"
-              label="password"
-              fullWidth
-              autoComplete="new-password"
-              type="password"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="firstName"
-              name="firstname"
-              label="First name"
-              fullWidth
-              autoComplete="given-name"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="lastName"
-              name="lastname"
-              label="Last name"
-              fullWidth
-              autoComplete="family-name"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="address"
-              name="address"
-              label="Address"
-              fullWidth
-              // autoComplete="address-line1"
-              variant="outlined"
-            />
-          </Grid>
-          {/* <Grid item xs={12} sm={6}>
+      <Grid item xs={12} md={12} sm={8}>
+        <form Validate onSubmit={SubmitSignInForm}>
+          <Grid container spacing={3} style={{ marginTop: "30px" }}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="userName"
+                name="username"
+                label="User Name"
+                fullWidth
+                autoComplete="username"
+                variant="outlined"
+                // onChange={(e) => { setUserNameReg(e.target.value) }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="password"
+                name="password"
+                label="password"
+                fullWidth
+                autoComplete="new-password"
+                type="password"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="firstName"
+                name="firstname"
+                label="First name"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="lastName"
+                name="lastname"
+                label="Last name"
+                fullWidth
+                autoComplete="family-name"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="address"
+                name="address"
+                label="Address"
+                fullWidth
+                // autoComplete="address-line1"
+                variant="outlined"
+              />
+            </Grid>
+            {/* <Grid item xs={12} sm={6}>
             <TextField
               required
               id="city"
@@ -175,55 +177,60 @@ function AddressForm(props) {
             />
           </Grid> */}
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="country"
-              name="country"
-              label="Country"
-              fullWidth
-              autoComplete="shipping country"
-              variant="outlined"
-            />
-          </Grid>
-
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid item sm={6}>
-              <KeyboardDatePicker
-                style={{ marginLeft: "10px", width: "630px" }}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="country"
+                name="country"
+                label="Country"
+                fullWidth
+                autoComplete="shipping country"
                 variant="outlined"
-                margin="normal"
-                id="date-picker-dialog"
-                name="birthdate"
-                label="Birth Date"
-                format="MM-dd-yyyy"
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
               />
             </Grid>
-          </MuiPickersUtilsProvider>
 
-          <Link style={{ color: "white" }} href="#">
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid item sm={6}>
+                <KeyboardDatePicker
+                  style={{ marginLeft: "10px", width: "630px" }}
+                  variant="outlined"
+                  margin="normal"
+                  id="date-picker-dialog"
+                  name="birthdate"
+                  label="Birth Date"
+                  format="MM-dd-yyyy"
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+
+            <Link style={{ color: "white" }} href="#">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Sign Up
+              </Button>
+            </Link>
+            <Grid
+              container
+              justify="flex-start"
+              style={{ marginBottom: "15px" }}
             >
-              Sign Up
-            </Button>
-          </Link>
-          <Grid container justify="flex-start" style={{ marginBottom: "15px" }}>
-            <Grid item sm={12}>
-              <Link href="#" to="/" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <Grid item sm={12}>
+                <Link href="#" to="/" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </form>
+        </form>
+      </Grid>
     </div>
   );
 }
@@ -231,6 +238,6 @@ function AddressForm(props) {
 const mapStateToProps = (state) => {
   return { signUp: state.thunkReducer };
 };
-const mapDispatchToProps = { postRemoteData,checkUserType };
+const mapDispatchToProps = { postRemoteData, checkUserType };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressForm);

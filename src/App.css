@@ -16,11 +16,11 @@ li {
   max-width: 100%;
   position: absolute;
   z-index: 2;
-  bottom: 0;
+  bottom: -40px;
 }
 .navBar {
-  background-color: rgba(84, 86, 211, 0) !important;
-  box-shadow: none !important;
+  background-color: rgba(253, 253, 253, 0.6) !important;
+  /* box-shadow: none !important; */
   color: #fb8c00 !important;
   font-size: 35px !important;
 }
@@ -52,7 +52,7 @@ input {
 .titleIntroPara,
 .loginTitle {
   font-weight: 1000 !important;
-  color: #fb8c00;
+  color: #fb8c00 !important;
   text-shadow: 2px 2px black;
 }
 .mainContainer {
@@ -102,9 +102,19 @@ a {
   font-size: 22px;
   width: 100%;
   font-weight: 600 !important;
-  color: #fb8c00;
+  color: #fb8c00 !important;
   text-shadow: 1px 1px black;
 }
+
+.MuiButton-root:hover {
+  text-decoration: none;
+  background-color: rgba(247, 235, 235, 0) !important;
+}
+
+.signup_button {
+  font-size: 30px;
+}
+
 .logoName {
   width: 100%;
 }
@@ -112,3 +122,4 @@ a {
   width: 100% !important;
   height: 100% !important;
 }
+

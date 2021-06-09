@@ -7,6 +7,10 @@ import Recommended from "./recommended";
 import Search from "./search";
 import Black from "./blackImgs";
 import About from "./about";
+import Socketio from "../Socketio/Socketio";
+import AddressForm from "../signUp/volunteerBoshra";
+import Tweets from "./Tweets";
+
 
 export default function Home() {
   return (
@@ -16,10 +20,13 @@ export default function Home() {
         <Search />
       </Grid>
       <Grid>
-        <Black />
+        {/* <Black />
         <About />
         <LastAdd />
         <Recommended />
+        <Socketio />
+        <Tweets /> */}
+        <AddressForm />
       </Grid>
     </Box>
   );
