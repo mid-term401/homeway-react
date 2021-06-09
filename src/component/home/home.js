@@ -8,7 +8,7 @@ import Search from "./search";
 import Black from "./blackImgs";
 import About from "./about";
 import SignUpVol from "../signUp/volunteer";
-import Loading from "../loading/loading";
+// import Loading from "../loading/loading";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import superagent from "superagent";
@@ -36,7 +36,7 @@ export default function Home() {
       setLoading(false);
     });
   }
-  if (!loading) {
+  // if (!loading) {
     return (
       <Box>
         <Grid>
@@ -51,5 +51,5 @@ export default function Home() {
         </Grid>
       </Box>
     );
-  } else return <Loading />;
-}
+//   } else return <Loading />;
+ }

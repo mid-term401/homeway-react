@@ -19,12 +19,14 @@ const useStyles = makeStyles((theme) => ({
   font: {
     position: "absolute",
     top: "25%",
+    display:"block",
     width: "100%",
     height: "auto",
     textAlign: "center",
     color: "white",
-    backgroundColor: "#fb8c0078",
+    backgroundColor: "#fb8c00b3",
     fontFamily: "Comic Sans MS",
+    
   },
 
   CardFont: {
@@ -56,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
   Card: {
     height: 600,
-    width: 300,
+    width: 400,
   },
 }));
 
@@ -68,7 +70,7 @@ export default function LastAddItem() {
   lastAdd.push(data.services[data.services.length - 1]);
   lastAdd.push(data.services[data.services.length - 2]);
   lastAdd.push(data.services[data.services.length - 3]);
-  lastAdd.push(data.services[data.services.length - 4]);
+  
 
   host.map((hostId) => {
     lastAdd.map((hostService, idx) => {
@@ -97,7 +99,7 @@ export default function LastAddItem() {
 
         <Grid container spacing={4}>
           {lastAdd.map((item) => (
-            <Grid key={item} item xs={12} sm={4} md={3}>
+            <Grid key={item} item xs={12} sm={4} md={4}>
               <Card style={{ overflowY: "auto" }} className={classes.Card}>
                 <CardActionArea>
                   <CardMedia
@@ -116,13 +118,14 @@ export default function LastAddItem() {
                     <Grid justify='center' alignItems='center' item xs={12} sm={12} md={7}>
                       <Typography
                         className={classes.CardFont}
-                        variant='subtitle1'
+                        variant='h6'
                         color='textSecondary'
+                        
                       >
                         {item.userTitle}
                       </Typography>
 
-                      <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
+                      {/* <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
                         <div className={classes.rating}>
                           <Rating
                             name='half-rating'
@@ -135,7 +138,7 @@ export default function LastAddItem() {
                           />
                           {rating !== null && <Box sx={{ ml: 2 }}>{rating}</Box>}
                         </div>
-                      </Grid>
+                      </Grid> */}
                     </Grid>
                   </Grid>
                   <Grid
@@ -153,10 +156,10 @@ export default function LastAddItem() {
                   </Grid>
                   <CardContent>
                     <Grid container item xs={12} sm={12} md={12}>
-                      <Grid container item xs={12} sm={12} md={2}>
+                      <Grid container item xs={12} sm={12} md={1}>
                         <DetailsIcon className={classes.Iconic} style={{ fontSize: 30 }} />
                       </Grid>
-                      <Grid container item xs={12} sm={12} md={10}>
+                      <Grid container item xs={12} sm={12} md={11}>
                         <Typography
                           className={classes.CardFont}
                           variant='subtitle1'

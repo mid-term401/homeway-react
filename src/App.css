@@ -1,7 +1,23 @@
 * {
   text-decoration: none;
   list-style: none;
+  -ms-overflow-style: none;
 }
+::-webkit-scrollbar {
+    display: none;
+ 
+}
+
+body {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+/* body
+{
+  background-image: url(https://wanderland.qodeinteractive.com/wp-content/uploads/2019/11/landing-img-49.jpg);
+} */
 
 li {
   display: inline;
@@ -11,6 +27,7 @@ li {
   width: 100%;
   height: 92vh;
   background-repeat: no-repeat;
+  background-position: "center";
 }
 .betweenImage {
   max-width: 100%;
