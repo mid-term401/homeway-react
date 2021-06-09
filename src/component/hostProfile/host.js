@@ -19,6 +19,7 @@ import superagent from "superagent";
 import cookie from "react-cookies";
 import Loading from "../loading/loading";
 import SocketBtn from "../Socketio/Socketio";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -209,10 +210,17 @@ function HostProfileViewingAsHost(props) {
               </Grid>
 
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
-                <Button variant='h6' type='submit' variant='contained' className={classes.button}>
+                {/* <Button
+                  variant="h6"
+                  type="submit"
+                  variant="contained"
+                  className={classes.button}
+                >
                   Edit profile
-                </Button>
-                <SocketBtn />
+                </Button> */}
+                <NavLink exact to='/updateHostProfile'>
+                  Edit profile
+                </NavLink>
               </Grid>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={12} spacing={5} className={classes.description}>

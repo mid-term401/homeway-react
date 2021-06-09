@@ -8,6 +8,9 @@ import SignIn from "./component/signIn/signIn";
 import VolunteerSignup from "./component/signUp/volunteer";
 import HostSignup from "./component/signUp/host";
 import { Route, Switch } from "react-router-dom";
+import UpdateVolunteerForm from "./component/volunteerProfile/updateVolunteerForm";
+import UpdateHostForm from "./component/hostProfile/updateFormHost";
+
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
 import { useSelector } from "react-redux";
@@ -33,6 +36,8 @@ function App(props) {
         <Route exact path='/volunteers/sign_up' component={VolunteerSignup}></Route>
         <Route exact path='/hosts/sign_up' component={HostSignup}></Route>
         <Route exact path='/aboutUs' component={AboutUs}></Route>
+        <Route exact path='/updateProfile' component={UpdateVolunteerForm}></Route>
+        <Route exact path='/updateHostProfile' component={UpdateHostForm}></Route>
       </Switch>
 
       <Footer />

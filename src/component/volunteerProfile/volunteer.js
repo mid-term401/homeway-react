@@ -7,13 +7,15 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import LanguageIcon from "@material-ui/icons/Language";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import superagent from "superagent";
 import cookie from "react-cookies";
 import Loading from "../loading/loading";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -98,9 +100,6 @@ function HostProfileViewingAsVolunteer(props) {
   const [user, setUser] = useState({});
   const [rating, setRating] = useState(3);
 
-  
-
-
   const state = useSelector((state) => {
     return {
       userData: state.loggin,
@@ -178,15 +177,24 @@ function HostProfileViewingAsVolunteer(props) {
 
                 <Grid item xs={12} sm={6} md={2}>
                   <div className={classes.rating}>
-                  <Rating name='half-rating' value={rating}  precision={0.5} onChange={(e,value) => setRating(value)}  />
+                    <Rating
+                      name='half-rating'
+                      value={rating}
+                      precision={0.5}
+                      onChange={(e, value) => setRating(value)}
+                    />
                   </div>
                 </Grid>
               </Grid>
 
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
-                <Button variant='h6' type='submit' variant='contained' className={classes.button}>
-                  Edit profile
-                </Button>
+                {/* <Button 
+                variant='h6' type='submit' variant='contained' className={classes.button}> */}
+                <NavLink exact to='/updateProfile'>
+                  {" "}
+                  Edit profile{" "}
+                </NavLink>
+                {/* </Button> */}
               </Grid>
             </Grid>
 
