@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import superagent from "superagent";
 
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setdata] = useState({});
@@ -45,6 +46,9 @@ export default function Home() {
           <About />
           <LastAdd />
           <Recommended />
+          {/* <hr /> */}
+          {/* <UpdateFormFinal /> */}
+          {/* <UpdateForm /> */}
         </Grid>
       </Box>
     );
