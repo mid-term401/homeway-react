@@ -157,53 +157,7 @@ export default function LastAddItem() {
                       </Typography>
                     </Grid>
                     <CardContent>
-                      <Grid container item xs={12} sm={12} md={12}>
-                        <Grid container item xs={12} sm={12} md={1}>
-                          <DetailsIcon className={classes.Iconic} style={{ fontSize: 30 }} />
-                        </Grid>
-                        <Grid container item xs={12} sm={12} md={11}>
-                          <Typography
-                            className={classes.CardFont}
-                            variant='subtitle1'
-                            color='textSecondary'
-                          >
-                            {item.userTitle}
-                          </Typography>
-
-                          <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
-                            <div className={classes.rating}>
-                              <Rating
-                                name='half-rating'
-                                value={rating}
-                                precision={0.5}
-                                onChange={(e, value) => setRating(value)}
-                                onChangeActive={(event, newHover) => {
-                                  setHover(newHover);
-                                }}
-                              />
-                              {rating !== null && <Box sx={{ ml: 2 }}>{rating}</Box>}
-                            </div>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        container
-                        style={{ backgroundColor: "#ffb400", height: 1, marginTop: 10 }}
-                        item
-                        xs={12}
-                        sm={12}
-                        md={12}
-                      ></Grid>
-                      <Grid container item xs={12} sm={12} md={12}>
-                        <Typography
-                          gutterBottom
-                          variant='h5'
-                          component='h5'
-                          className={classes.font}
-                        >
-                          {item.description}
-                        </Typography>
-                      </Grid>
+                   
                       <CardContent>
                         <Grid container item xs={12} sm={12} md={12}>
                           <Grid container item xs={12} sm={12} md={2}>

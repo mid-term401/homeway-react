@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import Paper from "@material-ui/core/Paper";
 import image1 from "../assets/vol/26.png";
-import image2 from "../assets/vol/22.png";
+import image2 from "../assets/vol/27.png";
 import image3 from "../assets/vol/21.png";
 import image4 from "../assets/vol/20.png";
 import image5 from "../assets/vol/19.png";

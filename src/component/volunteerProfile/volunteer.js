@@ -128,7 +128,7 @@ function HostProfileViewingAsVolunteer(props) {
     }
   }, [state.userData.loggedIn]);
 
-  if (!loading) {
+  if (loading) {
     return (
       <>
         <Container>

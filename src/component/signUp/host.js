@@ -8,7 +8,7 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
-
+import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { postRemoteData } from "../../store/actions/thunk-action";
 import { checkUserType } from "../../store/actions/acl-action";
@@ -20,17 +20,70 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: theme.spacing(3),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    width: "150px",
-    marginTop: "30px",
-    marginLeft: "600px",
-  },
+
   formControl: {
     margin: theme.spacing(1),
     minWidth: 640,
     marginLeft: "-1px",
   },
+
+  Root: {
+    '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '25ch'
+    },
+    '& label.Mui-focused': {
+        color: '#FB8C00',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'black',
+        },
+        '&:hover fieldset': {
+            borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'black',
+        },
+    },
+},
+
+submit: {
+    borderRadius: 5, 
+  },
+
+  box: {
+    backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
+    borderRadius: 4,
+    marginTop: "30px",
+  },
+
+Font:
+{
+fontFamily: 'Lobster, cursive',
+color: "#FB8C00",
+textAlign:"center",
+marginBottom: 30
+},
+
+button: {
+  
+width: "135px",
+padding: 10,
+marginTop: 10,
+background: '#FB8C00',
+color: "white",
+height: 40,
+'&:hover': {
+  backgroundColor: 'white',
+  color: '#FB8C00',
+}
+
+},
+
 }));
 
 function AddressForm(props) {
@@ -72,17 +125,10 @@ function AddressForm(props) {
   // };
 
   return (
-    <div
-      style={{
-        borderRadius: "10px",
-        boxShadow: "0px 0px 100px 0px #3447BD",
-        backgroundColor: "#f7f8f8cc",
-        width: "1300px",
-        padding: "20px",
-        color: "#0c2644",
-      }}
-    >
-      <Typography variant='h6' gutterBottom>
+    <Container >
+        <Grid container spacing={8} >
+        <Grid container item xs={12} sm={12} md={12} className={classes.box}>
+      <Typography variant='h5' gutterBottom className={classes.Font}>
         Sign Up as Host
       </Typography>
       <form Validate onSubmit={SubmitSignInForm}>
@@ -96,6 +142,7 @@ function AddressForm(props) {
               fullWidth
               autoComplete='username'
               variant='outlined'
+              className={classes.Root}
               // onChange={(e) => { setUserNameReg(e.target.value) }}
             />
           </Grid>
@@ -109,6 +156,7 @@ function AddressForm(props) {
               autoComplete='new-password'
               type='password'
               variant='outlined'
+              className={classes.Root}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -120,6 +168,7 @@ function AddressForm(props) {
               fullWidth
               autoComplete='given-name'
               variant='outlined'
+              className={classes.Root}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -131,6 +180,7 @@ function AddressForm(props) {
               fullWidth
               autoComplete='family-name'
               variant='outlined'
+              className={classes.Root}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -142,6 +192,7 @@ function AddressForm(props) {
               label='Email'
               name='email'
               autoComplete='email'
+              className={classes.Root}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -153,6 +204,7 @@ function AddressForm(props) {
               fullWidth
               // autoComplete="address-line1"
               variant='outlined'
+              className={classes.Root}
             />
           </Grid>
           {/* <Grid item xs={12} sm={6}>
@@ -176,15 +228,15 @@ function AddressForm(props) {
               fullWidth
               autoComplete='shipping country'
               variant='outlined'
+              className={classes.Root}
             />
           </Grid>
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid item sm={6}>
+            <Grid item sm={5}>
               <KeyboardDatePicker
-                style={{ marginLeft: "10px", width: "630px" }}
+                style={{ marginLeft: "10px", width: "590px" }}
                 variant='outlined'
-                margin='normal'
                 id='date-picker-dialog'
                 name='birthdate'
                 label='Birth Date'
@@ -193,25 +245,40 @@ function AddressForm(props) {
                 KeyboardButtonProps={{
                   "aria-label": "change date",
                 }}
+                className={classes.Root}
               />
             </Grid>
           </MuiPickersUtilsProvider>
-
+          <Grid style={{marginTop:20}} spacing={2} container item xs={12} sm={12} md={12} className={classes.grid}>
+          <Grid container item xs={12} sm={12} md={9} className={classes.submit} >
+            
+            </Grid>
+            
+          <Grid container item xs={12} sm={12} md={3} className={classes.submit} >
           <Link style={{ color: "white" }} href='#'>
-            <Button type='submit' variant='contained' color='primary' className={classes.submit}>
+            <Button type='submit' variant='contained' color='primary' className={classes.button}>
               Sign Up
             </Button>
           </Link>
-          <Grid container justify='flex-start' style={{ marginBottom: "15px" }}>
-            <Grid item sm={12}>
-              <Link href='#' to='/' variant='body2'>
+          </Grid>
+          </Grid>
+          <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.grid}>
+          <Grid container item xs={12} sm={12} md={9} className={classes.submit} >
+            
+            </Grid>
+            
+          <Grid  justify='center' alignItems='center' container item xs={12} sm={12} md={3} className={classes.submit} >
+          <Link href='#' to='/' variant='body2'>
                 Already have an account? Sign in
               </Link>
-            </Grid>
           </Grid>
+          </Grid>
+         
         </Grid>
       </form>
-    </div>
+      </Grid>
+        </Grid>
+      </Container>
   );
 }
 

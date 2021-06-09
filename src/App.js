@@ -10,6 +10,10 @@ import HostSignup from "./component/signUp/host";
 import { Route, Switch } from "react-router-dom";
 import UpdateVolunteerForm from "./component/volunteerProfile/updateVolunteerForm";
 import UpdateHostForm from "./component/hostProfile/updateFormHost";
+import Search from "./component/searchResults/cards";
+import Volunteer from "./component/volunteerProfile/volunteer";
+
+
 
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
@@ -40,7 +44,7 @@ function App(props) {
         <Route exact path='/updateHostProfile' component={UpdateHostForm}></Route>
       </Switch>
       {/* <Search/> */}
-      {/* <Volunteer/> */}
+      {/* <HostSignup/> */}
       <Footer />
     </>
   );
