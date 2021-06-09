@@ -21,21 +21,15 @@ import Loading from "../loading/loading";
 import SocketBtn from "../Socketio/Socketio";
 import { NavLink } from "react-router-dom";
 
-
-
 const useStyles = makeStyles((theme) => ({
   submit: {
     backgroundColor: "white",
     borderRadius: 4,
     backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
- 
-    
   },
 
-  Space:
-  {
-    marginTop:120,
-    
+  Space: {
+    marginTop: 120,
   },
 
   button: {
@@ -46,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 40,
 
-    '&:hover': {
-      backgroundColor: 'white',
-      color: '#FB8C00',
-    }
+    "&:hover": {
+      backgroundColor: "white",
+      color: "#FB8C00",
+    },
   },
 
   icon: {
@@ -66,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cover: {
-    width: 300,
+    width: 400,
     height: "auto",
   },
 
@@ -88,12 +82,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     marginLeft: "8px",
     borderRadius: 3,
-    backgroundColor:"#fb8c0024"
-     },
+    backgroundColor: "#fb8c0024",
+  },
 
   font: {
     fontFamily: "Lobster, cursive",
-    
   },
 
   About: {
@@ -119,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let text = [];
 function HostProfileViewingAsHost(props) {
   const classes = useStyles();
 
@@ -128,7 +122,6 @@ function HostProfileViewingAsHost(props) {
   const [service, setService] = useState({});
   const [rating, setRating] = useState(3);
   const [hover, setHover] = useState(-1);
-
   const state = useSelector((state) => {
     return {
       userData: state.loggin,
@@ -136,6 +129,7 @@ function HostProfileViewingAsHost(props) {
     };
   });
 
+  console.log("🚀🚀🚀 ~~~~ HostProfileViewingAsHost ~~~~ user", user, state);
   useEffect(() => {
     if (state.userData.loggedIn) {
       loadProfile();
@@ -148,7 +142,6 @@ function HostProfileViewingAsHost(props) {
       id = state.userData.id;
     }
 
-    console.log("🚀🚀🚀🚀🚀🚀🚀host🚀🚀🚀🚀🚀🚀🚀🚀", id);
     superagent
       .get(`https://robust-entity-homeway.herokuapp.com/host/${id}`)
       .set("authorization", `${state.userData.cookie}`)
@@ -158,25 +151,31 @@ function HostProfileViewingAsHost(props) {
       });
 
     superagent
-      .get(`https://robust-entity-homeway.herokuapp.com/host/${state.userData.id}/service`)
+      .get(`https://robust-entity-homeway.herokuapp.com/host/${id}/service`)
       .set("authorization", `${state.userData.cookie}`)
       .then((response) => {
-        let text = JSON.parse(response.text);
+        localStorage.setItem("servicesProfile", response.text);
+        if (text.length === 0) {
+          text = JSON.parse(localStorage.getItem("servicesProfile"));
+        }
         setLoading(false);
       });
   }
 
+  console.log("🚀🚀🚀🚀🚀🚀🚀host🚀🚀🚀🚀🚀🚀🚀🚀", text);
+  // text.map((value, index) => {});
+
   if (!loading) {
     return (
       <>
+        {/* {text.map((value, index) => {
+          console.log("🚀🚀🚀🚀🚀🚀🚀host🚀🚀🚀🚀🚀🚀🚀🚀", value);
+        })} */}
         <Container>
           <Grid container spacing={6} className={classes.Space}>
-            <Grid  container item xs={12} sm={12} md={12} className={classes.submit}>
+            <Grid container item xs={12} sm={12} md={12} className={classes.submit}>
               <Grid item xs={12} sm={6} md={3}>
-                <img
-                  className='profileImage'
-                  src='https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70'
-                ></img>
+                <img className='profileImage' src={user.profile_image}></img>
               </Grid>
               <Grid container item xs={12} sm={6} md={6} className={classes.grid}>
                 <Grid item xs={12} sm={6} md={2}>
@@ -241,19 +240,23 @@ function HostProfileViewingAsHost(props) {
                 </NavLink>
               </Grid>
               <Grid container spacing={2}>
-                <Grid spacing={1} container item xs={12} sm={12} md={12}  className={classes.description}>
-                <Grid container item xs={12} sm={12} md={12} >
-                  <Typography
-                    className={classes.font}
-                    variant='h5'
-                    style={{ color: "#FB8C00" }}
-                  >
-                    About Me:
-                  </Typography>
+                <Grid
+                  spacing={1}
+                  container
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  className={classes.description}
+                >
+                  <Grid container item xs={12} sm={12} md={12}>
+                    <Typography className={classes.font} variant='h5' style={{ color: "#FB8C00" }}>
+                      About Me:
+                    </Typography>
                   </Grid>
 
-                  <Grid container item xs={12} sm={12} md={12} >
-                  {`${user.description}`}
+                  <Grid container item xs={12} sm={12} md={12}>
+                    {`I am the leader of re post entity what are you looking AT you can hate but still the best site of our group`}
                   </Grid>
                 </Grid>
               </Grid>
@@ -270,104 +273,84 @@ function HostProfileViewingAsHost(props) {
               </Typography>
 
               <Grid container className={classes.submit}>
-                <Card className={classes.root}>
-                  <CardMedia
-                    className={classes.cover}
-                    image='https://www.marketplace.org/wp-content/uploads/2020/05/GettyImages-993512154-e1589912002555.jpg?fit=5038%2C2833'
-                    title='Live from space album cover'
-                  />
+                {text.map((item) => (
+                  <Card key={item + "_"} className={classes.root}>
+                    <CardMedia
+                      className={classes.cover}
+                      image={item.profile_image}
+                      title='Live from space album cover'
+                      // height='250'
+                      width='300'
+                    />
 
-                  <CardContent className={classes.content}>
-                    <Typography className={classes.font} component='h5' variant='h5'>
-                      Farmer
-                    </Typography>
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Details: We need a persion with physical skills that have a capabilty to work
-                      prush.
-                    </Typography>
+                    <CardContent className={classes.content}>
+                      <Typography className={classes.font} component='h5' variant='h5'>
+                        {item.title}
+                      </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.details}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Type: Farming.
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.type}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Country: Australia
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.country}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Duration: 6 Months
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.duration}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Working Days: 5 Days/Week.
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.working_days}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Working Hours: 8 Hours.
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.working_hours}
+                      </Typography>
 
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Minimum Age: 18 Years.
-                    </Typography>
+                      <Typography
+                        className={classes.font}
+                        variant='subtitle1'
+                        color='textSecondary'
+                      >
+                        {item.minumim_age}
+                      </Typography>
 
-                    <CardActions>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
-                        Delete
-                      </Button>
-                    
-                    </CardActions>
-                  </CardContent>
-                </Card>
-              </Grid>
-
-              <Grid container className={classes.submit}>
-                <Card className={classes.root}>
-                  <CardMedia
-                    className={classes.cover}
-                    image='https://luxurylaunches.com/wp-content/uploads/2021/02/Clothespin-Shaped-Skyscraper-Dubai-1170x650.jpg'
-                    title='Live from space album cover'
-                  />
-
-                  <CardContent className={classes.content}>
-                    <Typography className={classes.font} component='h5' variant='h5'>
-                      Build
-                    </Typography>
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Details: We need a persion with physical skills that have a capabilty to work
-                      prush 
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Type: Farming
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Country: Newyork
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Duration: 1 year
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Working Days: 5 Days/Week.
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Working Hours: 8 Hours.
-                    </Typography>
-
-                    <Typography className={classes.font} variant='subtitle1' color='textSecondary'>
-                      Minimum Age: 18 Years.
-                    </Typography>
-
-                    <CardActions>
-                      <Button size='small' style={{ color: "#FB8C00" }}>
-                        Delete
-                      </Button>
-                    </CardActions>
-                  </CardContent>
-                </Card>
+                      <CardActions>
+                        <Button size='small' style={{ color: "#FB8C00" }}>
+                          Delete
+                        </Button>
+                      </CardActions>
+                    </CardContent>
+                  </Card>
+                ))}
               </Grid>
             </Grid>
           </Grid>

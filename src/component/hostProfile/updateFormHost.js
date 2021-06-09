@@ -5,6 +5,7 @@ import superagent from "superagent";
 import { NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import TextField from "@material-ui/core/TextField";
+import Loading from "../loading/loading";
 import Button from "@material-ui/core/Button";
 
 function UpdateHostForm() {
@@ -170,7 +171,7 @@ function UpdateHostForm() {
   } else {
     return (
       <>
-        <p>Loading ........</p>
+        <Loading />
       </>
     );
   }

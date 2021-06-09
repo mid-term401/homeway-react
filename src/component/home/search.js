@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,6 +7,12 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { postRemoteData } from "../../store/actions/thunk-action";
+import superagent from "superagent";
+import { WorkRounded } from "@material-ui/icons";
+import cookie from "react-cookies";
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -30,6 +36,38 @@ const useStyles = makeStyles({
 
 export default function CountrySelect() {
   const classes = useStyles();
+  const [country, setCountry] = useState("");
+  const [work, setWork] = useState("");
+
+  function SubmitSignInForm(e) {
+    e.preventDefault();
+    console.log(country.label, work.label);
+    postSearchResults(country.label, work.label);
+    // postSearchResults(country, work);
+    // dispatch(
+    //   postRemoteData(
+    //     "https://robust-entity-homeway.herokuapp.com/searchResults",
+    //     {
+    //       myCountry: e.target.myCountry.value,
+    //       WorkField: e.target.WorkField.value
+    //     }, ''
+    //   )
+    // );
+  }
+
+  function postSearchResults(country, work) {
+    superagent
+      .post("https://robust-entity-homeway.herokuapp.com/searchResults")
+      .send({
+        myCountry: country,
+        WorkField: work,
+      })
+      .then((response) => {
+        cookie.save("SearchResults", response.body);
+        localStorage.setItem("searchResults", response);
+        // console.log(response.body);
+      });
+  }
 
   return (
     <Container>
@@ -39,7 +77,7 @@ export default function CountrySelect() {
             Give a little help, stay for free
           </Typography>
         </Grid>
-        <form>
+        <form onSubmit={SubmitSignInForm}>
           <Grid className='searchBar' container spacing={2}>
             <Grid item xs={12} sm={12} md={4}>
               <Autocomplete
@@ -67,6 +105,9 @@ export default function CountrySelect() {
                     }}
                   />
                 )}
+                onChange={(event, value) => {
+                  setCountry(value);
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
@@ -91,6 +132,9 @@ export default function CountrySelect() {
                     }}
                   />
                 )}
+                onChange={(event, value) => {
+                  setWork(value);
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
@@ -105,7 +149,7 @@ export default function CountrySelect() {
   );
 }
 
-const jobs = [{ label: "homeless" }, { label: "homelessness" }, { label: "Andorra" }];
+const jobs = [{ label: "farming" }, { label: "teaching" }, { label: "Andorra" }];
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
 const countries = [

@@ -194,16 +194,7 @@ export default function LastAddItem() {
                         sm={12}
                         md={12}
                       ></Grid>
-                      <Grid container item xs={12} sm={12} md={12}>
-                        <Typography
-                          gutterBottom
-                          variant='h5'
-                          component='h5'
-                          className={classes.font}
-                        >
-                          {item.description}
-                        </Typography>
-                      </Grid>
+                      <Grid container item xs={12} sm={12} md={12}></Grid>
                       <CardContent>
                         <Grid container item xs={12} sm={12} md={12}>
                           <Grid container item xs={12} sm={12} md={2}>
