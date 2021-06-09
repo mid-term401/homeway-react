@@ -192,8 +192,8 @@ function HostProfileViewingAsVolunteer(props) {
               <Grid container item xs={12} sm={6} md={2} className={classes.grid}>
                 {/* <Button 
                 variant='h6' type='submit' variant='contained' className={classes.button}> */}
-                <NavLink exact to='/updateProfile'>
-                  {" "}
+                <NavLink exact to='/updateVolunteerProfile'>
+                  
                   Edit profile{" "}
                 </NavLink>
                 {/* </Button> */}

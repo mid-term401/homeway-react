@@ -42,7 +42,7 @@ function UpdateHostForm() {
   function updateDataBase(e) {
     e.preventDefault();
 
-    // console.log(333333333333333, newData);
+    console.log(333333333333333, newData);
 
     if (state.userData.loggedIn) {
       let newData = {
