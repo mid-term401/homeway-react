@@ -1,10 +1,11 @@
 import "./App.css";
 import Home from "./component/home/home";
 import Header from "./component/header/header";
-// import Footer from "./component/footer/footer";
+import Footer from "./component/footer/footer";
 // import HostProfile from "./component/hostProfile/host";
 import Profile from "./component/hostProfile/profile";
 import SignIn from "./component/signIn/signIn";
+import Volunteer from "./component/volunteerProfile/volunteer";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
@@ -22,7 +23,8 @@ function App() {
         <Route exact path='/Profile' component={Profile}></Route>
       </Switch>
 
-      {/* <Footer /> */}
+{/* <Volunteer/> */}
+      <Footer />
     </>
   );
 }

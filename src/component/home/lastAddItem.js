@@ -1,3 +1,4 @@
+import { React, useState } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -23,6 +24,8 @@ import PublicIcon from "@material-ui/icons/Public";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import CategoryIcon from "@material-ui/icons/Category";
 import cookie from "react-cookies";
+
+
 
 const useStyles = makeStyles((theme) => ({
   font: {
@@ -71,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LastAddItem(props) {
   const classes = useStyles();
+  const [rating, setRating] = useState(3);
+  const [hover, setHover] = useState(-1);
+
+  
   // const data = JSON.parse(cookie.load("serviceData"));
   let data = cookie.load("serviceData");
   console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", data);
@@ -159,7 +166,14 @@ export default function LastAddItem(props) {
 
                       <Grid justify='center' alignItems='center' item xs={12} sm={12} md={3}>
                         <div className={classes.rating}>
-                          <Rating name='half-rating' defaultValue={2.5} precision={0.5} />
+                        <Rating name='half-rating' value={rating}  precision={0.5} onChange={(e,value) => setRating(value)}    onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }} />
+                        {rating !== null && (
+        <Box sx={{ ml: 2 }}>{rating}
+      
+    </Box>
+                        )}
                         </div>
                       </Grid>
                     </Grid>
