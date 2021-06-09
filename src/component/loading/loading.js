@@ -93,7 +93,7 @@ function HostProfileViewingAsVolunteer() {
     <div className={classes.pro}>
       <LinearProgress /* color={theme.palette.primary} */ />
       <Container className={classes.con}>
-        <Grid container spacing={8} className={classes.con}>
+        <Grid container style={{ marginTop: 120 }} spacing={8} className={classes.con}>
           <Grid item xs={12} sm={4} md={3}>
             <SkeletonChildrenDemo loading />
           </Grid>

@@ -15,7 +15,6 @@ import superagent from "superagent";
 import cookie from "react-cookies";
 
 export default function Home() {
-  // const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [data, setdata] = useState({});
 
@@ -33,9 +32,7 @@ export default function Home() {
 
   function loadProfile() {
     superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
-      console.log("🚀🚀🚀 ~~~~ superagent.get ~~~~ da", data);
-      // localStorage.set('services')
-      // cookie.save("serviceData", data);
+      localStorage.setItem("services", JSON.stringify(response.body));
       setLoading(false);
     });
   }
@@ -51,7 +48,6 @@ export default function Home() {
           <About />
           <LastAdd />
           <Recommended />
-          <SignUpVol />
         </Grid>
       </Box>
     );

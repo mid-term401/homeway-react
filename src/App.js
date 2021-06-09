@@ -1,7 +1,8 @@
 import "./App.css";
 import Home from "./component/home/home";
 import Header from "./component/header/header";
-// import Footer from "./component/footer/footer";
+import Footer from "./component/footer/footer";
+import AboutUs from "./component/aboutUs/aboutUs";
 // import HostProfile from "./component/hostProfile/host";
 import Profile from "./component/hostProfile/profile";
 import SignIn from "./component/signIn/signIn";
@@ -20,9 +21,10 @@ function App() {
           <Home />
         </Route>
         <Route exact path='/Profile' component={Profile}></Route>
+        <Route exact path='/aboutUs' component={AboutUs}></Route>
       </Switch>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -9,7 +9,7 @@ li {
 }
 .slideImage {
   width: 100%;
-  height: 95vh;
+  height: 92vh;
   background-repeat: no-repeat;
 }
 .betweenImage {
@@ -90,20 +90,16 @@ select::placeholder {
   background-image: url(./component/assets/homeImage/backGround2.jpg);
   height: 720px;
 }
-.ServiceBox
-{
+.ServiceBox {
   background-image: url(./component/assets/homeImage/backGround2.jpg);
   height: 720px;
-  margin-Top:50px ;
-  
+  margin-top: 50px;
 }
 
-.RecommendedBox
-{
+.RecommendedBox {
   background-image: url(./component/assets/homeImage/backGround2.jpg);
   height: 720px;
-  margin-Top:50px ;
-  
+  margin-top: 50px;
 }
 .TextImgDiv {
   padding-top: 75px !important;
@@ -137,4 +133,3 @@ a {
   width: 100% !important;
   height: 100% !important;
 }
-
