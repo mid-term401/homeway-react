@@ -22,9 +22,9 @@ function App(props) {
       <Header />
       <Switch>
         <Route exact path='/' component={Home}></Route>
-        <Route exact path='/error' component={error}></Route>
         <Route exact path='/services' component={services}></Route>
         <Route exact path='/contact' component={contact}></Route>
+        <Route exact path='/404' component={error}></Route>
         <Route path='/L'>
           <SignIn />
           <Home />
