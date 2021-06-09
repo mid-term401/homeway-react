@@ -19,6 +19,7 @@
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
     "material-ui": "^0.20.2",
+    "material-ui-popup-state": "^1.8.3",
     "npm": "^7.16.0",
     "react": "^17.0.2",
     "react-cookies": "^0.1.1",

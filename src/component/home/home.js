@@ -33,9 +33,9 @@ export default function Home() {
 
   function loadProfile() {
     superagent.get(`https://robust-entity-homeway.herokuapp.com/data`).then((response) => {
-      setdata(response.body.hosts);
       console.log("🚀🚀🚀 ~~~~ superagent.get ~~~~ da", data);
-      cookie.save("serviceData", data);
+      // localStorage.set('services')
+      // cookie.save("serviceData", data);
       setLoading(false);
     });
   }

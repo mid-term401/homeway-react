@@ -6,7 +6,6 @@ import Header from "./component/header/header";
 import Profile from "./component/hostProfile/profile";
 import SignIn from "./component/signIn/signIn";
 import { Route, Switch } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { getRemoteData, bearerAuth, updateRemoteData } from "./store/actions/thunk-action";
 
