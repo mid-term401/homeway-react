@@ -35,7 +35,7 @@ export default function SimpleMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <NavLink exact to="/hosts/sign_up">
+          <NavLink to="/hosts/sign_up">
             Host
           </NavLink>
         </MenuItem>

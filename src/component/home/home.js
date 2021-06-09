@@ -13,6 +13,9 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import superagent from "superagent";
 import cookie from "react-cookies";
+import Service from "../Services-haneen/services"
+import UpdateProfile from "../updateForm/updateForm";
+
 
 export default function Home() {
   // const classes = useStyles();
@@ -51,7 +54,10 @@ export default function Home() {
           <About />
           <LastAdd />
           <Recommended />
+          <Service />
           <SignUpVol />
+          <hr />
+          <UpdateProfile />
         </Grid>
       </Box>
     );
