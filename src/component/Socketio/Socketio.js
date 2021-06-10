@@ -2,18 +2,19 @@ import { RepeatRounded } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import React from "react";
 
-function Socketio() {
+function Socketio(props) {
   const state = useSelector((state) => {
     return {
       userData: state.loggin,
       thunkReducer: state.thunkReducer,
     };
   });
+  console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀SOCKET🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀", props, state.userData.id);
   return (
     <div>
       <button>
         <a
-          href={`https://robust-entity-homeway.herokuapp.com/volunteer/${state.userData.id}/host/${state.userData.routeId}/chat`}
+          href={`https://robust-entity-homeway.herokuapp.com/volunteer/19/host/${state.userData.routeId}/chat`}
         >
           Message Now
         </a>

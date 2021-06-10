@@ -11,8 +11,22 @@ import { postRemoteData } from "../../store/actions/thunk-action";
 import { checkUserType } from "../../store/actions/acl-action";
 import { useSelector, useDispatch } from "react-redux";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Link from "@material-ui/core/Link";
+
 
 const useStyles = makeStyles((theme) => ({
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(3),
+    
+  },
+
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 640,
+    marginLeft: "-1px",
+  },
+
   Root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -44,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   box: {
     backgroundImage: `url(${"https://wanderland.qodeinteractive.com/wp-content/uploads/2019/10/h5-bckg-img-02.jpg?id=1249"})`,
     borderRadius: 4,
-    marginBottom: "20px",
+    marginTop: "30px",
   },
 
   Font: {
@@ -61,7 +75,15 @@ const useStyles = makeStyles((theme) => ({
     background: "#FB8C00",
     color: "white",
     height: 40,
+
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#FB8C00',
+    }
+
   },
+
+
 }));
 
 function Profile() {
@@ -104,12 +126,12 @@ function Profile() {
       <Container>
         <Grid container spacing={8}>
           <Grid container item xs={12} sm={12} md={12} className={classes.box}>
-            <Typography className={classes.Font} variant='h6' gutterBottom>
+            <Typography className={classes.Font} variant='h5' gutterBottom>
               Sign Up as Volunteer
             </Typography>
-            <form Validate onSubmit={SubmitSignInForm}>
-              <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.Submit}>
-                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
+            <form Validate onSubmit={SubmitSignInForm} className={classes.form}>
+            <Grid container spacing={3} >
+          <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id='Username'
@@ -121,7 +143,7 @@ function Profile() {
                   />
                 </Grid>
 
-                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id='Password'
@@ -133,18 +155,8 @@ function Profile() {
                   />
                 </Grid>
               </Grid>
-
-              <Grid
-                style={{ marginTop: 20 }}
-                spacing={2}
-                container
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                className={classes.Submit}
-              >
-                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
+              <Grid container spacing={3} >
+              <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id='First Name'
@@ -156,7 +168,7 @@ function Profile() {
                   />
                 </Grid>
 
-                <Grid container item xs={12} sm={12} md={6} className={classes.Submit}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id='Last Name'
@@ -167,19 +179,10 @@ function Profile() {
                     className={classes.Root}
                   />
                 </Grid>
-              </Grid>
+                </Grid>
 
-              <Grid
-                style={{ marginTop: 20 }}
-                spacing={2}
-                container
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                className={classes.submit}
-              >
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+                <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     id='Email'
                     name='email'
@@ -189,8 +192,10 @@ function Profile() {
                     className={classes.Root}
                   />
                 </Grid>
+                
 
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+               
+                <Grid item xs={12} sm={6}>
                   <TextField
                     id='Address'
                     name='address'
@@ -200,19 +205,12 @@ function Profile() {
                     className={classes.Root}
                   />
                 </Grid>
-              </Grid>
+                </Grid>
 
-              <Grid
-                style={{ marginTop: 20 }}
-                spacing={2}
-                container
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                className={classes.submit}
-              >
-                <Grid container item xs={12} sm={12} md={6} className={classes.submit}>
+               
+
+                <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     id='Country'
                     name='country'
@@ -222,6 +220,8 @@ function Profile() {
                     className={classes.Root}
                   />
                 </Grid>
+                
+
 
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <Grid item sm={6}>
@@ -240,10 +240,10 @@ function Profile() {
                     />
                   </Grid>
                 </MuiPickersUtilsProvider>
-              </Grid>
+                </Grid>
 
               <Grid
-                style={{ marginTop: 20 }}
+                style={{ marginTop: 60 }}
                 spacing={2}
                 container
                 item
@@ -265,6 +265,18 @@ function Profile() {
                   </Button>
                 </Grid>
               </Grid>
+
+              <Grid spacing={2} container item xs={12} sm={12} md={12} className={classes.grid}>
+          <Grid container item xs={12} sm={12} md={8} className={classes.submit} >
+            
+            </Grid>
+            
+          <Grid  justify='center' alignItems='center' container item xs={12} sm={12} md={4} className={classes.submit} >
+          <Link style={{ marginTop: 20 }} href='#' to='/' variant='body2'>
+                Already have an account? Sign in
+              </Link>
+          </Grid>
+          </Grid>
             </form>
           </Grid>
         </Grid>
