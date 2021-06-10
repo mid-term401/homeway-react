@@ -69,8 +69,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     marginLeft: "8px",
     borderRadius: 3,
-    backgroundColor:"#fb8c0024"
-    },
+    backgroundColor: "#fb8c0024",
+  },
 
   font: {
     fontFamily: "Lobster, cursive",
@@ -108,12 +108,19 @@ function HostProfileViewingAsVolunteer(props) {
       thunkReducer: state.thunkReducer,
     };
   });
+  console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
 
   const classes = useStyles();
 
   function loadProfile() {
+    let id = state.userData.routeId;
+
+    if (!id) {
+      id = state.userData.id;
+    }
+
     superagent
-      .get(`https://robust-entity-homeway.herokuapp.com/volunteer/${state.userData.id}`)
+      .get(`https://robust-entity-homeway.herokuapp.com/volunteer/${id}`)
       .set("authorization", `${state.userData.cookie}`)
       .then((response) => {
         cookie.save("profileData", response.body);
@@ -193,7 +200,6 @@ function HostProfileViewingAsVolunteer(props) {
                 {/* <Button 
                 variant='h6' type='submit' variant='contained' className={classes.button}> */}
                 <NavLink exact to='/updateVolunteerProfile'>
-                  
                   Edit profile{" "}
                 </NavLink>
                 {/* </Button> */}

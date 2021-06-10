@@ -129,7 +129,6 @@ function HostProfileViewingAsHost(props) {
     };
   });
 
-  console.log("🚀🚀🚀 ~~~~ HostProfileViewingAsHost ~~~~ user", user, state);
   useEffect(() => {
     if (state.userData.loggedIn) {
       loadProfile();
@@ -238,6 +237,7 @@ function HostProfileViewingAsHost(props) {
                 <NavLink exact to='/updateHostProfile'>
                   Edit profile
                 </NavLink>
+                <SocketBtn />
               </Grid>
               <Grid container spacing={2}>
                 <Grid

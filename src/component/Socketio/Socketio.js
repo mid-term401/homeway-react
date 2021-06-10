@@ -1,10 +1,23 @@
 import { RepeatRounded } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 import React from "react";
 
 function Socketio() {
-  return(
+  const state = useSelector((state) => {
+    return {
+      userData: state.loggin,
+      thunkReducer: state.thunkReducer,
+    };
+  });
+  return (
     <div>
-      <button><a href="https://robust-entity-homeway.herokuapp.com/volunteer/1/host/2/chat">socketio</a></button>
+      <button>
+        <a
+          href={`https://robust-entity-homeway.herokuapp.com/volunteer/${state.userData.id}/host/${state.userData.routeId}/chat`}
+        >
+          Message Now
+        </a>
+      </button>
     </div>
 
     // <div class="centered-form">
@@ -23,7 +36,7 @@ function Socketio() {
     // </div>
 
     // </form>
-  )
+  );
 }
 
 export default Socketio;
