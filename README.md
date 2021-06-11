@@ -1,70 +1,217 @@
-# Getting Started with Create React App
+## UML Diagram
+![UML Diagram](./public/UML%20Diagram.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Name: *Homeway*
+- [Netlify Deployment Link]()
+## Our team:
+* Boshra Jaber 
+* Haneen Khasawneh
+* Abdalrhman Albdahat
+* Samer Alnajjar
+* Ibrahim Aljabr
 
-## Available Scripts
+## Tools Used
+- Microsoft Visual Studio
+- Node.js
+- Express
+- PostgreSQL
+- ReactJS
+- Redux
+- Socketio
+- Thunk
+- Material UI
+- jQuery
 
-In the project directory, you can run:
+## API used:
+[Country's name API](https://restcountries.eu/)
 
-### `npm start`
+## Libraries and Packages: 
+[EmailJS](https://www.emailjs.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
+1. Clone this repository to your local machine `git clone https://github.com/mid-term401/homeway.git`
+2. Once downloaded, you can either use the dotnet CLI utilities or Visual Studio 2017 (or greater) to build the web application.
+3. cd homeway
+4. Install all dependencies needed for the project. `npm i`, `npm start`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## User Stories:
+1.	As a host, I want the ability to register on this site and ask for certain services.
+ - Feature Tasks:
+    * Host can sign up/ sign in/ sign up with Google
+    * Host can add one or many services.
+    * Host can edit and delete a service.
+    * Host can accept or decline a volunteer
+ - Acceptance Tests:
 
-### `npm test`
+    * Basic Auth
+    * Bearer Auth
+    * ACL/ only authorized users can access hosts information.
+2.	As a volunteer, I want the ability to search for working opportunity in different fields in different countries.
+  - Feature Tasks:
+    * Volunteer can sign up/ sign in/ sign up with Google
+    * Volunteer can search for opportunities in a specific field and country.
+    * Volunteer can view the host profile.
+    * Volunteer can apply for a service.
+	- Acceptance Tests:
+    * Basic Auth
+    * Bearer Auth
+    * ACL/ only authorized users can access volunteer information.
+3.	As a host, I want the ability to communicate with the volunteer before accepting the request for the services through live chat or email.
+  - Feature Tasks:
+    * Host can send emails to the volunteer and ask for further info.
+    * Host and volunteer can have a live chat.
+  - Acceptance Tests:
+    * E-mail test (nodemailer)
+    * Live Chat test (socket io)
+4.	As a user, I want my data to be safe and secure and only shared after my consent.
+  - Feature Tasks:
+    * All data is saved in the database.
+    * Access control is applied
+  - Acceptance Tests:
+    * ACL test
+5.	As a volunteer, I want the ability to rate my host and see other’s feedback.
+  - Feature Tasks:
+    * Display feedbacks on the home page in the feedback section.
+    * A form to write a feedback
+    * The ability to rate a user
+  - Acceptance Tests:
+    * Feedback is working
+    * Rating is saved and displayed properly
+6.	As a user, I want the ability to post in the websites journal. (stretch goal)
+7.	As an admin, I want the ability to do CRUD to all users (stretch goal)
+8.	As a user, I can ask for help from the technical support (admins) / Socket.io
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Domain Modeling:
 
-### `npm run build`
+![Modeling](public/Modeling.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Database Relationships:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Database](public/DatabaseStructure.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Wire frames:
 
-### `npm run eject`
+### Home Page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image1](public/1.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sign in Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![image1](public/2.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Search Page
 
-## Learn More
+![image1](public/3.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Profile Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image1](public/4.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Routes:
 
-### Making a Progressive Web App
+- first route:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+      /hosts/sign_up
 
-### Advanced Configuration
+- Expected Output
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+      "success Host created successfully"
 
-### Deployment
+- second route:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+       /sign_in
 
-### `npm run build` fails to minify
+- Expected Output:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      "username": "ib123",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImliMTIzIiwiaWF0IjoxNjE5NDk0NzAyfQ.iBuqhNzdb-sqEbT8I4Qv1cLQ2RtnKjZ64JWyLVkA37I"
+
+
+- third route: 
+
+      /searchResults
+
+- Expected Output:
+
+      "country":"jordan",
+      "title":"farmer"
+ 
+ - fourth route:
+
+       /volunteers/sign_up
+
+- Expected Output:
+
+      "success Volunteer created successfully"
+
+- fifth route:
+
+      /host/1
+
+- Expected Output:
+
+        "id": 1,
+        "user_name": "ib123",
+        "first_name": "samer",
+        "last_name": "alnajjar",
+        "password": "$2b$10$huOWeJ9/xWnnr252N.w4.O413nCz2TZ/QkB8LufKM929iBDI963TO",
+        "description": null,
+        "email": "a123",
+        "country": "s",
+        "birth_date": "2021-12-11T22:00:00.000Z",
+        "category": "farming",
+        "address": "s",
+        "rating": null,
+        "profile_image": null,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImliMTIzIiwiaWF0IjoxNjE5NDk0NzAyfQ.iBuqhNzdb-sqEbT8I4Qv1cLQ2RtnKjZ64JWyLVkA37I"
+	
+- six route:
+
+      /superuser/
+
+- Expected Output:
+
+      "volunteers": [
+        {
+            "id": 1,
+            "user_name": "samer2012",
+            "first_name": "samer",
+            "last_name": "alnajjar",
+            "password": "$2b$10$oNVSIG0DQ6V9yKDqYQIFyOY9AGnPagRkEQ.XUiIn2eQ5s/Qpmw7WO",
+            "description": null,
+            "email": "dfvdfvdfv",
+            "country": "s",
+            "birth_date": "2021-12-10T22:00:00.000Z",
+            "skills": "swimming",
+            "passport": "sdmakdcsdc",
+            "address": "s",
+            "rating": null,
+            "profile_image": null,
+            "token": null
+        }
+       ],
+      "hosts": [
+        {
+            "id": 1,
+            "user_name": "ib123",
+            "first_name": "samer",
+            "last_name": "alnajjar",
+            "password": "$2b$10$huOWeJ9/xWnnr252N.w4.O413nCz2TZ/QkB8LufKM929iBDI963TO",
+            "description": null,
+            "email": "a123",
+            "country": "s",
+            "birth_date": "2021-12-11T22:00:00.000Z",
+            "category": "farming",
+            "address": "s",
+            "rating": null,
+            "profile_image": null,
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImliMTIzIiwiaWF0IjoxNjE5NDk0NzAyfQ.iBuqhNzdb-sqEbT8I4Qv1cLQ2RtnKjZ64JWyLVkA37I"
+        }
+      ],
+      "services": []
+      
+      
+      
