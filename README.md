@@ -1,6 +1,3 @@
-## UML Diagram
-![UML Diagram](./public/UML%20Diagram.png)
-
 # Project Name: *Homeway*
 - [Netlify Deployment Link]()
 ## Our team:
